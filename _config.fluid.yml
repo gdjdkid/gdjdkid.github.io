@@ -3,13 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
+title: Tech-Roy Blog
+subtitle: Tech-Roy Blog
+description: 技術分享 技術無界 開源至上
 keywords:
-author: John Doe
+author: Roy Li
 language: zh-CN
-timezone: ''
+timezone: Asia/Singapore
+
+# Navigation bar
+navbar:
+  blog_title: "Tech-Roy Blog"
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -119,4 +123,15 @@ utterances:
   theme: boxy-light
   theme_dark: github-dark-orange
   crossorigin: anonymous
+
+#---------------------------
+# 首页
+# Home Page
+#---------------------------
+index:
+  slogan:
+    enable: true
+    text: "技術分享 技術無界 開源至上"
+
+
 

@@ -11,9 +11,35 @@ author: Roy Li
 language: zh-CN
 timezone: Asia/Singapore
 
+#---------------------------
+# 页头
+# Header
+#---------------------------
+
+# 导航栏的相关配置
 # Navigation bar
 navbar:
   blog_title: "Tech-Roy Blog"
+
+#---------------------------
+# 页脚
+# Footer
+#---------------------------
+footer:
+  # 展示网站的 PV、UV 统计数
+  # Display website PV and UV statistics
+  statistics:
+    enable: true
+
+    # 统计数据来源，使用 leancloud, umami 需要设置 `web_analytics` 中对应的参数；使用 busuanzi 不需要额外设置，但是有时不稳定，另外本地运行时 busuanzi 显示统计数据很大属于正常现象，部署后会正常
+    # Data source. If use leancloud, umami, you need to set the parameter in `web_analytics`
+    # Options: busuanzi | leancloud | umami
+    source: "leancloud"
+
+    # 页面显示的文本,{}是数字的占位符（必须包含），下同.
+    # Displayed text,{} is a placeholder for numbers (must be included), the same below.
+    pv_format: "总访问量 {} 次"
+    uv_format: "总访客数 {} 人"
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -109,11 +135,7 @@ deploy:
   repository: git@github.com:gdjdkid/gdjdkid.github.io.git
   branch: statics
 
-# Discuss
-post:
-  comments:
-    enable: true
-    type: utterances
+
 
 # utterances
 utterances:
@@ -132,6 +154,47 @@ index:
   slogan:
     enable: true
     text: "技術分享 技術無界 開源至上"
+
+
+#---------------------------
+# 全局
+# Global
+#---------------------------
+
+# 网页访问统计
+# Analysis of website visitors
+web_analytics:
+  enable: true
+
+  # LeanCloud 计数统计，可用于 PV UV 展示，如果 `web_analytics: enable` 没有开启，PV UV 展示只会查询不会增加
+  # LeanCloud count statistics, which can be used for PV UV display. If `web_analytics: enable` is false, PV UV display will only query and not increase
+  leancloud:
+    app_id: nYlSkwUl46LiPmVhxuQUTS3k-MdYXbMMI
+    app_key: Lmpch3DDscmEXMUvRpb2sX11
+
+
+#---------------------------
+# 文章页
+# Post Page
+#---------------------------
+# Discuss
+post:
+  comments:
+    enable: true
+    type: utterances
+
+  # 文章标题下方的元信息
+  # Meta information below title
+  meta:
+    # 浏览量计数
+    # Number of visits
+    views:
+      enable: true
+      # 统计数据来源
+      # Data Source
+      # Options: busuanzi | leancloud | umami
+      source: "leancloud"
+      format: "{} 次"
 
 
 

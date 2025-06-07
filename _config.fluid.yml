@@ -105,3 +105,18 @@ deploy:
   repository: git@github.com:gdjdkid/gdjdkid.github.io.git
   branch: statics
 
+# Discuss
+post:
+  comments:
+    enable: true
+    type: utterances
+
+# utterances
+utterances:
+  repo: gdjdkid/gdjdkid.github.io
+  issue_term: title
+  label: utterances
+  theme: boxy-light
+  theme_dark: github-dark-orange
+  crossorigin: anonymous
+

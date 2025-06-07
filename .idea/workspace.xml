@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_config.fluid.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/about/index.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.fluid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.fluid.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +55,7 @@
       <updated>1749288482183</updated>
       <workItem from="1749288485544" duration="14000" />
       <workItem from="1749288514240" duration="1565000" />
-      <workItem from="1749290109513" duration="4253000" />
+      <workItem from="1749290109513" duration="5814000" />
     </task>
     <servers />
   </component>
@@ -82,8 +77,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="698" height="705" key="Git.Branch.Popup" />
-    <state width="698" height="705" key="Git.Branch.Popup/1920.1080" />
-    <state width="698" height="705" key="Git.Branch.Popup@1920.1080@120dpi" />
+    <state width="705" height="712" key="Git.Branch.Popup" />
+    <state width="705" height="712" key="Git.Branch.Popup/1920.1080" />
+    <state width="705" height="712" key="Git.Branch.Popup@1920.1080@120dpi" />
   </component>
 </project>

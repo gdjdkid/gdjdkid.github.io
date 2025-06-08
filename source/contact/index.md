@@ -1,5 +1,5 @@
 ---
-title: contact  
+title: 联系方式  
 type: "contact"  
-layout: "contact"  
+layout: page  
 ---

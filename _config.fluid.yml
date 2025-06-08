@@ -146,6 +146,13 @@ utterances:
   theme_dark: github-dark-orange
   crossorigin: anonymous
 
+# hexo-admin authentification
+admin:
+  username: gdjdkid
+  password_hash: $2a$10$F/wZ8QBck/kPavPFdR4Qcevx8GMRyQlpU9UtoeLMw8VxVN66O49Ua
+  secret: Liroy8964
+  deployCommand: 'hexo-deploy.bat'
+
 #---------------------------
 # 首页
 # Home Page

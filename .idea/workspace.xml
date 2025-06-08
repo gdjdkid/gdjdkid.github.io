@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/source/js/duration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_config.fluid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.fluid.yml" afterDir="false" />
     </list>
@@ -56,7 +57,7 @@
       <workItem from="1749288485544" duration="14000" />
       <workItem from="1749288514240" duration="1565000" />
       <workItem from="1749290109513" duration="17710000" />
-      <workItem from="1749349580784" duration="25177000" />
+      <workItem from="1749349580784" duration="26304000" />
     </task>
     <servers />
   </component>

@@ -2,22 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/languages/de.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/languages/en.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/languages/eo.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/languages/es.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/languages/ja.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/languages/ru.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/languages/zh-CN.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/languages/zh-HK.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/languages/zh-TW.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/categories/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/contact/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/friends/index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/tags/index.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_config.fluid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.fluid.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/about/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/about/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +59,7 @@
       <workItem from="1749288485544" duration="14000" />
       <workItem from="1749288514240" duration="1565000" />
       <workItem from="1749290109513" duration="17710000" />
-      <workItem from="1749349580784" duration="14107000" />
+      <workItem from="1749349580784" duration="18101000" />
     </task>
     <servers />
   </component>

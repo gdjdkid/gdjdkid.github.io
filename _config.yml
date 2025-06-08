@@ -97,6 +97,7 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: fluid
+plugins: hexo-generator-feed
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -113,3 +114,16 @@ admin:
   secret: Liroy8964
   deployCommand: 'hexo-deploy.bat'
 
+feed:
+  enable: true
+  type: rss2
+  path: rss2.xml
+  limit: false
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Sherlock_logo.png
+  autodiscovery: true
+  template:

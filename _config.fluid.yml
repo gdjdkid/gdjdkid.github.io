@@ -262,10 +262,18 @@ feed:
 # 文章页
 # Post Page
 #---------------------------
-# Discuss
 post:
+  banner_img: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Universe_0.jpg
+  banner_img_height: 70
+  banner_mask_alpha: 0.3
+
+  # 评论插件
+  # Comment plugin
   comments:
     enable: true
+    # 指定的插件，需要同时设置对应插件的必要参数
+    # The specified plugin needs to set the necessary parameters at the same time
+    # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
     type: utterances
 
   # 文章标题下方的元信息

@@ -282,6 +282,10 @@ include:
 exclude:
 ignore:
 
+# 添加引用
+custom_js:
+  - /js/stars.js
+
 
 #---------------------------
 # 评论插件

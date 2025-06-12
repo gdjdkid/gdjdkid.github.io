@@ -11,6 +11,28 @@ author: Roy Li
 language: zh-CN
 timezone: Asia/Singapore
 
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+url: https://tech-roy.uk
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+pretty_urls:
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: git
+  repository: git@github.com:gdjdkid/gdjdkid.github.io.git
+  branch: statics
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: fluid
+plugins: hexo-generator-feed
+
 # hexo-admin authentification
 admin:
   username: gdjdkid
@@ -187,15 +209,6 @@ footer:
     </div>
   '
 
-# URL
-## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://tech-roy.uk
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
-
 # Directory
 source_dir: source
 public_dir: public
@@ -269,18 +282,6 @@ include:
 exclude:
 ignore:
 
-# Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
-theme: fluid
-plugins: hexo-generator-feed
-
-# Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repository: git@github.com:gdjdkid/gdjdkid.github.io.git
-  branch: statics
 
 #---------------------------
 # 评论插件

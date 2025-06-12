@@ -205,6 +205,14 @@ feed:
 # Global
 #---------------------------
 
+# 用于浏览器标签的图标
+# Icon for browser tab
+favicon: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Sherlock_logo_mini.png
+
+# 用于苹果设备的图标
+# Icon for Apple touch
+apple_touch_icon: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Sherlock_logo.png
+
 # 网页访问统计
 # Analysis of website visitors
 web_analytics:

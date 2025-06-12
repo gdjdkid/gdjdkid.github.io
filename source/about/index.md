@@ -1,7 +1,7 @@
 ---
-title: 关于我  
-type: "about"  
-layout: page  
+title: 关于Roy Li  
+layout: about  
+comment: 'utterances'  
 ---
 
-这里是关于我的内容...
+这里可以写正文，支持 Markdown, HTML

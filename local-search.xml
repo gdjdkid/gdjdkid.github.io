@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>创建.bashrc文件</title>
+    <link href="/2025/06/08/%E5%88%9B%E5%BB%BA-bashrc%E6%96%87%E4%BB%B6/"/>
+    <url>/2025/06/08/%E5%88%9B%E5%BB%BA-bashrc%E6%96%87%E4%BB%B6/</url>
+    
+    <content type="html"><![CDATA[<h2 id="创建-bashrc"><a href="#创建-bashrc" class="headerlink" title="创建.bashrc"></a>创建.bashrc</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">// 打印欢迎信息</span><br>        System.out.println(<span class="hljs-string">&quot;Hello, World!&quot;</span>);<br>        <br>        <span class="hljs-comment">// 计算并输出两个数字的和</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">num1</span> <span class="hljs-operator">=</span> <span class="hljs-number">5</span>;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">num2</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> num1 + num2;<br>        System.out.println(<span class="hljs-string">&quot;Sum: &quot;</span> + sum);<br>        <br>        <span class="hljs-comment">// 打印命令行参数</span><br>        System.out.println(<span class="hljs-string">&quot;\nCommand line arguments:&quot;</span>);<br>        <span class="hljs-keyword">for</span> (String arg : args) &#123;<br>            System.out.println(<span class="hljs-string">&quot;&gt; &quot;</span> + arg);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="进入编辑模式"><a href="#进入编辑模式" class="headerlink" title="进入编辑模式"></a>进入编辑模式</h2><pre><code class=" mermaid">classDiagramClass01 &lt;|-- AveryLongClass : CoolClass03 *-- Class04Class05 o-- Class06Class07 .. Class08Class09 --&gt; C2 : Where am i?Class09 --* C3Class09 --|&gt; Class07Class07 : equals()Class07 : Object[] elementDataClass01 : size()Class01 : int chimpClass01 : int gorillaClass08 &lt;--&gt; C2: Cool label</code></pre><h2 id="bashrc"><a href="#bashrc" class="headerlink" title="~.&#x2F;.bashrc"></a>~.&#x2F;.bashrc</h2><h2 id="使其生效"><a href="#使其生效" class="headerlink" title="使其生效"></a>使其生效</h2><h2 id="查看文件是否创建"><a href="#查看文件是否创建" class="headerlink" title="查看文件是否创建"></a>查看文件是否创建</h2><h2 id="拥有文件所有权限"><a href="#拥有文件所有权限" class="headerlink" title="拥有文件所有权限"></a>拥有文件所有权限</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>树莓派</category>
+      
+      <category>NAS</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>树莓派</tag>
+      
+      <tag>NAS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>树莓派4B安装Rpi OS Legacy Lite</title>
+    <link href="/2025/06/07/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85Rpi-OS-Legacy-Lite/"/>
+    <url>/2025/06/07/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85Rpi-OS-Legacy-Lite/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>各位看官，此篇是DIY个人NAS的第一篇，首先我们来给树莓派单板机安装RPI OS，然后在此基础上，我们可以安装各种第三方应用来实现NAS的基础服务。  </p><h3 id="所需设备"><a href="#所需设备" class="headerlink" title="所需设备"></a>所需设备</h3><ul><li><input checked="" disabled="" type="checkbox"> 树莓派4B型号  </li><li><input checked="" disabled="" type="checkbox"> TF内存卡64G  </li><li><input checked="" disabled="" type="checkbox"> TF读卡器  </li><li><input checked="" disabled="" type="checkbox"> 树莓派电源线  </li><li><input checked="" disabled="" type="checkbox"> 网线  </li><li><input checked="" disabled="" type="checkbox"> HDMI线  </li><li><input checked="" disabled="" type="checkbox"> Mini HDMI线转换头  </li><li><input checked="" disabled="" type="checkbox"> 显示器</li></ul><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol><li>首先我们需要对TF内存卡格式化加安装树莓派OS系统。</li><li>把TF内存卡插入到TF读卡器内。<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/TF_reader.png">  </li><li>先下载Raspberry Pi Imager（树莓派镜像烧录工具）  </li><li>从树莓派官网下载烧录工具imager_1.8.5(下载最新的版本)，不然其他平台很难保证其安全性。<br> 4.1 点击 –&gt; <img src="https://www.raspberrypi.com/software/" alt="树莓派官网下载链接"><br> 4.2 进入主页，点击最上面导航栏的’Software’<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_offical_0.jpg"><br> 4.3 往下拉，找到’Download for XXX’<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_offical_1.jpg"><br> 4.4 下载到本地盘任意位置即可<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/imager_1.8.5.jpg"><br> 4.5 下载完后，双击进行安装，一直点击’下一步’即可，或者安装到任意你喜欢的盘符位置<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/imager_0.jpg">  </li><li>点击树莓派启动盘制作工具进行烧录树莓派OS系统。<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_v1.9.0.jpg"><br> 5.1 点击【树莓派设备·选择设备】参考下面截图，来配置个人需求。<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_select_device.jpg"><br> 5.2 点击【操作系统·选择操作系统】<br> <em><strong>这里补充一下:</strong></em><br> 如果要节省功耗，请选择Raspberry Pi OS(Legacy,64-bit)Lite版本，因为此系统无桌面，只有命令行。<br> 如果不担心功耗，请选择Raspberry Pi OS(Legacy,64-bit)Full版本，此版本是有桌面界面。<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_select_OS_0.jpg"><br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_select_OS_1.jpg"><br> 5.3 点击【储存设备·选择存储设备】<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_select_TF_card.jpg"><br> 5.4 然后点击’下一步’，会出现弹框，点击’编辑设置’<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_config_0.jpg"><br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_config_1.jpg"><br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_config_2.jpg"><br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_config_3.jpg"><br> 5.5 最后点击’保存’与’下一步’，会出现警告弹框，再点击’确认’即可，会删除卡内现存数据，如需要，提前做好备份。<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_warning_msg.jpg"><br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_writing_in.jpg">  </li><li>烧录完毕，关闭烧录框。  </li><li>桌面会出现提示XX格式化的弹框，无需担心，点击’取消’即可。  </li><li>把TF卡拔出后插入到树莓派里。<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/RPI4B.png">  </li><li>插上MiniHDMI转换器，用HDMI线链接树莓派与显示器。<br> <img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Mini_HDMI.png">  </li><li>开机，等待几分钟，让树莓派进行系统初始化。  </li><li>进入命令行界面后，输入登录用户名和登录密码。<br><img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Login_page.jpg">  </li><li>恭喜，此时已经成功安装了树莓派OS系统。</li></ol><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>完成上面每一步后，接下来我们可以DIY这个乌班图系统，请各位看官们持续关注这个技术博客，感谢~！</p><p>“技術分享 技術無界 開源至上”</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>树莓派</category>
+      
+      <category>NAS</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>树莓派</tag>
+      
+      <tag>NAS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>记录DIY NAS的全过程</title>
+    <link href="/2025/06/07/%E8%AE%B0%E5%BD%95DIY%20NAS%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/"/>
+    <url>/2025/06/07/%E8%AE%B0%E5%BD%95DIY%20NAS%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<h2 id="记录篇章链接"><a href="#记录篇章链接" class="headerlink" title="记录篇章链接"></a>记录篇章链接</h2><ol><li>链接1</li><li>链接2</li><li>链接3</li><li>链接4</li><li>链接5</li></ol><h2 id="制作感受"><a href="#制作感受" class="headerlink" title="制作感受"></a>制作感受</h2><p>从XX</p><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol><li>参考1</li><li>参考2</li><li>参考3</li><li>参考4</li><li>参考5</li></ol>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>树莓派</tag>
+      
+      <tag>NAS</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>开通博客·技术分享·开源至上</title>
+    <link href="/2025/06/07/%E5%BC%80%E9%80%9A%E5%8D%9A%E5%AE%A2%C2%B7%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB%C2%B7%E5%BC%80%E6%BA%90%E8%87%B3%E4%B8%8A/"/>
+    <url>/2025/06/07/%E5%BC%80%E9%80%9A%E5%8D%9A%E5%AE%A2%C2%B7%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB%C2%B7%E5%BC%80%E6%BA%90%E8%87%B3%E4%B8%8A/</url>
+    
+    <content type="html"><![CDATA[<h2 id="开通时间"><a href="#开通时间" class="headerlink" title="开通时间"></a>开通时间</h2><p>2025年06月07日</p><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>通过我的实践经历，来记录实践过程，提高写作能力，分享技术细节。</p><h2 id="Slogan"><a href="#Slogan" class="headerlink" title="Slogan"></a>Slogan</h2><p>技术分享 技术无界 开源至上</p><h2 id="网站链接"><a href="#网站链接" class="headerlink" title="网站链接"></a>网站链接</h2><p><a href="https://tech-roy.uk/">https://tech-roy.uk/</a></p><h2 id="网站头像"><a href="#网站头像" class="headerlink" title="网站头像"></a>网站头像</h2><p><img src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Sherlock_logo.png"></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>

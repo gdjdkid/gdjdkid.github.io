@@ -11,6 +11,27 @@ author: Roy Li
 language: zh-CN
 timezone: Asia/Singapore
 
+# hexo-admin authentification
+admin:
+  username: gdjdkid
+  password_hash: $2a$10$F/wZ8QBck/kPavPFdR4Qcevx8GMRyQlpU9UtoeLMw8VxVN66O49Ua
+  secret: Liroy8964
+  deployCommand: 'hexo-deploy.bat'
+
+feed:
+  enable: true
+  type: rss2
+  path: rss2.xml
+  limit: false
+  hub:
+  content: true
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Sherlock_logo.png
+  autodiscovery: true
+  template:
+
 
 #---------------------------
 # 全局
@@ -279,27 +300,6 @@ utterances:
   crossorigin: anonymous
   placeholder: "畅所欲言，思想相遇~"
 
-# hexo-admin authentification
-admin:
-  username: gdjdkid
-  password_hash: $2a$10$F/wZ8QBck/kPavPFdR4Qcevx8GMRyQlpU9UtoeLMw8VxVN66O49Ua
-  secret: Liroy8964
-  deployCommand: 'hexo-deploy.bat'
-
-feed:
-  enable: true
-  type: rss2
-  path: rss2.xml
-  limit: false
-  hub:
-  content: true
-  content_limit: 140
-  content_limit_delim: ' '
-  order_by: -date
-  icon: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Sherlock_logo.png
-  autodiscovery: true
-  template:
-
 
 #---------------------------
 # 文章页
@@ -333,6 +333,20 @@ post:
       format: "{} 次"
   # 文章在首页的封面图
 #  default_index_img: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Universe_0.jpg
+
+  # 流程图，基于 mermaid-js，具体请见：https://hexo.fluid-dev.com/docs/guide/#mermaid-流程图
+  # Flow chart, based on mermaid-js, see: https://hexo.fluid-dev.com/docs/en/guide/#mermaid
+  mermaid:
+    # 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `mermaid: true`
+    # If you want to use mermaid on the custom page, you need to set `mermaid: true` in Front-matter
+    enable: true
+
+    # 开启后，只有在文章 Front-matter 里指定 `mermaid: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
+    # If true, only set `mermaid: true` in Front-matter will enable mermaid, to load faster when the page does not contain mermaid
+    specific: true
+
+    # See: http://mermaid-js.github.io/mermaid/
+    options: { theme: 'default' }
 
 
 #---------------------------
@@ -533,8 +547,71 @@ links:
   # 评论插件
   # Comment plugin
   comments:
-    enable: false
+    enable: true
     # 指定的插件，需要同时设置对应插件的必要参数
     # The specified plugin needs to set the necessary parameters at the same time
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus | discuss
-    type: disqus
+    type: utterances
+
+
+
+#---------------------------
+# 以下是配置 JS CSS 等静态资源的 URL 前缀，可以自定义成 CDN 地址，
+# 如果需要修改，最好使用与默认配置相同的版本，以避免潜在的问题，
+# ** 如果你不知道如何设置，请不要做任何改动 **
+#
+# Here is the url prefix to configure the static assets. Set CDN addresses you want to customize.
+# Be aware that you would better use the same version as default ones to avoid potential problems.
+# DO NOT EDIT THE FOLLOWING SETTINGS UNLESS YOU KNOW WHAT YOU ARE DOING
+#---------------------------
+
+static_prefix:
+  # 内部静态
+  # Internal static
+  internal_js: /js
+  internal_css: /css
+  internal_img: /img
+
+  anchor: https://lib.baomitu.com/anchor-js/5.0.0/
+
+  github_markdown: https://lib.baomitu.com/github-markdown-css/4.0.0/
+
+  jquery: https://lib.baomitu.com/jquery/3.6.4/
+
+  bootstrap: https://lib.baomitu.com/twitter-bootstrap/4.6.1/
+
+  prismjs: https://lib.baomitu.com/prism/1.29.0/
+
+  tocbot: https://lib.baomitu.com/tocbot/4.20.1/
+
+  typed: https://lib.baomitu.com/typed.js/2.0.12/
+
+  fancybox: https://lib.baomitu.com/fancybox/3.5.7/
+
+  nprogress: https://lib.baomitu.com/nprogress/0.2.0/
+
+  mathjax: https://lib.baomitu.com/mathjax/3.2.2/
+
+  katex: https://lib.baomitu.com/KaTeX/0.16.2/
+
+  busuanzi: https://busuanzi.ibruce.info/busuanzi/2.3/
+
+  clipboard: https://lib.baomitu.com/clipboard.js/2.0.11/
+
+  mermaid: https://lib.baomitu.com/mermaid/8.14.0/
+
+  valine: https://lib.baomitu.com/valine/1.5.1/
+
+  waline: https://registry.npmmirror.com/@waline/client/2.15.8/files/dist/
+
+  gitalk: https://lib.baomitu.com/gitalk/1.8.0/
+
+  disqusjs: https://lib.baomitu.com/disqusjs/1.3.0/
+
+  twikoo: https://lib.baomitu.com/twikoo/1.6.8/
+
+  discuss: https://lib.baomitu.com/discuss/1.2.1/
+
+  hint: https://lib.baomitu.com/hint.css/2.7.0/
+
+  moment: https://lib.baomitu.com/moment.js/2.29.4/

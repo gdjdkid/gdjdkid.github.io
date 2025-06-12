@@ -239,7 +239,8 @@ post:
       # Options: busuanzi | leancloud | umami
       source: "leancloud"
       format: "{} 次"
-
+  # 文章在首页的封面图
+#  default_index_img: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Universe_0.jpg
 
 
 #---------------------------

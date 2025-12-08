@@ -11,8 +11,8 @@ mermaid: true
 ```shell
 touch /home/roy/.bashrc
 ```
-![](https://tech-roy.uk/PicGo/Create_bashrc_0.png)
-P.S.: “roy”为用户名，请替换为您的用户名。
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Create_bashrc_0.png)
+`P.S.: “roy”为用户名，请替换为您的用户名。`
 
 ## 进入编辑模式
 
@@ -20,7 +20,7 @@ P.S.: “roy”为用户名，请替换为您的用户名。
 cd /home/roy/
 sudo nano /home/roy/.bashrc
 ```
-![](https://tech-roy.uk/PicGo/Create_bashrc_1.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Create_bashrc_1.png)
 
 ## ~./.bashrc
 
@@ -72,16 +72,16 @@ mkcd() {
 ```shell
 source /home/roy/.bashrc
 ```
-![](https://tech-roy.uk/PicGo/Create_bashrc_2.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Create_bashrc_2.png)
 
 ## 查看文件是否创建
 ```shell
 ls -la /home/roy/.bashrc
 ```
-![](https://tech-roy.uk/PicGo/Create_bashrc_3.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Create_bashrc_3.png)
 
 ## 拥有文件所有权限
 ```shell
 sudo chmod -R 777 /home/roy/.bashrc
 ```
-![](https://tech-roy.uk/PicGo/Create_bashrc_4.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Create_bashrc_4.png)

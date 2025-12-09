@@ -1,10 +1,11 @@
 ---
 title: 创建.bashrc文件  
 author: Roy Li  
-tags: [树莓派, NAS]  
-categories: [树莓派, NAS]  
-date: 2025-06-08 11:47:00  
-mermaid: true  
+tags: [树莓派]
+categories: [树莓派]
+date: 2025-06-08 11:47:00
+index_img:
+sticky:
 ---
 ## 创建.bashrc
 

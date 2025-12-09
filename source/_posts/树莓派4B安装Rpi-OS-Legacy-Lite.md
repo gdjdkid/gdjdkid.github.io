@@ -1,11 +1,11 @@
 ---
 title: 树莓派4B安装Rpi OS Legacy Lite  
 author: Roy Li  
-tags: [树莓派, NAS]  
-categories: [树莓派, NAS]  
+tags: [树莓派]  
+categories: [树莓派]  
 index_img: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/rpi_tool_v1.9.0.jpg  
 date: 2025-06-07 22:10:20  
-sticky: 100  
+sticky:
 ---
 
 ## 前言

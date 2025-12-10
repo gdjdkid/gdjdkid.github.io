@@ -124,6 +124,6 @@ feed:
   content_limit: 140
   content_limit_delim: ' '
   order_by: -date
-  icon: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Sherlock_logo.png
+  icon: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png
   autodiscovery: true
   template:

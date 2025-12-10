@@ -43,8 +43,8 @@ curl -fsSL https://get.casaos.io | sudo bash
 ```text
 wget -qO- https://get.casaos.io | sudo bash
 ```
-![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Install_CasaOS_0.png)
-![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Install_CasaOS_1.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85CasaOS/Install_CasaOS_0.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85CasaOS/Install_CasaOS_1.png)
 
 ### 访问CasaOS Web界面
 1. 查找IP地址
@@ -54,8 +54,8 @@ wget -qO- https://get.casaos.io | sudo bash
    - 登录CasaOS（使用刚才设置的用户名/密码）
    - 首次登录会引导设置，之后即可浏览应用商店，一键安装如Nextcloud、Plex、Home Assistant等应用。
 
-![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Install_CasaOS_2.png)
-![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Install_CasaOS_3.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85CasaOS/Install_CasaOS_2.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85CasaOS/Install_CasaOS_3.png)
 
 ### 卸载CasaOS（可选）
 打开终端，运行以下命令：

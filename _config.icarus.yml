@@ -1,0 +1,134 @@
+# _config.icarus.yml
+# Icarus 主题根配置（中文注释版）
+# 注意：YAML 对缩进敏感，请使用空格，不要用 Tab
+
+# -------------------------
+# 站点基本信息
+# -------------------------
+title: Tech-Roy Blog                 # 网站标题
+subtitle: Tech-Roy Blog   # 副标题（可留空）
+description: 技術分享 技術無界 開源至上  # SEO 描述
+author: Roy Li                  # 博客作者
+language: zh-CN                 # 站点语言
+timezone: Asia/Shanghai         # 时区（字符串）
+
+# -------------------------
+# 顶部菜单（导航）
+# -------------------------
+menus:
+  Home: /
+  Archives: /archives/
+  Categories: /categories/
+  Tags: /tags/
+  About: /about/
+
+# -------------------------
+# 社交链接（可按需删减）
+# -------------------------
+social_links:
+  github: "https://github.com/yourname"
+  email: "mailto:you@example.com"
+  rss: "/atom.xml"
+
+# -------------------------
+# 侧边栏/小组件（widget）示例
+# 说明：widgets 为数组，每个元素为一个 map（键值对）
+# -------------------------
+widgets:
+  - type: profile
+    position: left
+    author: "Roy Li"
+    author_title: "软件开发者"
+    location: "广州"
+    avatar: "/images/avatar.png"
+    follow_link: "https://github.com/yourname"
+    social_links: true
+
+  - type: toc
+    position: right
+
+  - type: recent_posts
+    position: right
+    amount: 5
+
+  - type: categories
+    position: right
+
+  - type: tags
+    position: right
+
+# -------------------------
+# 文章与首页相关
+# -------------------------
+article:
+  thumbnail: true                # 是否显示缩略图（需文章 front-matter 配置 cover）
+  date_format: "YYYY-MM-DD"      # 日期格式
+
+# -------------------------
+# 代码高亮（Prism）
+# -------------------------
+prism:
+  enable: true
+  theme: "default"
+  line_number: true
+
+# -------------------------
+# 评论系统（示例配置：Giscus / Twikoo）
+# 仅示例：enable: false 表示关闭。开启时请填写相应字段。
+# -------------------------
+giscus:
+  enable: false
+  repo: ""
+  repo_id: ""
+  category: ""
+  category_id: ""
+  mapping: "pathname"
+  theme: "light"
+
+twikoo:
+  enable: false
+  env_id: ""   # Twikoo 部署地址或 env id
+
+# -------------------------
+# 搜索配置
+# -------------------------
+search:
+  enable: true
+  type: "insight"   # 示例：insight，或其它实现（依据主题版本）
+
+# -------------------------
+# 统计/分析（示例 Google Analytics）
+# -------------------------
+analytics:
+  google:
+    enable: false
+    id: ""
+
+# -------------------------
+# RSS / Feed 配置
+# -------------------------
+feed:
+  type: "atom"
+  path: "atom.xml"
+  limit: 20
+
+# -------------------------
+# 默认文章封面（当文章未指定 cover 时）
+# -------------------------
+cover:
+  default: "/images/cover.jpg"
+
+# -------------------------
+# PWA（渐进式应用）配置（可选）
+# -------------------------
+pwa:
+  enable: false
+  manifest:
+    name: "我的博客"
+    short_name: "博客"
+    theme_color: "#ffffff"
+    background_color: "#ffffff"
+    display: "standalone"
+    start_url: "/"
+  service_worker:
+    enable: false

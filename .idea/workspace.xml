@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2025.12.10_0">
+    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2025.12.10_1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.fluid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.fluid.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/创建-bashrc文件.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/创建-bashrc文件.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/开通博客·技术分享·开源至上.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/开通博客·技术分享·开源至上.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/树莓派4B安装CasaOS.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/树莓派4B安装CasaOS.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/树莓派4B安装Rpi-OS-Legacy-Lite.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/树莓派4B安装Rpi-OS-Legacy-Lite.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/树莓派4B搭建面板1Panel.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/树莓派4B搭建面板1Panel.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +98,7 @@
       <workItem from="1760174570072" duration="113000" />
       <workItem from="1765198921595" duration="10440000" />
       <workItem from="1765289090584" duration="7970000" />
-      <workItem from="1765336543697" duration="8121000" />
+      <workItem from="1765336543697" duration="15076000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -128,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765302921130</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="push 2025.12.10_1">
+      <option name="closed" value="true" />
+      <created>1765346134721</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1765346134721</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,6 +157,7 @@
     <MESSAGE value="push 2025.12.09_0" />
     <MESSAGE value="push 2025.12.09_1" />
     <MESSAGE value="push 2025.12.10_0" />
-    <option name="LAST_COMMIT_MESSAGE" value="push 2025.12.10_0" />
+    <MESSAGE value="push 2025.12.10_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="push 2025.12.10_1" />
   </component>
 </project>

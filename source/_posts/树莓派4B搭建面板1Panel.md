@@ -4,7 +4,7 @@ date: 2025-12-10 01:34:34
 author: Roy Li
 tags: [树莓派]
 categories: [树莓派]
-index_img:
+index_img: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_4.png
 sticky:
 ---
 
@@ -40,16 +40,47 @@ curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_
 - 提示设置安装目录（默认为/opt）、端口（默认36230）、用户名/密码（推荐自定义强密码）。
 - 如果提示Docker未安装，它会自动引导修复。
 
-
-
-
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_0.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_1.png)
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_2.png)
 
 2. 安装完成提示
-   - 会出现访问地址，如http://<树莓派IP>:36230
+   - 会出现访问地址，如`http://<树莓派IP>:36230`
 
 ### 访问1Panel
+1. 获取树莓派IP
+   - 树莓派终端运行`hostname -I | awk '{print $1}'`
+      ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_6.png)
+2. 浏览器访问
+   - 在电脑的浏览器输入`http://<树莓派IP>:端口号/随机入口`（例如http://192.168.0.109:36230/roy）
+   - 随机入口指的是面板安全入口，在安装过程中有设置此配置。
+     ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_7.png)
+     ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_8.png)
+3. 首次登录
+   - 使用安装时设置的用户名/密码。
+   ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_4.png)
+   ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_5.png)
+4. 获取信息
+   - 如果找不到自己的用户名、密码、入口，可以在终端运行下面的命令进行查看。
+   ```shell
+   sudo 1pctl user-info
+   ```
+   ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_9.png)
 
-### 
+### 版本信息
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_3.png)
+
+### 常见问题与优化
+- ARM兼容：树莓派4B完美支持，但部分应用需ARM版镜像（1Panel会自动选择）。
+- 与CasaOS共存：安装在不同端口，不会干扰。CasaOS默认80端口，1Panel用自定义端口。
+- 卸载：运行`sudo 1pctl uninstall`
+- 更新：面板内自动检查，或终端`sudo 1pctl update`
+- 性能：树莓派4B运行流畅，但安装多应用时监控温度（加散热片）。
+- 防火墙：如果启用ufw，开放端口：`sudo ufw allow 端口号`
+- 端口冲突：如果默认端口被占，安装时指定其他端口，或修改/opt/1panel/config/config.yaml后，重启服务：`sudo systemctl restart 1panel`
+- 修改密码：修改密码可执行命令 `sudo 1pctl update password`
 
 ### 参考材料
 - 1Panel仓库地址：https://github.com/1Panel-dev/1Panel
+- 官方网站: https://1panel.cn
+- 项目文档: https://1panel.cn/docs

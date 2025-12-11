@@ -7,6 +7,7 @@ date: 2025-12-09 22:25:35
 index_img: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85CasaOS/Install_CasaOS_2.png
 sticky:
 ---
+
 ### 简单介绍
 CasaOS是一个开源的家庭云系统，基于Docker生态设计，专为家庭场景打造。它提供简洁的Web界面，支持一键安装NAS、媒体服务器、智能家居等应用，非常适合树莓派4B作为家庭服务器使用。CasaOS完全兼容Raspberry Pi OS（推荐使用64位版本），安装过程简单，只需几分钟。
 

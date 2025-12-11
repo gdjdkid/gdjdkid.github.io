@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>树莓派4B安装CasaOS</title>
+    <url>/2025/12/09/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85CasaOS/</url>
+    <content><![CDATA[简单介绍CasaOS是一个开源的家庭云系统，基于Docker生态设计，专为家庭场景打造。它提供简洁的Web界面，支持一键安装NAS、媒体服务器、智能家居等应用，非常适合树莓派4B作为家庭服务器使用。CasaOS完全兼容Raspberry Pi OS（推荐使用64位版本），安装过程简单，只需几分钟。
+准备工作
+硬件要求
+树莓派4B（2GB或以上内存推荐）
+MicroSD卡（至少16GB，建议Class 10或更高）
+电源适配器、网线或WiFi连接
+
+
+安装Raspberry Pi OS
+请参考 https://tech-roy.uk/2025/06/07/树莓派4B安装Rpi-OS-Legacy-Lite/
+
+
+
+安装系统依赖（更新系统）
+使用SSH连接树莓派
+（默认用户：pi，密码：raspberry）
+
+
+运行以下命令更新软件包 sudo apt update &amp;&amp; sudo apt upgrade -y
+安装curl（如果未安装） sudo apt install curl -y
+
+运行CasaOS脚本CasaOS支持一键安装脚本。打开终端，运行以下命令：
+curl -fsSL https://get.casaos.io | sudo bash
+
+脚本会自动下载并安装CasaOS，包括Docker依赖。
+安装过程会提示设置CasaOS管理员用户名和密码（默认用户名：casaos，密码：casaos，可自定义）。
+安装完成后，CasaOS会自动启动。
+
+备选命令（如果curl不可用）
+wget -qO- https://get.casaos.io | sudo bash
+
+访问CasaOS Web界面
+查找IP地址
+在树莓派终端运行：hostname -I（获取本地IP，如192.168.x.x）
+
+
+浏览器访问
+在同一网络的电脑/手机浏览器输入：http://&lt;树莓派IP&gt;:80（例如：http://192.168.0.109）
+登录CasaOS（使用刚才设置的用户名/密码）
+首次登录会引导设置，之后即可浏览应用商店，一键安装如Nextcloud、Plex、Home Assistant等应用。
+
+
+
+
+卸载CasaOS（可选）打开终端，运行以下命令：
+curl -fsSL https://get.casaos.io/uninstall | sudo bash
+
+常见问题与提示
+端口冲突：默认使用80端口，如果已占用（如Apache），可编辑CasaOS配置文件修改端口。
+性能优化：树莓派4B运行CasaOS流畅，但安装应用时监控CPU/内存使用。建议使用SSD外接存储以提升速度。
+更新CasaOS：在Web界面“设置”中检查更新，或终端运行casaos-ctl update。
+防火墙：如果启用ufw，确保开放80端口：sudo ufw allow 80。
+
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开通博客·技术分享·开源至上</title>
+    <url>/2025/06/07/%E5%BC%80%E9%80%9A%E5%8D%9A%E5%AE%A2%C2%B7%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB%C2%B7%E5%BC%80%E6%BA%90%E8%87%B3%E4%B8%8A/</url>
+    <content><![CDATA[开通时间2025年06月07日
+目的通过我的实践经历，来记录实践过程，提高写作能力，分享技术细节。
+Slogan技术分享 技术无界 开源至上
+网站链接https://tech-roy.uk/
+网站头像
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>创建.bashrc文件</title>
+    <url>/2025/06/08/%E5%88%9B%E5%BB%BA-bashrc%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[创建.bashrctouch /home/roy/.bashrc
+P.S.: “roy”为用户名，请替换为您的用户名。
+进入编辑模式cd /home/roy/sudo nano /home/roy/.bashrc
+
+~./.bashrc# 添加用户本地 bin 目录到 PATH# Global Environment Variableexport PATH="$HOME/.local/bin:$PATH"# Hexoalias hexocgd="hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy"alias hexo4000="hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server"# Quickly Commandalias rmd="rm -rf"#alias e="vim ~/.bashrc"alias e="nano ~/.bashrc"alias s="source ~/.bashrc"alias c="clear" alias la="ls -la" alias ll="ls -lah --color=auto"alias grep="grep --color=auto"alias catbashrc="cat ~/.bashrc"alias ipcheck="ip route get 8.8.8.8"alias testgoogle="curl -Iv https://www.google.com --connect-timeout 10"alias testyoutube="curl -Iv https://www.youtube.com --connect-timeout 10"alias restartdhcpcd="sudo systemctl restart dhcpcd"alias dockerrestart="sudo systemctl daemon-reload &amp;&amp; sudo systemctl restart docker &amp;&amp; sudo systemctl status docker"alias wificheck="sudo nmcli dev wifi list"alias editdhcpcdconfig="sudo nano /etc/dhcpcd.conf"alias rpishutdown="sudo shutdown -h now"alias rpireboot="sudo reboot"# Docker commandalias dps='docker ps -a --format "table {{.Names}}\t{{.ID}}\t{{.Status}}\t{{.Image}}"'# Quickly come to file addressalias ..="cd .."alias ...="cd ../.."alias ~="cd /home/roy"# Functions # Create a directory and immediately enter itmkcd() {    mkdir -p "$1" &amp;&amp; cd "$1"}
+
+使其生效source /home/roy/.bashrc
+
+查看文件是否创建ls -la /home/roy/.bashrc
+
+拥有文件所有权限sudo chmod -R 777 /home/roy/.bashrc
+
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派4B搭建面板1Panel</title>
+    <url>/2025/12/10/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/</url>
+    <content><![CDATA[简单介绍在树莓派上折腾一个面板，像是在一台小小的飞船里加装一套“宇宙驾驶舱”。1Panel 本来面向 x86，但它已经提供了 arm64 的版本，正好吻合树莓派 4B 的架构，所以你完全可以在你的 Pi 上跑起来，让它像台袖珍服务器一样管理得井井有条。
+准备工作
+硬件要求
+树莓派4B（2GB或以上内存推荐）
+MicroSD卡（至少16GB，建议Class 10或更高）
+电源适配器、网线或WiFi连接
+
+
+安装Raspberry Pi OS
+请参考 https://tech-roy.uk/2025/06/07/树莓派4B安装Rpi-OS-Legacy-Lite/
+
+
+更新系统：通过SSH连接树莓派，运行
+
+sudo apt update &amp;&amp; sudo apt upgrade -y
+
+安装Docker（1Panel必须依赖Docker）
+
+sudo apt install curl -ycurl -fsSL https://get.docker.com | sudo shsudo usermod -aG docker $USER  # 添加当前用户到docker组，重启生效
+重启树莓派：sudo reboot
+安装脚本树莓派上装好Ubuntu/Debian，然后直接跑1Panel官方脚本。脚本会自动检测你当前系统的架构并下载对应版本。如果你现在系统是64位（树莓派OS默认有64位版）
+
+运行一键安装脚本
+
+curl -sSL https://resource.fit2cloud.com/1panel/package/quick_start.sh -o quick_start.sh &amp;&amp; sudo bash quick_start.sh
+
+脚本会自动检测ARM架构（树莓派兼容），安装过程约5-10分钟。
+提示设置安装目录（默认为/opt）、端口（默认36230）、用户名/密码（推荐自定义强密码）。
+如果提示Docker未安装，它会自动引导修复。
+
+
+
+安装完成提示
+会出现访问地址，如http://&lt;树莓派IP&gt;:36230
+
+
+
+访问1Panel
+获取树莓派IP
+树莓派终端运行hostname -I | awk '{print $1}' 
+
+
+浏览器访问
+在电脑的浏览器输入http://&lt;树莓派IP&gt;:端口号/随机入口（例如http://192.168.0.109:36230/roy）
+随机入口指的是面板安全入口，在安装过程中有设置此配置。
+
+
+首次登录
+使用安装时设置的用户名/密码。
+
+
+获取信息
+如果找不到自己的用户名、密码、入口，可以在终端运行下面的命令进行查看。
+
+sudo 1pctl user-info
+
+
+
+版本信息
+常见问题与优化
+ARM兼容：树莓派4B完美支持，但部分应用需ARM版镜像（1Panel会自动选择）。
+与CasaOS共存：安装在不同端口，不会干扰。CasaOS默认80端口，1Panel用自定义端口。
+卸载：运行sudo 1pctl uninstall
+更新：面板内自动检查，或终端sudo 1pctl update
+性能：树莓派4B运行流畅，但安装多应用时监控温度（加散热片）。
+防火墙：如果启用ufw，开放端口：sudo ufw allow 端口号
+端口冲突：如果默认端口被占，安装时指定其他端口，或修改/opt/1panel/config/config.yaml后，重启服务：sudo systemctl restart 1panel
+修改密码：修改密码可执行命令 sudo 1pctl update password
+
+参考材料
+1Panel仓库地址：https://github.com/1Panel-dev/1Panel
+官方网站: https://1panel.cn
+项目文档: https://1panel.cn/docs
+
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记录折腾树莓派的全过程</title>
+    <url>/2025/06/07/%E8%AE%B0%E5%BD%95%E6%8A%98%E8%85%BE%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E5%85%A8%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[记录篇章链接
+链接1
+链接2
+链接3
+链接4
+链接5
+
+制作感受从XX
+参考链接
+参考1
+参考2
+参考3
+参考4
+参考5
+
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派4B安装Rpi OS Legacy Lite</title>
+    <url>/2025/06/07/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85Rpi-OS-Legacy-Lite/</url>
+    <content><![CDATA[前言各位看官，此篇是DIY个人NAS的第一篇，首先我们来给树莓派单板机安装RPI OS，然后在此基础上，我们可以安装各种第三方应用来实现NAS的基础服务。  
+所需设备
+ 树莓派4B型号  
+ TF内存卡64G  
+ TF读卡器  
+ 树莓派电源线  
+ 网线  
+ HDMI线  
+ Mini HDMI线转换头  
+ 显示器
+
+步骤
+首先我们需要对TF内存卡格式化加安装树莓派OS系统。
+把TF内存卡插入到TF读卡器内。 
+先下载Raspberry Pi Imager（树莓派镜像烧录工具）  
+从树莓派官网下载烧录工具imager_1.8.5(下载最新的版本)，不然其他平台很难保证其安全性。 4.1 点击 –&gt;  4.2 进入主页，点击最上面导航栏的’Software’  4.3 往下拉，找到’Download for XXX’  4.4 下载到本地盘任意位置即可  4.5 下载完后，双击进行安装，一直点击’下一步’即可，或者安装到任意你喜欢的盘符位置 
+点击树莓派启动盘制作工具进行烧录树莓派OS系统。  5.1 点击【树莓派设备·选择设备】参考下面截图，来配置个人需求。  5.2 点击【操作系统·选择操作系统】 这里补充一下: 如果要节省功耗，请选择Raspberry Pi OS(Legacy,64-bit)Lite版本，因为此系统无桌面，只有命令行。 如果不担心功耗，请选择Raspberry Pi OS(Legacy,64-bit)Full版本，此版本是有桌面界面。   5.3 点击【储存设备·选择存储设备】  5.4 然后点击’下一步’，会出现弹框，点击’编辑设置’     5.5 最后点击’保存’与’下一步’，会出现警告弹框，再点击’确认’即可，会删除卡内现存数据，如需要，提前做好备份。  
+烧录完毕，关闭烧录框。  
+桌面会出现提示XX格式化的弹框，无需担心，点击’取消’即可。  
+把TF卡拔出后插入到树莓派里。 
+插上MiniHDMI转换器，用HDMI线链接树莓派与显示器。 
+开机，等待几分钟，让树莓派进行系统初始化。  
+进入命令行界面后，输入登录用户名和登录密码。
+恭喜，此时已经成功安装了树莓派OS系统。
+
+结束语完成上面每一步后，接下来我们可以DIY这个乌班图系统，请各位看官们持续关注这个技术博客，感谢~！
+“技術分享 技術無界 開源至上”
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>树莓派部署旁路由实现全局科学上网</title>
+    <url>/2025/12/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/</url>
+    <content><![CDATA[简单介绍旁路由架构是：主路由依旧负责拨号和DHCP，而树莓派作为旁路由接入同一网段，通过静态IP和自定义路由规则，让家里的设备可以选择是否把流量交由树莓派处理。这种模式不会破坏原有网络结构，也能随时拔掉。
+目的在Docker中运行OpenWrt旁路网关（透明网关）
+
+结构图如下
+
+开启网卡的混杂模式
+是为了让我们的虚拟机和宿主机能同时接收数据包
+以下二选一选择执行
+插线形式，请执行：
+
+sudo ip link set dev eth0 promisc on
+
+WIFI形式，请执行：
+
+sudo ip link set dev wlan0 promisc on
+
+
+
+下载OpenWrt镜像
+在终端界面执行以下命令，下载镜像文件docker pull buddyfly/openwrt-aarch64
+
+下载完后，可选择查看镜像是否在docker镜像里，执行以下命令docker images
+
+
+检查是否存在Docker虚拟网络(macnet)
+第一次执行之前，一般情况是没有的，不过我们还是要执行看看先
+查看所有网络列表docker network ls
+如果出现重名，可执行下面命令用来删除已存在的同名网络docker network rm `填写NAME`
+
+
+创建Docker虚拟网络
+虚拟网络名称为macnet，驱动为macvlan模式，将subnet 10.10.10.0修改为你自己主路由的网段，gateway 10.10.10.1修改为你自己的主路由网关。
+图中的示范命令如下docker network create -d macvlan --subnet=10.10.10.0/24 --gateway=10.10.10.1 -o parent=eth0 macnet
+以下二选一选择执行(以我自己的为例)
+插线形式，请执行：
+
+docker network create -d macvlan --subnet=192.168.0.0/24 --gateway=192.168.0.1 -o parent=eth0 macnet
+
+WIFI形式，请执行：
+
+docker network create -d macvlan --subnet=192.168.0.0/24 --gateway=192.168.0.1 -o parent=wlan0 macnet
+
+
+
+
+如果不清楚自己的主路由器网关地址和网段，那就请看下面这一章节。
+
+如何查看主路由器的网关地址和网段（Windows）
+通过路由器管理界面（通用方法）
+通过命令行形式查看
+按win键 + R键
+输入 cmd
+在命令行输入 ipconfig
+
+
+
+验证【Docker虚拟网络】是否创建成功
+输入命令 docker network ls
+
+启动OpenWrt容器
+执行下面命令docker run --restart always -d --network macnet --privileged buddyfly/openwrt-aarch64:latest
+
+
+查看运行中的OpenWrt容器
+执行下面命令docker ps -a | grep openwrt
+
+
+修改OpenWrt容器的IP地址
+进入容器内部docker exec -it a94607d8119f ash
+
+编辑网卡文本sudo nano /etc/config/network
+修改文件如下，将 option ipaddr '192.168.0.252' 改为你想作为旁路由网关的空闲地址（我的网段为 192.168.0.X），主路由IPV4地址改为你自己的即可。option ipaddr '192.168.0.252'  # 252这是我自定义的option gateway '192.168.0.1'   # 这是我的主路由IPV4地址option dns '192.168.0.1'       # 保持和gateway一致
+
+重启容器网卡/etc/init.d/network restart
+
+
+校验【修改OpenWrt容器的IP地址】修改是否成功
+现在我们可以call下外部的主路由IP，试试连通性。ping 192.168.0.1   # 换成你自己的
+
+显示和我的截图一样，收到数据包就可以了。
+
+
+
+永久开启网卡混杂模式
+先退出docker容器，然后再去宿主机里进行下面操作
+先执行 sudo nano /etc/network/interfaces
+添加内容up ip link set eth0 promisc on    # 插线形式用这个up ip link set wlan0 promisc on   # WIFI形式用这个
+
+添加内容后，按 ESC 并输入 :wq 正常保存
+用cat命令查看是否已写入 cat /etc/network/interfaces
+如果文件权限有问题，那执行下面操作ls -l /etc/network/interfacessudo chmod 644 /etc/network/interfaces
+
+
+登录树莓派旁路由网关系统（旁路网关配置）
+网址输入http://192.168.0.252    # 改为你自己设置的
+初始用户名 root 密码 password
+先做最重要的事情：改密码。
+
+更改系统主题
+更改上级路由
+网络加速设置
+科学上网
+配置旁路网关
+把局域网内需要连接的设备的WiFi改为手动配置
+然后IP地址改为192.168.0.XXX改为你愿意的地址
+子网掩码改为255.255.255.0
+路由器（网关）改为192.168.0.254，这个其实是OpenWrt的IPv4地址
+DNS服务器改为192.168.0.254，同OpenWrt的IPv4地址
+
+验证网关是否生效(树莓派验证)
+ip route show
+ping 8.8.8.8
+curl -Iv https://www.youtube.com --connect-timeout 10
+curl -Iv https://www.google.com --connect-timeout 10
+
+]]></content>
+      <categories>
+        <category>树莓派</category>
+      </categories>
+      <tags>
+        <tag>树莓派</tag>
+      </tags>
+  </entry>
+</search>

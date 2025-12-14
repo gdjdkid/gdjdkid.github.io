@@ -33,13 +33,6 @@ deploy:
 theme: fluid
 plugins: hexo-generator-feed
 
-# hexo-admin authentification
-admin:
-  username: gdjdkid
-  password_hash: $2a$10$F/wZ8QBck/kPavPFdR4Qcevx8GMRyQlpU9UtoeLMw8VxVN66O49Ua
-  secret: Liroy8964
-  deployCommand: 'hexo-deploy.bat'
-
 feed:
   enable: true
   type: rss2

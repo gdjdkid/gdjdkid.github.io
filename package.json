@@ -27,6 +27,7 @@
     "hexo-renderer-marked": "^7.0.0",
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
+    "hexo-tag-youtube-responsive": "^0.4.2",
     "hexo-theme-butterfly": "^5.5.2",
     "hexo-theme-fluid": "^1.9.8",
     "hexo-theme-icarus": "^6.1.1",
@@ -35,6 +36,7 @@
     "hexo-theme-matery": "^2.0.1",
     "hexo-theme-next": "^8.26.0",
     "hexo-theme-volantis": "^6.0.2",
-    "hexo-wordcount": "^6.0.1"
+    "hexo-wordcount": "^6.0.1",
+    "lodash": "^4.17.21"
   }
 }

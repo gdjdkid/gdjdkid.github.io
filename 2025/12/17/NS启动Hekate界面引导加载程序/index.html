@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="mask-icon" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tech-roy.uk","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"enable":true,"type":"utterances","activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介以下是一套给2017年初代Nintendo Switch（可进入RCM的那一批）使用的启动链说明。它不是在“教你玩游戏”，而是在教主机怎么被“唤醒”到一个完全不同的启动世界里。下面我把它拆开讲清楚：它是什么、为什么要这么做、每一步在干嘛、最终能得到什么。 先给一句总览版结论：这是在利用初代NS的硬件漏洞，把官方系统的“钥匙”暂时放一边，改用一个你自己控制的启动加载器（Hekate），从而运行第">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NS启动Hekate界面引导加载程序">
+<meta property="og:url" content="https://tech-roy.uk/2025/12/17/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/index.html">
+<meta property="og:site_name" content="Tech-Roy Blog">
+<meta property="og:description" content="简介以下是一套给2017年初代Nintendo Switch（可进入RCM的那一批）使用的启动链说明。它不是在“教你玩游戏”，而是在教主机怎么被“唤醒”到一个完全不同的启动世界里。下面我把它拆开讲清楚：它是什么、为什么要这么做、每一步在干嘛、最终能得到什么。 先给一句总览版结论：这是在利用初代NS的硬件漏洞，把官方系统的“钥匙”暂时放一边，改用一个你自己控制的启动加载器（Hekate），从而运行第">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_9.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_8.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_10.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_0.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_1.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_2.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_3.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_4.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_5.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_6.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_7.png">
+<meta property="article:published_time" content="2025-12-17T10:39:55.000Z">
+<meta property="article:modified_time" content="2025-12-17T13:45:15.505Z">
+<meta property="article:author" content="Roy Li">
+<meta property="article:tag" content="NS">
+<meta property="article:tag" content="游戏机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_9.png">
+
+
+<link rel="canonical" href="https://tech-roy.uk/2025/12/17/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tech-roy.uk/2025/12/17/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/","path":"2025/12/17/NS启动Hekate界面引导加载程序/","title":"NS启动Hekate界面引导加载程序"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NS启动Hekate界面引导加载程序 | Tech-Roy Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EZLR5DH6P"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6EZLR5DH6P","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/rss2.xml" title="Tech-Roy Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tech-Roy Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術分享 技術無界 開源至上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="nav-number">2.</span> <span class="nav-text">名词解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4%E8%AE%BE%E5%A4%87%E6%98%AF%E5%90%A6%E9%80%82%E9%85%8D"><span class="nav-number">3.</span> <span class="nav-text">确认设备是否适配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="nav-number">4.</span> <span class="nav-text">操作步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hekate%E7%95%8C%E9%9D%A2%E8%AF%A6%E7%BB%86%E4%BB%8B%E7%BB%8D"><span class="nav-number">5.</span> <span class="nav-text">Hekate界面详细介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%A5%97%E6%B5%81%E7%A8%8B%E7%9A%84%E7%9C%9F%E6%AD%A3%E7%9B%AE%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">整套流程的真正目的是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy Li"
+      src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+  <p class="site-author-name" itemprop="name">Roy Li</p>
+  <div class="site-description" itemprop="description">Roy Li's Personal Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gdjdkid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gdjdkid" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdjdkid2014@gmail.com" title="E-Mail → mailto:gdjdkid2014@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tech-roy.uk/2025/12/17/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+      <meta itemprop="name" content="Roy Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tech-Roy Blog">
+      <meta itemprop="description" content="Roy Li's Personal Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="NS启动Hekate界面引导加载程序 | Tech-Roy Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NS启动Hekate界面引导加载程序
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-12-17 18:39:55 / 修改时间：21:45:15" itemprop="dateCreated datePublished" datetime="2025-12-17T18:39:55+08:00">2025-12-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%BB%E5%A4%A9%E5%A0%82NS/" itemprop="url" rel="index"><span itemprop="name">任天堂NS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>以下是一套给2017年初代Nintendo Switch（可进入RCM的那一批）使用的启动链说明。它不是在“教你玩游戏”，而是在教主机怎么被“唤醒”到一个完全不同的启动世界里。<br>下面我把它拆开讲清楚：它是什么、为什么要这么做、每一步在干嘛、最终能得到什么。</p>
+<p>先给一句总览版结论：<br>这是在利用初代NS的硬件漏洞，把官方系统的“钥匙”暂时放一边，改用一个你自己控制的启动加载器（Hekate），从而运行第三方系统（Atmosphère，大气层）和自制软件。<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_9.png"></p>
+<h3 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h3><ul>
+<li>初代NS（2017）<ul>
+<li>只限 2017 初代 NS 的原因很简单： 这批机器的 Tegra X1 芯片存在不可修补的硬件漏洞（Fusee-Gelee）。 后续版本（2018 后、续航版、Lite、OLED）已经在硬件层面堵死。</li>
+<li>这是物理层漏洞，不是软件 bug，所以升级系统没用，重刷系统没用，任天堂也补不了。</li>
+<li>这也是为什么它被称为“天生可破解”。</li>
+</ul>
+</li>
+<li>RCM模式（Recovery Mode）<ul>
+<li>RCM是NVIDIA芯片自带的低级恢复模式，原本是给工厂和维修用的。</li>
+<li>在RCM状态下：<ul>
+<li>主机还没加载任天堂系统</li>
+<li>可以从USB接收“启动指令”（payload）</li>
+<li>相当于BIOS级别的入口</li>
+</ul>
+</li>
+<li>你整套操作，目的只有一个：让NS进入RCM，并向它注入Hekate。</li>
+</ul>
+</li>
+<li>红色金属卡片（RCM Jig）<ul>
+<li>这东西的作用非常“原始”<ul>
+<li>短接右Joy-Con插槽里的特定针脚</li>
+<li>欺骗主机：你在请求进入RCM</li>
+</ul>
+</li>
+<li>它不含程序、不联网、不存数据，只是一个物理开关。</li>
+</ul>
+</li>
+<li>RCMloader（蓝灯那个）<ul>
+<li>这是一个U盘大小的硬件，里面存着payload。</li>
+<li>它做的事情：<ul>
+<li>通过USB把<code>hekate.bin</code>送进主机内存</li>
+<li>相当于“点火器”</li>
+<li>蓝灯 = 已成功注入payload</li>
+</ul>
+</li>
+<li>没有它，你就得用电脑或手机每次手动推送。</li>
+</ul>
+</li>
+<li>Hekate是什么？<ul>
+<li>Hekate是一个启动引导加载器（Bootloader），地位类似于PC的GRUB。</li>
+<li>它能做的事：<ul>
+<li>启动大气层（Atmosphère）</li>
+<li>备份/恢复NAND（系统命根子）</li>
+<li>管理emuMMC（虚拟系统）</li>
+<li>查看硬件状态</li>
+<li>在多个系统之间切换</li>
+</ul>
+</li>
+<li>一句话：Hekate是“系统的系统”。</li>
+</ul>
+</li>
+<li>大气层（Atmosphère）<ul>
+<li>这是当前主流的Switch自制系统环境（CFW）。</li>
+<li>它不是一个“替代系统”，而是：<ul>
+<li>在原系统之上打补丁</li>
+<li>解锁原本被禁止的能力</li>
+</ul>
+</li>
+<li>能干嘛：<ul>
+<li>运行自制软件（Homebrew）</li>
+<li>安装插件（如特斯拉浮窗）</li>
+<li>使用emuMMC（不碰真实系统）</li>
+<li>调试、开发、研究</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>特斯拉浮窗（Tesla Overlay）<ul>
+<li>这是一个系统级插件框架。</li>
+<li>效果类似：<ul>
+<li>游戏中按组合键</li>
+<li>呼出浮窗</li>
+<li>实时查看或调整参数</li>
+</ul>
+</li>
+<li>它本身不破解，只是增强体验和可控性。</li>
+</ul>
+</li>
+</ul>
+<h3 id="确认设备是否适配"><a href="#确认设备是否适配" class="headerlink" title="确认设备是否适配"></a>确认设备是否适配</h3><p>一台受Fusee-Gelee漏洞影响的Nintendo Switch主机，即所谓的“软破机”。若要确认主机是否符合条件，请于主机的官方系统设置中读取主机编号（也可于机身下方白色贴纸上读取），并对照本表进行查询：<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_8.png"></p>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><blockquote>
+<p>仅限2017初代NS适用</p>
+</blockquote>
+<ol>
+<li>把NS内存卡取出后，在电脑里格式化为FAT32格式。</li>
+<li>把”大气层1.9.2+20.2.0固件纯净版[含特斯拉浮窗]“里的文件全部拷贝到NS内存卡里。</li>
+<li>把NS内存卡插入到NS机子里，拿下右手柄。</li>
+<li>先普通开机，不要进入主页面。</li>
+<li>插入红色金属卡片，插入RCMloader，灯为蓝色。</li>
+<li>再长按开关机键直接关机。</li>
+<li>长按音量加键，然后轻点一下NS开机键。</li>
+<li>即可进入Hekate界面</li>
+</ol>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_10.png"></p>
+<h3 id="Hekate界面详细介绍"><a href="#Hekate界面详细介绍" class="headerlink" title="Hekate界面详细介绍"></a>Hekate界面详细介绍</h3><ul>
+<li><p>HOME 主页<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_0.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_1.png"></p>
+</li>
+<li><p>TOOLS 界面</p>
+<blockquote>
+<p>注意：使用SD Card功能，将SD挂载为U盘，使用完之后，必须在电脑弹出U盘，等close选项亮起以后才能拔线。</p>
+</blockquote>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_2.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_3.png"></p>
+</li>
+<li><p>USB TOOLS<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_4.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_5.png"></p>
+</li>
+<li><p>Console Info 主机信息<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_6.png"></p>
+</li>
+<li><p>Options 选项</p>
+<blockquote>
+<p>建议改为：自动启动虚拟系统，并设置合适的启动延迟时间</p>
+</blockquote>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_7.png"></p>
+</li>
+</ul>
+<h3 id="整套流程的真正目的是什么？"><a href="#整套流程的真正目的是什么？" class="headerlink" title="整套流程的真正目的是什么？"></a>整套流程的真正目的是什么？</h3><p>不是“为了折腾”。 而是三件事：</p>
+<ul>
+<li>控制启动权<ul>
+<li>谁控制启动，谁控制系统。</li>
+<li>Hekate 把这个权力从官方手里暂时借过来。</li>
+</ul>
+</li>
+<li>系统隔离（emuMMC）<ul>
+<li>一个干净的官方系统（联网、正版）</li>
+<li>一个完全隔离的实验系统（自制、插件）</li>
+<li>这不是作恶，而是工程上的风险隔离。</li>
+</ul>
+</li>
+<li>自由探索硬件<ul>
+<li>Switch本质是一台ARM Linux设备。</li>
+<li>这套流程让它：<ul>
+<li>像一台真正的“个人计算机”</li>
+<li>而不是只能按按钮的黑盒</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ul>
+<li>Hekate官方源代码与文档<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/CTCaer/hekate">https://github.com/CTCaer/hekate</a></li>
+</ul>
+</li>
+<li>Atmosphere官方源代码与文档<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Atmosphere-NX/Atmosphere">https://github.com/Atmosphere-NX/Atmosphere</a></li>
+</ul>
+</li>
+<li>Hekate界面详细介绍<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.qq.com/doc/DVVpQcmd1RFNpUnNL">https://docs.qq.com/doc/DVVpQcmd1RFNpUnNL</a></li>
+</ul>
+</li>
+<li>NH Switch Guide（最权威的入门文档）<ul>
+<li><a target="_blank" rel="noopener" href="https://switch.hacks.guide/">https://switch.hacks.guide/</a></li>
+</ul>
+</li>
+<li>Nintendo Switch破解原理:详解Fusée Gelée漏洞<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Ginurx/fusee_gelee_explained_in_chinese">https://github.com/Ginurx/fusee_gelee_explained_in_chinese</a></li>
+</ul>
+</li>
+<li>万物皆可 Android：给任天堂 Switch 掌机刷上 LOS 17.1<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ithome.com/0/534/885.htm">https://www.ithome.com/0/534/885.htm</a></li>
+</ul>
+</li>
+<li>游戏机黑客词汇表<ul>
+<li><a target="_blank" rel="noopener" href="http://gledos.science/hacking-game-console-word-list.html#%E5%9B%BD%E4%BA%A7%E8%8A%AF%E7%89%87">http://gledos.science/hacking-game-console-word-list.html#%E5%9B%BD%E4%BA%A7%E8%8A%AF%E7%89%87</a></li>
+</ul>
+</li>
+<li>任天堂Switch的破解史<ul>
+<li><a target="_blank" rel="noopener" href="https://xmper.cc/2023/02/21/Switch-jailbreaking-history/">https://xmper.cc/2023/02/21/Switch-jailbreaking-history/</a></li>
+</ul>
+</li>
+<li>Tesla - The Nintendo Switch Overlay Menu<ul>
+<li><a target="_blank" rel="noopener" href="https://gbatemp.net/threads/tesla-the-nintendo-switch-overlay-menu.557362/">https://gbatemp.net/threads/tesla-the-nintendo-switch-overlay-menu.557362/</a></li>
+</ul>
+</li>
+<li>Tesla-Menu官方源代码与文档<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/WerWolv/Tesla-Menu">https://github.com/WerWolv/Tesla-Menu</a></li>
+</ul>
+</li>
+<li>Tesla-Menu<ul>
+<li><a target="_blank" rel="noopener" href="https://switch.hacks.guide/homebrew/tesla-menu.html">https://switch.hacks.guide/homebrew/tesla-menu.html</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>Roy Li
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tech-roy.uk/2025/12/17/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/" title="NS启动Hekate界面引导加载程序">https://tech-roy.uk/2025/12/17/NS启动Hekate界面引导加载程序/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9C%BA/" rel="tag"># 游戏机</a>
+              <a href="/tags/NS/" rel="tag"># NS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/17/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/" rel="prev" title="任天堂Switch安装安卓TV系统">
+                  <i class="fa fa-angle-left"></i> 任天堂Switch安装安卓TV系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/12/18/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/" rel="next" title="Docker镜像备份到U盘实操">
+                  Docker镜像备份到U盘实操 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy Li</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"gdjdkid/gdjdkid.github.io","issue_term":"pathname","theme":"boxy-light","label":"💬评论","theme_dark":"github-dark-orange","crossorigin":"anonymous","placeholder":"畅所欲言，思绪飞扬~"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

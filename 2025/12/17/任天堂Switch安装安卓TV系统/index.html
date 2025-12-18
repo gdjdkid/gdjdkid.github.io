@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="mask-icon" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tech-roy.uk","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"enable":true,"type":"utterances","activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="前期准备 用泡泡龙电玩版Hekate 用LineageOS的安卓TV15版本固件 确保SD卡格式化为FAT32或exFAT 确保Hekate版本大于等于6.0.3  MindTheGapps 简介 Download MindTheGapps: Custom Google Apps Package for Android 链接：https:&#x2F;&#x2F;mindthegapps.com&#x2F;   Why Choo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="任天堂Switch安装安卓TV系统">
+<meta property="og:url" content="https://tech-roy.uk/2025/12/17/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Tech-Roy Blog">
+<meta property="og:description" content="前期准备 用泡泡龙电玩版Hekate 用LineageOS的安卓TV15版本固件 确保SD卡格式化为FAT32或exFAT 确保Hekate版本大于等于6.0.3  MindTheGapps 简介 Download MindTheGapps: Custom Google Apps Package for Android 链接：https:&#x2F;&#x2F;mindthegapps.com&#x2F;   Why Choo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_0.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_1.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_2.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_3.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_4.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_5.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_6.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_7.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_8.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_9.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_10.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_11.png">
+<meta property="article:published_time" content="2025-12-16T17:05:26.000Z">
+<meta property="article:modified_time" content="2025-12-16T18:19:18.694Z">
+<meta property="article:author" content="Roy Li">
+<meta property="article:tag" content="NS">
+<meta property="article:tag" content="游戏机">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_0.png">
+
+
+<link rel="canonical" href="https://tech-roy.uk/2025/12/17/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tech-roy.uk/2025/12/17/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/","path":"2025/12/17/任天堂Switch安装安卓TV系统/","title":"任天堂Switch安装安卓TV系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>任天堂Switch安装安卓TV系统 | Tech-Roy Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EZLR5DH6P"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6EZLR5DH6P","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/rss2.xml" title="Tech-Roy Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tech-Roy Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術分享 技術無界 開源至上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">前期准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MindTheGapps-%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">MindTheGapps 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Gapps%EF%BC%88%E5%AE%89%E5%8D%93TV14%E7%B3%BB%E7%BB%9F%E5%86%85%E9%83%A8%E6%B2%A1%E6%9C%89%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">安装Gapps（安卓TV14系统内部没有）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Magisk"><span class="nav-number">4.</span> <span class="nav-text">Magisk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Youtube%E6%95%99%E5%AD%A6%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">Youtube教学参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">6.</span> <span class="nav-text">References</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy Li"
+      src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+  <p class="site-author-name" itemprop="name">Roy Li</p>
+  <div class="site-description" itemprop="description">Roy Li's Personal Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gdjdkid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gdjdkid" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdjdkid2014@gmail.com" title="E-Mail → mailto:gdjdkid2014@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tech-roy.uk/2025/12/17/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+      <meta itemprop="name" content="Roy Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tech-Roy Blog">
+      <meta itemprop="description" content="Roy Li's Personal Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="任天堂Switch安装安卓TV系统 | Tech-Roy Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          任天堂Switch安装安卓TV系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-12-17 01:05:26 / 修改时间：02:19:18" itemprop="dateCreated datePublished" datetime="2025-12-17T01:05:26+08:00">2025-12-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E4%BB%BB%E5%A4%A9%E5%A0%82NS/" itemprop="url" rel="index"><span itemprop="name">任天堂NS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><ul>
+<li>用泡泡龙电玩版Hekate</li>
+<li>用LineageOS的安卓TV15版本固件</li>
+<li>确保SD卡格式化为FAT32或exFAT</li>
+<li>确保Hekate版本大于等于6.0.3<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_0.png"></li>
+</ul>
+<h3 id="MindTheGapps-简介"><a href="#MindTheGapps-简介" class="headerlink" title="MindTheGapps 简介"></a>MindTheGapps 简介</h3><ul>
+<li>Download MindTheGapps: Custom Google Apps Package for Android<ul>
+<li>链接：<a target="_blank" rel="noopener" href="https://mindthegapps.com/">https://mindthegapps.com/</a><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_1.png"></li>
+</ul>
+</li>
+<li>Why Choose MindTheGapps?<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_2.png"></li>
+<li>How to Install MindTheGapps<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_3.png"></li>
+</ul>
+<h3 id="安装Gapps（安卓TV14系统内部没有）"><a href="#安装Gapps（安卓TV14系统内部没有）" class="headerlink" title="安装Gapps（安卓TV14系统内部没有）"></a>安装Gapps（安卓TV14系统内部没有）</h3><ol>
+<li>确认Android TV系统已安装但尚未首次启动.<ol>
+<li>你提到已经“安装好了 Android TV 14 系统并进入过一次”，这属于已首次启动系统的状态。此时直接安装GApps会很可能引发系统崩溃。因此，需要先重置数据，再安装GApps。</li>
+</ol>
+</li>
+<li>启动到Recovery并执行Data清空。<ol>
+<li>长按 音量上 + 启动 Hekate → More Configs → 持 Volume Up 选 LineageOS Recovery，进入恢复模式。</li>
+<li>在 Recovery 菜单中执行 Factory Reset → Format data / factory reset，清除 Android 的 data 和 cache 分区（不会影响 HOS 或 Switch 原系统）<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_4.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_5.png"></li>
+<li>下载合适的GApps包<ol>
+<li>根据你的系统版本（LineageOS 21 – Android 14）和架构（Switch v1 是 ARM64），选择对应的 GApps 包。对于 Android TV，推荐使用适配 TV 的包类型（如 MindTheGapps 或 OpenGApps TV stock）</li>
+<li>下载这个包 → MindTheGapps-14.0.0-arm64-ATV-full-20240523_192016.zip<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_6.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_7.png"></li>
+<li>下载官网<ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.lineageos.org/gapps/">https://wiki.lineageos.org/gapps/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/MindTheGapps/14.0.0-arm64-ATV/releases/tag/MindTheGapps-14.0.0-arm64-ATV-20240523_192151">https://github.com/MindTheGapps/14.0.0-arm64-ATV/releases/tag/MindTheGapps-14.0.0-arm64-ATV-20240523_192151</a></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>通过Choose from SWITCH SD安装GApps<ol>
+<li>在Recovery中点击Apply Update → Choose from SWITCH SD<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_8.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_9.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_10.png"></li>
+<li>当看到“Signature verification failed”提示时选择“Yes”继续安装（这是正常情况）</li>
+</ol>
+</li>
+<li>回到Recovery主界面并重启<ol>
+<li>安装完毕后，选择Recovery中的“Back”或返回箭头，然后点击Reboot system now，系统将进入首次带GApps的Android TV</li>
+</ol>
+</li>
+<li>总结<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_11.png"></li>
+</ol>
+</li>
+</ol>
+<h3 id="Magisk"><a href="#Magisk" class="headerlink" title="Magisk"></a>Magisk</h3><ul>
+<li>目的：让NS的ATV解锁ROOT模式。</li>
+<li>针对OLED型号推荐v25.2</li>
+<li>下载这个“Magisk-v25.2.apk”<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases">https://github.com/topjohnwu/Magisk/releases</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases/tag/v25.2">https://github.com/topjohnwu/Magisk/releases/tag/v25.2</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Youtube教学参考"><a href="#Youtube教学参考" class="headerlink" title="Youtube教学参考"></a>Youtube教学参考</h3><ul>
+<li>双系统切换！给Switch刷入大气层及Android11系统，并Root<ul>
+<li>莫老师的附件表<ul>
+<li><a target="_blank" rel="noopener" href="https://zxmls.lol/#/?id=ep150-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%88%87%E6%8D%A2%EF%BC%81%E7%BB%99switch%E5%88%B7%E5%85%A5%E5%A4%A7%E6%B0%94%E5%B1%82%E5%8F%8Aandroid11%E7%B3%BB%E7%BB%9F%EF%BC%8C%E5%B9%B6root">https://zxmls.lol/#/?id=ep150-双系统切换！给switch刷入大气层及android11系统，并root</a></li>
+</ul>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/6g0uDHGaRxU?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div></li>
+</ul>
+</li>
+<li>任天堂SWITCH游戏机最新2025刷最新安卓15系统教程，Nintendo SWITCH game console latest 2025 flash latest Android 15<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/n1zm5zk01hA?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div></li>
+<li>小亮电玩 switch全系列支持刷安卓11教程，支持oled版，这个安卓确实惊喜比较大<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/3LNXBqUFgGY?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div></li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li>Switchroot下载地址<ul>
+<li><a target="_blank" rel="noopener" href="https://download.switchroot.org/">https://download.switchroot.org/</a></li>
+</ul>
+</li>
+<li>LineageOS下载地址<ul>
+<li><a target="_blank" rel="noopener" href="https://download.lineageos.org/devices/nx/builds">https://download.lineageos.org/devices/nx/builds</a></li>
+</ul>
+</li>
+<li>Switchroot LineageOS Downloader<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/sthetix/Switchroot-LineageOS-Downloader">https://github.com/sthetix/Switchroot-LineageOS-Downloader</a></li>
+</ul>
+</li>
+<li>各个组织官网<ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.switchroot.org/wiki/">https://wiki.switchroot.org/wiki/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.lineageos.org/">https://wiki.lineageos.org/</a></li>
+</ul>
+</li>
+<li>两个组织提供的成功可支持NS的安卓版本<ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.lineageos.org/devices/nx/variant4/">https://wiki.lineageos.org/devices/nx/variant4/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.switchroot.org/wiki/android/android-14-15">https://wiki.switchroot.org/wiki/android/android-14-15</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>Roy Li
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tech-roy.uk/2025/12/17/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/" title="任天堂Switch安装安卓TV系统">https://tech-roy.uk/2025/12/17/任天堂Switch安装安卓TV系统/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E6%9C%BA/" rel="tag"># 游戏机</a>
+              <a href="/tags/NS/" rel="tag"># NS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/14/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/" rel="prev" title="获取本机系统信息">
+                  <i class="fa fa-angle-left"></i> 获取本机系统信息
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/12/17/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/" rel="next" title="NS启动Hekate界面引导加载程序">
+                  NS启动Hekate界面引导加载程序 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy Li</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"gdjdkid/gdjdkid.github.io","issue_term":"pathname","theme":"boxy-light","label":"💬评论","theme_dark":"github-dark-orange","crossorigin":"anonymous","placeholder":"畅所欲言，思绪飞扬~"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

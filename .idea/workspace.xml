@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2025.12.18_0">
-      <change afterPath="$PROJECT_DIR$/source/_posts/任务管理器的使用技巧.md" afterDir="false" />
+    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.01.22_0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/任务管理器的使用技巧.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/任务管理器的使用技巧.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/创建-bashrc文件.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/创建-bashrc文件.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/获取本机系统信息.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/获取本机系统信息.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +112,7 @@
       <workItem from="1765967146831" duration="9505000" />
       <workItem from="1766024676423" duration="3624000" />
       <workItem from="1766071048251" duration="720000" />
-      <workItem from="1769051372726" duration="8795000" />
+      <workItem from="1769051372726" duration="10410000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -216,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766028255045</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="push 2026.01.22_0">
+      <option name="closed" value="true" />
+      <created>1769062147453</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1769062147453</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,6 +261,7 @@
     <MESSAGE value="push 2025.12.17_0" />
     <MESSAGE value="push 2025.12.17_1" />
     <MESSAGE value="push 2025.12.18_0" />
-    <option name="LAST_COMMIT_MESSAGE" value="push 2025.12.18_0" />
+    <MESSAGE value="push 2026.01.22_0" />
+    <option name="LAST_COMMIT_MESSAGE" value="push 2026.01.22_0" />
   </component>
 </project>

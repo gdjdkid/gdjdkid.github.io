@@ -1,7 +1,7 @@
 ---
 title: 创建.bashrc文件  
 author: Roy Li  
-tags: [树莓派]
+tags: [树莓派, Linux]
 categories: [树莓派]
 date: 2025-06-08 11:47:00
 index_img: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%88%9B%E5%BB%BA.bashrc%E6%96%87%E4%BB%B6/Create_bashrc_4.png

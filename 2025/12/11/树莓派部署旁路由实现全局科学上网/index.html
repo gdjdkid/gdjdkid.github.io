@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="mask-icon" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tech-roy.uk","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"enable":true,"type":"utterances","activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简单介绍旁路由架构是：主路由依旧负责拨号和DHCP，而树莓派作为旁路由接入同一网段，通过静态IP和自定义路由规则，让家里的设备可以选择是否把流量交由树莓派处理。这种模式不会破坏原有网络结构，也能随时拔掉。 目的在Docker中运行OpenWrt旁路网关（透明网关）  结构图如下  开启网卡的混杂模式 是为了让我们的虚拟机和宿主机能同时接收数据包 以下二选一选择执行 插线形式，请执行：  1sudo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派部署旁路由实现全局科学上网">
+<meta property="og:url" content="https://tech-roy.uk/2025/12/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/index.html">
+<meta property="og:site_name" content="Tech-Roy Blog">
+<meta property="og:description" content="简单介绍旁路由架构是：主路由依旧负责拨号和DHCP，而树莓派作为旁路由接入同一网段，通过静态IP和自定义路由规则，让家里的设备可以选择是否把流量交由树莓派处理。这种模式不会破坏原有网络结构，也能随时拔掉。 目的在Docker中运行OpenWrt旁路网关（透明网关）  结构图如下  开启网卡的混杂模式 是为了让我们的虚拟机和宿主机能同时接收数据包 以下二选一选择执行 插线形式，请执行：  1sudo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_11.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_0.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_1.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_2.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_3.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_4.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_5.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_6.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_7.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_8.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_9.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_12.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_10.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_13.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_14.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_15.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_16.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_17.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_20.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_18.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_19.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_21.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_22.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_23.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_24.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_25.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_26.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_27.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_28.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_29.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_30.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_31.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_32.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_33.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_34.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_35.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_36.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_37.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_38.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_39.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_40.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_41.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_42.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_43.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_44.png">
+<meta property="article:published_time" content="2025-12-11T03:15:39.000Z">
+<meta property="article:modified_time" content="2025-12-16T15:50:29.565Z">
+<meta property="article:author" content="Roy Li">
+<meta property="article:tag" content="树莓派">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_11.png">
+
+
+<link rel="canonical" href="https://tech-roy.uk/2025/12/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tech-roy.uk/2025/12/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/","path":"2025/12/11/树莓派部署旁路由实现全局科学上网/","title":"树莓派部署旁路由实现全局科学上网"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>树莓派部署旁路由实现全局科学上网 | Tech-Roy Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EZLR5DH6P"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6EZLR5DH6P","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/rss2.xml" title="Tech-Roy Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tech-Roy Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術分享 技術無界 開源至上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">2.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E7%BD%91%E5%8D%A1%E7%9A%84%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">开启网卡的混杂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BDOpenWrt%E9%95%9C%E5%83%8F"><span class="nav-number">4.</span> <span class="nav-text">下载OpenWrt镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8Docker%E8%99%9A%E6%8B%9F%E7%BD%91%E7%BB%9C-macnet"><span class="nav-number">5.</span> <span class="nav-text">检查是否存在Docker虚拟网络(macnet)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BADocker%E8%99%9A%E6%8B%9F%E7%BD%91%E7%BB%9C"><span class="nav-number">6.</span> <span class="nav-text">创建Docker虚拟网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E4%B8%BB%E8%B7%AF%E7%94%B1%E5%99%A8%E7%9A%84%E7%BD%91%E5%85%B3%E5%9C%B0%E5%9D%80%E5%92%8C%E7%BD%91%E6%AE%B5%EF%BC%88Windows%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">如何查看主路由器的网关地址和网段（Windows）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E3%80%90Docker%E8%99%9A%E6%8B%9F%E7%BD%91%E7%BB%9C%E3%80%91%E6%98%AF%E5%90%A6%E5%88%9B%E5%BB%BA%E6%88%90%E5%8A%9F"><span class="nav-number">8.</span> <span class="nav-text">验证【Docker虚拟网络】是否创建成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8OpenWrt%E5%AE%B9%E5%99%A8"><span class="nav-number">9.</span> <span class="nav-text">启动OpenWrt容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%90%E8%A1%8C%E4%B8%AD%E7%9A%84OpenWrt%E5%AE%B9%E5%99%A8"><span class="nav-number">10.</span> <span class="nav-text">查看运行中的OpenWrt容器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9OpenWrt%E5%AE%B9%E5%99%A8%E7%9A%84IP%E5%9C%B0%E5%9D%80"><span class="nav-number">11.</span> <span class="nav-text">修改OpenWrt容器的IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%A1%E9%AA%8C%E3%80%90%E4%BF%AE%E6%94%B9OpenWrt%E5%AE%B9%E5%99%A8%E7%9A%84IP%E5%9C%B0%E5%9D%80%E3%80%91%E4%BF%AE%E6%94%B9%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="nav-number">12.</span> <span class="nav-text">校验【修改OpenWrt容器的IP地址】修改是否成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B0%B8%E4%B9%85%E5%BC%80%E5%90%AF%E7%BD%91%E5%8D%A1%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F"><span class="nav-number">13.</span> <span class="nav-text">永久开启网卡混杂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%A0%91%E8%8E%93%E6%B4%BE%E6%97%81%E8%B7%AF%E7%94%B1%E7%BD%91%E5%85%B3%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%97%81%E8%B7%AF%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE%EF%BC%89"><span class="nav-number">14.</span> <span class="nav-text">登录树莓派旁路由网关系统（旁路网关配置）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E7%B3%BB%E7%BB%9F%E4%B8%BB%E9%A2%98"><span class="nav-number">15.</span> <span class="nav-text">更改系统主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E4%B8%8A%E7%BA%A7%E8%B7%AF%E7%94%B1"><span class="nav-number">16.</span> <span class="nav-text">更改上级路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%8A%A0%E9%80%9F%E8%AE%BE%E7%BD%AE"><span class="nav-number">17.</span> <span class="nav-text">网络加速设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91"><span class="nav-number">18.</span> <span class="nav-text">科学上网</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%97%81%E8%B7%AF%E7%BD%91%E5%85%B3"><span class="nav-number">19.</span> <span class="nav-text">配置旁路网关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81%E7%BD%91%E5%85%B3%E6%98%AF%E5%90%A6%E7%94%9F%E6%95%88-%E6%A0%91%E8%8E%93%E6%B4%BE%E9%AA%8C%E8%AF%81"><span class="nav-number">20.</span> <span class="nav-text">验证网关是否生效(树莓派验证)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy Li"
+      src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+  <p class="site-author-name" itemprop="name">Roy Li</p>
+  <div class="site-description" itemprop="description">Roy Li's Personal Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gdjdkid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gdjdkid" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdjdkid2014@gmail.com" title="E-Mail → mailto:gdjdkid2014@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tech-roy.uk/2025/12/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+      <meta itemprop="name" content="Roy Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tech-Roy Blog">
+      <meta itemprop="description" content="Roy Li's Personal Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="树莓派部署旁路由实现全局科学上网 | Tech-Roy Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树莓派部署旁路由实现全局科学上网
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-12-11 11:15:39" itemprop="dateCreated datePublished" datetime="2025-12-11T11:15:39+08:00">2025-12-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-16 23:50:29" itemprop="dateModified" datetime="2025-12-16T23:50:29+08:00">2025-12-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/" itemprop="url" rel="index"><span itemprop="name">树莓派</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h3><p>旁路由架构是：主路由依旧负责拨号和DHCP，而树莓派作为旁路由接入同一网段，通过静态IP和自定义路由规则，让家里的设备可以选择是否把流量交由树莓派处理。这种模式不会破坏原有网络结构，也能随时拔掉。</p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>在Docker中运行OpenWrt旁路网关（透明网关）</p>
+<ul>
+<li>结构图如下<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_11.png"></li>
+</ul>
+<h3 id="开启网卡的混杂模式"><a href="#开启网卡的混杂模式" class="headerlink" title="开启网卡的混杂模式"></a>开启网卡的混杂模式</h3><ul>
+<li>是为了让我们的虚拟机和宿主机能同时接收数据包</li>
+<li>以下二选一选择执行<ul>
+<li>插线形式，请执行：</li>
+</ul>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ip link set dev eth0 promisc on</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>WIFI形式，请执行：</li>
+</ul>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ip link set dev wlan0 promisc on</span><br></pre></td></tr></tbody></table></figure>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_0.png"></p>
+</li>
+</ul>
+<h3 id="下载OpenWrt镜像"><a href="#下载OpenWrt镜像" class="headerlink" title="下载OpenWrt镜像"></a>下载OpenWrt镜像</h3><ul>
+<li>在终端界面执行以下命令，下载镜像文件<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull buddyfly/openwrt-aarch64</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_1.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_2.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_3.png"></li>
+<li>下载完后，可选择查看镜像是否在docker镜像里，执行以下命令<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_4.png"></li>
+</ul>
+<h3 id="检查是否存在Docker虚拟网络-macnet"><a href="#检查是否存在Docker虚拟网络-macnet" class="headerlink" title="检查是否存在Docker虚拟网络(macnet)"></a>检查是否存在Docker虚拟网络(macnet)</h3><ul>
+<li>第一次执行之前，一般情况是没有的，不过我们还是要执行看看先</li>
+<li>查看所有网络列表<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network ls</span><br></pre></td></tr></tbody></table></figure></li>
+<li>如果出现重名，可执行下面命令用来删除已存在的同名网络<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network rm `填写NAME`</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_5.png"></li>
+</ul>
+<h3 id="创建Docker虚拟网络"><a href="#创建Docker虚拟网络" class="headerlink" title="创建Docker虚拟网络"></a>创建Docker虚拟网络</h3><ul>
+<li>虚拟网络名称为<code>macnet</code>，驱动为<code>macvlan</code>模式，将<code>subnet 10.10.10.0</code>修改为你自己主路由的网段，<code>gateway 10.10.10.1</code>修改为你自己的主路由网关。<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_6.png"></li>
+<li>图中的示范命令如下<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d macvlan --subnet=10.10.10.0/24 --gateway=10.10.10.1 -o parent=eth0 macnet</span><br></pre></td></tr></tbody></table></figure></li>
+<li>以下二选一选择执行(以我自己的为例)<ul>
+<li>插线形式，请执行：</li>
+</ul>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d macvlan --subnet=192.168.0.0/24 --gateway=192.168.0.1 -o parent=eth0 macnet</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>WIFI形式，请执行：</li>
+</ul>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d macvlan --subnet=192.168.0.0/24 --gateway=192.168.0.1 -o parent=wlan0 macnet</span><br></pre></td></tr></tbody></table></figure>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_7.png"></p>
+</li>
+</ul>
+<blockquote>
+<p>如果不清楚自己的主路由器网关地址和网段，那就请看下面这一章节。</p>
+</blockquote>
+<h3 id="如何查看主路由器的网关地址和网段（Windows）"><a href="#如何查看主路由器的网关地址和网段（Windows）" class="headerlink" title="如何查看主路由器的网关地址和网段（Windows）"></a>如何查看主路由器的网关地址和网段（Windows）</h3><ul>
+<li>通过路由器管理界面（通用方法）<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_8.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_9.png"></li>
+<li>通过命令行形式查看<ul>
+<li>按win键 + R键</li>
+<li>输入 <code>cmd</code></li>
+<li>在命令行输入 <code>ipconfig</code><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_12.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_10.png"></li>
+</ul>
+</li>
+</ul>
+<h3 id="验证【Docker虚拟网络】是否创建成功"><a href="#验证【Docker虚拟网络】是否创建成功" class="headerlink" title="验证【Docker虚拟网络】是否创建成功"></a>验证【Docker虚拟网络】是否创建成功</h3><ul>
+<li>输入命令 <code>docker network ls</code><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_13.png"></li>
+</ul>
+<h3 id="启动OpenWrt容器"><a href="#启动OpenWrt容器" class="headerlink" title="启动OpenWrt容器"></a>启动OpenWrt容器</h3><ul>
+<li>执行下面命令<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --restart always -d --network macnet --privileged buddyfly/openwrt-aarch64:latest</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_14.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_15.png"></li>
+</ul>
+<h3 id="查看运行中的OpenWrt容器"><a href="#查看运行中的OpenWrt容器" class="headerlink" title="查看运行中的OpenWrt容器"></a>查看运行中的OpenWrt容器</h3><ul>
+<li>执行下面命令<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a | grep openwrt</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_16.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_17.png"></li>
+</ul>
+<h3 id="修改OpenWrt容器的IP地址"><a href="#修改OpenWrt容器的IP地址" class="headerlink" title="修改OpenWrt容器的IP地址"></a>修改OpenWrt容器的IP地址</h3><ul>
+<li>进入容器内部<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it a94607d8119f ash</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_20.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_18.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_19.png"></li>
+<li>编辑网卡文本<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo nano /etc/config/network</span><br></pre></td></tr></tbody></table></figure></li>
+<li>修改文件如下，将 <code>option ipaddr '192.168.0.252'</code> 改为你想作为旁路由网关的空闲地址（我的网段为 <code>192.168.0.X</code>），主路由IPV4地址改为你自己的即可。<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">option ipaddr '192.168.0.252'  # 252这是我自定义的</span><br><span class="line">option gateway '192.168.0.1'   # 这是我的主路由IPV4地址</span><br><span class="line">option dns '192.168.0.1'       # 保持和gateway一致</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_21.png"></li>
+<li>重启容器网卡<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/network restart</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_22.png"></li>
+</ul>
+<h3 id="校验【修改OpenWrt容器的IP地址】修改是否成功"><a href="#校验【修改OpenWrt容器的IP地址】修改是否成功" class="headerlink" title="校验【修改OpenWrt容器的IP地址】修改是否成功"></a>校验【修改OpenWrt容器的IP地址】修改是否成功</h3><ul>
+<li>现在我们可以call下外部的主路由IP，试试连通性。<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.0.1   # 换成你自己的</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_23.png"><blockquote>
+<p>显示和我的截图一样，收到数据包就可以了。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="永久开启网卡混杂模式"><a href="#永久开启网卡混杂模式" class="headerlink" title="永久开启网卡混杂模式"></a>永久开启网卡混杂模式</h3><ul>
+<li>先退出docker容器，然后再去宿主机里进行下面操作</li>
+<li>先执行 <code>sudo nano /etc/network/interfaces</code></li>
+<li>添加内容<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">up ip link set eth0 promisc on    # 插线形式用这个</span><br><span class="line">up ip link set wlan0 promisc on   # WIFI形式用这个</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_24.png"></li>
+<li>添加内容后，按 ESC 并输入 :wq 正常保存</li>
+<li>用cat命令查看是否已写入 <code>cat /etc/network/interfaces</code><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_25.png"></li>
+<li>如果文件权限有问题，那执行下面操作<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -l /etc/network/interfaces</span><br><span class="line">sudo chmod 644 /etc/network/interfaces</span><br></pre></td></tr></tbody></table></figure>
+<img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_26.png"></li>
+</ul>
+<h3 id="登录树莓派旁路由网关系统（旁路网关配置）"><a href="#登录树莓派旁路由网关系统（旁路网关配置）" class="headerlink" title="登录树莓派旁路由网关系统（旁路网关配置）"></a>登录树莓派旁路由网关系统（旁路网关配置）</h3><ul>
+<li>网址输入<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.0.252    # 改为你自己设置的</span><br></pre></td></tr></tbody></table></figure></li>
+<li>初始用户名 root 密码 password<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_27.png"></li>
+<li>先做最重要的事情：改密码。<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_28.png"></li>
+</ul>
+<h3 id="更改系统主题"><a href="#更改系统主题" class="headerlink" title="更改系统主题"></a>更改系统主题</h3><p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_29.png"></p>
+<h3 id="更改上级路由"><a href="#更改上级路由" class="headerlink" title="更改上级路由"></a>更改上级路由</h3><p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_30.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_31.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_32.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_33.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_34.png"></p>
+<h3 id="网络加速设置"><a href="#网络加速设置" class="headerlink" title="网络加速设置"></a>网络加速设置</h3><p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_35.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_36.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_37.png"></p>
+<h3 id="科学上网"><a href="#科学上网" class="headerlink" title="科学上网"></a>科学上网</h3><p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_38.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_39.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_40.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_41.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_42.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_43.png"></p>
+<h3 id="配置旁路网关"><a href="#配置旁路网关" class="headerlink" title="配置旁路网关"></a>配置旁路网关</h3><ul>
+<li>把局域网内需要连接的设备的WiFi改为手动配置</li>
+<li>然后IP地址改为192.168.0.XXX改为你愿意的地址</li>
+<li>子网掩码改为255.255.255.0</li>
+<li>路由器（网关）改为192.168.0.254，这个其实是OpenWrt的IPv4地址</li>
+<li>DNS服务器改为192.168.0.254，同OpenWrt的IPv4地址<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/RaspberryPi_BypassRoute_44.png"></li>
+</ul>
+<h3 id="验证网关是否生效-树莓派验证"><a href="#验证网关是否生效-树莓派验证" class="headerlink" title="验证网关是否生效(树莓派验证)"></a>验证网关是否生效(树莓派验证)</h3><ul>
+<li><code>ip route show</code></li>
+<li><code>ping 8.8.8.8</code></li>
+<li><code>curl -Iv https://www.youtube.com --connect-timeout 10</code></li>
+<li><code>curl -Iv https://www.google.com --connect-timeout 10</code></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>Roy Li
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tech-roy.uk/2025/12/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" title="树莓派部署旁路由实现全局科学上网">https://tech-roy.uk/2025/12/11/树莓派部署旁路由实现全局科学上网/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" rel="tag"># 树莓派</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/10/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/" rel="prev" title="树莓派4B搭建面板1Panel">
+                  <i class="fa fa-angle-left"></i> 树莓派4B搭建面板1Panel
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/12/14/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/" rel="next" title="获取本机系统信息">
+                  获取本机系统信息 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2025 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy Li</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"gdjdkid/gdjdkid.github.io","issue_term":"pathname","theme":"boxy-light","label":"💬评论","theme_dark":"github-dark-orange","crossorigin":"anonymous","placeholder":"畅所欲言，思绪飞扬~"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

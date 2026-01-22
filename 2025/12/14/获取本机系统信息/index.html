@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="mask-icon" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tech-roy.uk","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"enable":true,"type":"utterances","activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="简介 For Windows 这是一个专门为Windows操作系统设计的系统信息收集脚本，使用Bash脚本编写。它能够在Windows的命令行环境（包括Git Bash、Cygwin、WSL等）中运行，通过调用Windows原生命令和工具来获取详细的系统配置信息。   For Linux 这是一个专为Linux和macOS系统设计的系统信息收集脚本，同样使用Bash编写。它充分利用Linux系统的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="获取本机系统信息">
+<meta property="og:url" content="https://tech-roy.uk/2025/12/14/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="Tech-Roy Blog">
+<meta property="og:description" content="简介 For Windows 这是一个专门为Windows操作系统设计的系统信息收集脚本，使用Bash脚本编写。它能够在Windows的命令行环境（包括Git Bash、Cygwin、WSL等）中运行，通过调用Windows原生命令和工具来获取详细的系统配置信息。   For Linux 这是一个专为Linux和macOS系统设计的系统信息收集脚本，同样使用Bash编写。它充分利用Linux系统的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_0.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_1.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_2.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_3.png">
+<meta property="article:published_time" content="2025-12-14T11:45:11.000Z">
+<meta property="article:modified_time" content="2025-12-14T16:11:35.278Z">
+<meta property="article:author" content="Roy Li">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Windows">
+<meta property="article:tag" content="树莓派">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_0.png">
+
+
+<link rel="canonical" href="https://tech-roy.uk/2025/12/14/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tech-roy.uk/2025/12/14/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/","path":"2025/12/14/获取本机系统信息/","title":"获取本机系统信息"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>获取本机系统信息 | Tech-Roy Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EZLR5DH6P"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6EZLR5DH6P","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/rss2.xml" title="Tech-Roy Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tech-Roy Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術分享 技術無界 開源至上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">2.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">3.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E8%84%9A%E6%9C%AC%E7%9A%84%E5%85%B1%E5%90%8C%E7%89%B9%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">两个脚本的共同特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">效果图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E4%BA%8EWindows%E7%89%88%E6%9C%AC%E8%84%9A%E6%9C%AC"><span class="nav-number">6.</span> <span class="nav-text">适用于Windows版本脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E4%BA%8ELinux%E7%89%88%E6%9C%AC%E8%84%9A%E6%9C%AC"><span class="nav-number">7.</span> <span class="nav-text">适用于Linux版本脚本</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy Li"
+      src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+  <p class="site-author-name" itemprop="name">Roy Li</p>
+  <div class="site-description" itemprop="description">Roy Li's Personal Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gdjdkid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gdjdkid" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdjdkid2014@gmail.com" title="E-Mail → mailto:gdjdkid2014@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tech-roy.uk/2025/12/14/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+      <meta itemprop="name" content="Roy Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tech-Roy Blog">
+      <meta itemprop="description" content="Roy Li's Personal Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="获取本机系统信息 | Tech-Roy Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          获取本机系统信息
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-12-14 19:45:11" itemprop="dateCreated datePublished" datetime="2025-12-14T19:45:11+08:00">2025-12-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-15 00:11:35" itemprop="dateModified" datetime="2025-12-15T00:11:35+08:00">2025-12-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%9E%E7%94%A8%E8%84%9A%E6%9C%AC/" itemprop="url" rel="index"><span itemprop="name">实用脚本</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>For Windows<ul>
+<li>这是一个专门为Windows操作系统设计的系统信息收集脚本，使用Bash脚本编写。它能够在Windows的命令行环境（包括Git Bash、Cygwin、WSL等）中运行，通过调用Windows原生命令和工具来获取详细的系统配置信息。</li>
+</ul>
+</li>
+<li>For Linux<ul>
+<li>这是一个专为Linux和macOS系统设计的系统信息收集脚本，同样使用Bash编写。它充分利用Linux系统的特性（如/proc文件系统、标准命令行工具）来获取详细的系统信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>For Windows<ul>
+<li>快速诊断系统配置：帮助用户和IT管理员快速了解Windows主机的硬件和软件配置</li>
+<li>系统信息存档：在系统部署、故障排查或升级前记录系统状态</li>
+<li>远程技术支持：通过运行脚本获取详细信息，便于远程技术支持分析问题</li>
+<li>系统健康检查：监控关键系统指标，如内存使用、磁盘空间、CPU负载等</li>
+<li>网络配置分析：显示内外网IP地址、网络接口配置和地理位置信息</li>
+</ul>
+</li>
+<li>For Linux<ul>
+<li>全面系统概览：提供从硬件到软件的完整系统快照</li>
+<li>性能监控基线：建立系统性能基准，用于后续的性能监控和调优</li>
+<li>服务器状态检查：适用于服务器管理和监控，特别关注运行时间和负载</li>
+<li>故障排除工具：为系统故障和性能问题提供诊断信息</li>
+<li>兼容性验证：检查系统是否满足特定软件或应用的运行要求</li>
+</ul>
+</li>
+</ul>
+<h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ul>
+<li>For Windows<ul>
+<li>IT管理员进行系统审计和资产管理</li>
+<li>技术支持人员收集客户系统信息进行故障分析</li>
+<li>开发人员确认开发环境的硬件配置</li>
+<li>系统迁移或升级前的兼容性检查</li>
+<li>安全审计和合规性检查</li>
+</ul>
+</li>
+<li>For Linux<ul>
+<li>服务器管理和监控</li>
+<li>云主机配置验证</li>
+<li>容器化环境的基础镜像检查</li>
+<li>分布式系统部署前的环境检查</li>
+<li>系统性能调优和容量规划</li>
+<li>安全加固和合规性审计</li>
+</ul>
+</li>
+</ul>
+<h3 id="两个脚本的共同特点"><a href="#两个脚本的共同特点" class="headerlink" title="两个脚本的共同特点"></a>两个脚本的共同特点</h3><ul>
+<li>技术特点<ul>
+<li>跨平台兼容性：虽然各自针对不同平台，但都使用标准的Bash语法</li>
+<li>无需安装：依赖系统内置命令，不需要额外安装软件包</li>
+<li>颜色化输出：使用绿色文本提高可读性</li>
+<li>模块化信息：信息按类别分组显示，结构清晰</li>
+<li>错误处理：对命令失败的情况有适当处理</li>
+</ul>
+</li>
+<li>信息收集范围<ul>
+<li>基本信息：主机名、用户名、操作系统版本</li>
+<li>硬件信息：CPU型号、内存大小、磁盘配置</li>
+<li>网络信息：IP地址（公网/内网）、网络接口、地理位置</li>
+<li>系统状态：运行时间、启动时间、时区</li>
+<li>存储信息：磁盘分区、挂载点、使用情况</li>
+</ul>
+</li>
+<li>使用价值<ul>
+<li>效率提升：自动化收集信息，避免手动检查每个项目</li>
+<li>标准化输出：提供一致的输出格式，便于比较和分析</li>
+<li>历史记录：可保存输出结果作为系统变更的参考</li>
+<li>可扩展性：可根据需要轻松添加新的信息收集功能</li>
+<li>教育和学习：帮助用户了解系统结构和配置</li>
+</ul>
+</li>
+</ul>
+<h3 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h3><ul>
+<li>For Windows<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_0.png"></li>
+<li>For Linux<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_1.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_2.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_3.png"></li>
+</ul>
+<h3 id="适用于Windows版本脚本"><a href="#适用于Windows版本脚本" class="headerlink" title="适用于Windows版本脚本"></a>适用于Windows版本脚本</h3><ul>
+<li>获取Win本机系统信息</li>
+</ul>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Windows 主机系统信息收集脚本</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">颜色设置</span></span><br><span class="line">echo -e "\e[32m"</span><br><span class="line"></span><br><span class="line">echo "=== Windows主机系统信息 ==="</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">主机名和用户名</span></span><br><span class="line">echo "主机名: $(hostname)"</span><br><span class="line">echo "用户名: ${USERNAME:-$USER}"</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">网络地址信息</span></span><br><span class="line">echo "=== 网络地址信息 ==="</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">公网IP</span></span><br><span class="line">if command -v curl &amp;&gt;/dev/null; then</span><br><span class="line">public_ip=$(curl -s --max-time 5 ifconfig.me 2&gt;/dev/null || curl -s --max-time 5 ipinfo.io/ip 2&gt;/dev/null || echo "无法获取")</span><br><span class="line">else</span><br><span class="line">public_ip="无法获取 (curl未安装)"</span><br><span class="line">fi</span><br><span class="line">echo "公网IP地址: $public_ip"</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">IP地理位置</span></span><br><span class="line">if command -v curl &amp;&gt;/dev/null &amp;&amp; [[ "$public_ip" != "无法获取" &amp;&amp; "$public_ip" != "无法获取 (curl未安装)" ]]; then</span><br><span class="line">echo -n "IP地理位置: "</span><br><span class="line">location=$(curl -s --max-time 3 "ipinfo.io/$public_ip/json" 2&gt;/dev/null | grep -E '"city"|"region"|"country"' | \</span><br><span class="line">sed 's/.*: "//;s/",//' | tr '\n' ' ' | sed 's/ $//')</span><br><span class="line">[[ -n "$location" ]] &amp;&amp; echo "$location" || echo "未知"</span><br><span class="line">else</span><br><span class="line">echo "IP地理位置: 需要网络连接"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">内网IP地址</span></span><br><span class="line">echo "内网IP地址:"</span><br><span class="line">ipconfig 2&gt;/dev/null | grep -E "(IPv4|IP.v4)" | grep -v "169.254." | while read line; do</span><br><span class="line">interface=$(echo "$line" | cut -d' ' -f1 | tr -d ':')</span><br><span class="line">ip=$(echo "$line" | cut -d: -f2 | sed 's/^[ \t]*//')</span><br><span class="line">[[ -n "$ip" ]] &amp;&amp; echo "  $interface: $ip"</span><br><span class="line">done</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">系统详细信息</span></span><br><span class="line">echo "=== 系统详细信息 ==="</span><br><span class="line"></span><br><span class="line">if command -v systeminfo &amp;&gt;/dev/null; then</span><br><span class="line">sysinfo=$(systeminfo 2&gt;/dev/null)</span><br><span class="line"></span><br><span class="line">    # 操作系统版本</span><br><span class="line">    os_version=$(echo "$sysinfo" | grep "OS Name" | head -1 | cut -d: -f2 | sed 's/^[ \t]*//')</span><br><span class="line">    echo "操作系统版本: $os_version"</span><br><span class="line">    </span><br><span class="line">    echo "内核版本: $(uname -r)"</span><br><span class="line">    </span><br><span class="line">    # 启动设备</span><br><span class="line">    boot_device=$(echo "$sysinfo" | grep -i "Boot Device" | head -1 | cut -d: -f2- | sed 's/^[ \t]*//')</span><br><span class="line">    [[ -n "$boot_device" ]] &amp;&amp; echo "启动设备: $boot_device"</span><br><span class="line">    </span><br><span class="line">    # 时区</span><br><span class="line">    time_zone=$(echo "$sysinfo" | grep -i "Time Zone" | head -1 | cut -d: -f2- | sed 's/^[ \t]*//')</span><br><span class="line">    [[ -n "$time_zone" ]] &amp;&amp; echo "时区: $time_zone"</span><br><span class="line">    </span><br><span class="line">    # 系统运行时间</span><br><span class="line">    boot_time=$(echo "$sysinfo" | grep -i "System Boot Time" | head -1 | cut -d: -f2- | sed 's/^[ \t]*//')</span><br><span class="line">    if [[ -n "$boot_time" ]]; then</span><br><span class="line">        echo "系统启动时间: $boot_time"</span><br><span class="line">        </span><br><span class="line">        # 计算运行时间</span><br><span class="line">        boot_date=$(date -d "$boot_time" "+%s" 2&gt;/dev/null || echo "")</span><br><span class="line">        if [[ -n "$boot_date" ]]; then</span><br><span class="line">            current_date=$(date "+%s")</span><br><span class="line">            uptime_seconds=$((current_date - boot_date))</span><br><span class="line">            days=$((uptime_seconds / 86400))</span><br><span class="line">            hours=$(( (uptime_seconds % 86400) / 3600 ))</span><br><span class="line">            minutes=$(( (uptime_seconds % 3600) / 60 ))</span><br><span class="line">            echo "系统运行时间: ${days}天 ${hours}小时 ${minutes}分钟"</span><br><span class="line">        fi</span><br><span class="line">    fi</span><br><span class="line">else</span><br><span class="line">echo "操作系统版本: 无法获取 (systeminfo未找到)"</span><br><span class="line">echo "内核版本: $(uname -r)"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CPU信息</span></span><br><span class="line">echo "=== CPU信息 ==="</span><br><span class="line"></span><br><span class="line">if command -v wmic &amp;&gt;/dev/null; then</span><br><span class="line">cpu_info=$(wmic cpu get name 2&gt;/dev/null | tail -2 | head -1 | sed 's/^[ \t]*//;s/[ \t]*$//')</span><br><span class="line">[[ -n "$cpu_info" &amp;&amp; ! "$cpu_info" =~ "Name" ]] &amp;&amp; echo "CPU型号: $cpu_info" || echo "CPU型号: 无法获取"</span><br><span class="line">else</span><br><span class="line">echo "CPU型号: 无法获取 (wmic未找到)"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">内存信息</span></span><br><span class="line">echo "=== 内存信息 ==="</span><br><span class="line"></span><br><span class="line">if command -v wmic &amp;&gt;/dev/null; then</span><br><span class="line">memory_bytes=$(wmic computersystem get TotalPhysicalMemory 2&gt;/dev/null | grep '[0-9]' | awk '{print $1}')</span><br><span class="line">if [[ -n "$memory_bytes" ]]; then</span><br><span class="line">memory_gb=$(echo "$memory_bytes" | awk '{printf "%.2f", $1/1024/1024/1024}')</span><br><span class="line">echo "内存大小: ${memory_gb}GB"</span><br><span class="line"></span><br><span class="line">        # 获取可用内存</span><br><span class="line">        free_bytes=$(wmic OS get FreePhysicalMemory 2&gt;/dev/null | grep '[0-9]' | awk '{print $1 * 1024}')</span><br><span class="line">        if [[ -n "$free_bytes" ]]; then</span><br><span class="line">            free_gb=$(echo "$free_bytes" | awk '{printf "%.2f", $1/1024/1024/1024}')</span><br><span class="line">            used_gb=$(echo "$memory_bytes $free_bytes" | awk '{printf "%.2f", ($1-$2)/1024/1024/1024}')</span><br><span class="line">            echo "内存使用: 已用 ${used_gb}GB / 可用 ${free_gb}GB"</span><br><span class="line">        fi</span><br><span class="line">    else</span><br><span class="line">        echo "内存大小: 无法获取"</span><br><span class="line">    fi</span><br><span class="line">else</span><br><span class="line">echo "内存大小: 无法获取 (wmic未找到)"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">磁盘信息</span></span><br><span class="line">echo "=== 磁盘分区信息 ==="</span><br><span class="line"></span><br><span class="line">echo "逻辑磁盘信息:"</span><br><span class="line">if command -v wmic &amp;&gt;/dev/null; then</span><br><span class="line">wmic logicaldisk where "drivetype=3" get deviceid,size,freespace,volumename /format:list 2&gt;/dev/null | \</span><br><span class="line">tr -d '\r' | awk -F'=' '</span><br><span class="line">/DeviceID/ {drive=$2}</span><br><span class="line">/Size/ {size=$2/1024/1024/1024}</span><br><span class="line">/FreeSpace/ {free=$2/1024/1024/1024; used=size-free}</span><br><span class="line">/VolumeName/ {volumename=$2}</span><br><span class="line">/^$/ &amp;&amp; drive {</span><br><span class="line">if (volumename == "") volumename="本地磁盘";</span><br><span class="line">printf "  %s (%s): 总大小=%.2fGB, 已用=%.2fGB, 可用=%.2fGB\n",</span><br><span class="line">drive, volumename, size, used, free;</span><br><span class="line">drive=""; volumename=""</span><br><span class="line">}</span><br><span class="line">'</span><br><span class="line">else</span><br><span class="line">echo "  WMIC命令不可用"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用DF命令查看挂载点（备选方法）</span></span><br><span class="line">if command -v df &amp;&gt;/dev/null; then</span><br><span class="line">echo -e "\n使用DF命令查看挂载点:"</span><br><span class="line">df -h 2&gt;/dev/null | grep -E "^[A-Z]:" | while read line; do</span><br><span class="line">echo "  $line" | awk '{</span><br><span class="line">printf "  %s: 总大小=%s, 已用=%s, 可用=%s, 使用率=%s",</span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">1, <span class="variable">$2</span>, <span class="variable">$3</span>, <span class="variable">$4</span>, <span class="variable">$5</span>;</span></span><br><span class="line">if (NF &gt; 5) {</span><br><span class="line">printf ", 挂载点=";</span><br><span class="line">for(i=6;i&lt;=NF;i++) printf "%s ", $i;</span><br><span class="line">}</span><br><span class="line">print ""</span><br><span class="line">}'</span><br><span class="line">done</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo -e "\n=== 物理磁盘信息 ==="</span><br><span class="line">if command -v wmic &amp;&gt;/dev/null; then</span><br><span class="line">wmic diskdrive get model,size /format:list 2&gt;/dev/null | \</span><br><span class="line">tr -d '\r' | awk -F'=' '</span><br><span class="line">/Model/ {model=$2}</span><br><span class="line">/Size/ {size=$2/1024/1024/1024; printf "  %s: %.2fGB\n", model, size}</span><br><span class="line">' | head -10</span><br><span class="line">else</span><br><span class="line">echo "  WMIC命令不可用"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">用户信息</span></span><br><span class="line">echo -e "\n=== 当前登录用户 ==="</span><br><span class="line">echo "  当前用户: ${USERNAME:-$USER}"</span><br><span class="line"></span><br><span class="line">echo -e "\e[0m"</span><br></pre></td></tr></tbody></table></figure>
+
+
+<h3 id="适用于Linux版本脚本"><a href="#适用于Linux版本脚本" class="headerlink" title="适用于Linux版本脚本"></a>适用于Linux版本脚本</h3><ul>
+<li>获取Linux本机系统信息</li>
+</ul>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Linux/macOS 主机系统信息收集脚本</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">颜色设置</span></span><br><span class="line">echo -e "\e[32m"</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检测是Linux还是macOS</span></span><br><span class="line">if [[ "$(uname)" == "Darwin" ]]; then</span><br><span class="line">    OS_TYPE="macOS"</span><br><span class="line">else</span><br><span class="line">    OS_TYPE="Linux"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo "=== ${OS_TYPE}主机系统信息 ==="</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">主机名和用户名</span></span><br><span class="line">echo "主机名: $(hostname)"</span><br><span class="line">echo "用户名: $USER"</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">网络地址信息</span></span><br><span class="line">echo "=== 网络地址信息 ==="</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">公网IP</span></span><br><span class="line">if command -v curl &amp;&gt;/dev/null; then</span><br><span class="line">    public_ip=$(curl -s --max-time 5 ifconfig.me 2&gt;/dev/null || curl -s --max-time 5 ipinfo.io/ip 2&gt;/dev/null || echo "无法获取")</span><br><span class="line">else</span><br><span class="line">    public_ip="无法获取 (curl未安装)"</span><br><span class="line">fi</span><br><span class="line">echo "公网IP地址: $public_ip"</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">IP地理位置</span></span><br><span class="line">if command -v curl &amp;&gt;/dev/null &amp;&amp; [[ "$public_ip" != "无法获取" &amp;&amp; "$public_ip" != "无法获取 (curl未安装)" ]]; then</span><br><span class="line">    echo -n "IP地理位置: "</span><br><span class="line">    location=$(curl -s --max-time 3 "ipinfo.io/$public_ip/json" 2&gt;/dev/null | grep -E '"city"|"region"|"country"' | \</span><br><span class="line">        sed 's/.*: "//;s/",//' | tr '\n' ' ' | sed 's/ $//')</span><br><span class="line">    [[ -n "$location" ]] &amp;&amp; echo "$location" || echo "未知"</span><br><span class="line">else</span><br><span class="line">    echo "IP地理位置: 需要网络连接"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">内网IP地址</span></span><br><span class="line">echo "内网IP地址:"</span><br><span class="line">if command -v ip &amp;&gt;/dev/null; then</span><br><span class="line">    ip -4 addr show 2&gt;/dev/null | grep -v "127.0.0.1" | grep inet | awk '{print "  "$NF": "$2}'</span><br><span class="line">elif command -v ifconfig &amp;&gt;/dev/null; then</span><br><span class="line">    ifconfig 2&gt;/dev/null | grep -E "inet " | grep -v "127.0.0.1" | awk '{print "  "$1": "$2}'</span><br><span class="line">else</span><br><span class="line">    echo "  无法获取网络接口信息"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">系统详细信息</span></span><br><span class="line">echo "=== 系统详细信息 ==="</span><br><span class="line"></span><br><span class="line">if [[ "$OS_TYPE" == "macOS" ]]; then</span><br><span class="line">    echo "操作系统: macOS $(sw_vers -productVersion 2&gt;/dev/null || echo '未知')"</span><br><span class="line">elif [[ -f /etc/os-release ]]; then</span><br><span class="line">    source /etc/os-release</span><br><span class="line">    echo "操作系统: $NAME $VERSION"</span><br><span class="line">else</span><br><span class="line">    echo "操作系统: 无法确定"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo "内核版本: $(uname -r)"</span><br><span class="line">echo "系统架构: $(uname -m)"</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">系统运行时间</span></span><br><span class="line">echo "=== 系统运行时间 ==="</span><br><span class="line"></span><br><span class="line">if [[ "$OS_TYPE" == "macOS" ]]; then</span><br><span class="line">    # macOS获取运行时间</span><br><span class="line">    if command -v sysctl &amp;&gt;/dev/null; then</span><br><span class="line">        boot_time=$(sysctl -n kern.boottime 2&gt;/dev/null | awk '{print $4}' | sed 's/,//')</span><br><span class="line">        if [[ -n "$boot_time" ]]; then</span><br><span class="line">            current_time=$(date +%s)</span><br><span class="line">            uptime_seconds=$((current_time - boot_time))</span><br><span class="line">            days=$((uptime_seconds / 86400))</span><br><span class="line">            hours=$(( (uptime_seconds % 86400) / 3600 ))</span><br><span class="line">            minutes=$(( (uptime_seconds % 3600) / 60 ))</span><br><span class="line">            seconds=$((uptime_seconds % 60))</span><br><span class="line">            </span><br><span class="line">            echo "系统运行时间: ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒"</span><br><span class="line">            </span><br><span class="line">            # 显示启动时间</span><br><span class="line">            boot_date=$(date -r $boot_time "+%Y-%m-%d %H:%M:%S" 2&gt;/dev/null)</span><br><span class="line">            [[ -n "$boot_date" ]] &amp;&amp; echo "系统启动时间: $boot_date"</span><br><span class="line">        else</span><br><span class="line">            echo "系统运行时间: 无法获取"</span><br><span class="line">        fi</span><br><span class="line">    else</span><br><span class="line">        echo "系统运行时间: 无法获取 (sysctl命令不可用)"</span><br><span class="line">    fi</span><br><span class="line">else</span><br><span class="line">    # Linux获取运行时间</span><br><span class="line">    if [[ -f /proc/uptime ]]; then</span><br><span class="line">        uptime_seconds=$(awk '{print $1}' /proc/uptime 2&gt;/dev/null)</span><br><span class="line">        if [[ -n "$uptime_seconds" ]]; then</span><br><span class="line">            days=$((uptime_seconds / 86400))</span><br><span class="line">            hours=$(( (uptime_seconds % 86400) / 3600 ))</span><br><span class="line">            minutes=$(( (uptime_seconds % 3600) / 60 ))</span><br><span class="line">            seconds=$((uptime_seconds % 60))</span><br><span class="line">            echo "系统运行时间: ${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒"</span><br><span class="line">            </span><br><span class="line">            # 显示启动时间</span><br><span class="line">            current_time=$(date +%s)</span><br><span class="line">            boot_time=$((current_time - ${uptime_seconds%.*}))</span><br><span class="line">            boot_date=$(date -d "@$boot_time" "+%Y-%m-%d %H:%M:%S" 2&gt;/dev/null)</span><br><span class="line">            [[ -n "$boot_date" ]] &amp;&amp; echo "系统启动时间: $boot_date"</span><br><span class="line">        else</span><br><span class="line">            echo "系统运行时间: 无法获取"</span><br><span class="line">        fi</span><br><span class="line">    else</span><br><span class="line">        echo "系统运行时间: 无法获取 (/proc/uptime不存在)"</span><br><span class="line">    fi</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示<span class="built_in">uptime</span>命令的输出作为补充</span></span><br><span class="line">if command -v uptime &amp;&gt;/dev/null; then</span><br><span class="line">    echo -n "uptime命令输出: "</span><br><span class="line">    uptime_output=$(uptime 2&gt;/dev/null)</span><br><span class="line">    [[ -n "$uptime_output" ]] &amp;&amp; echo "$uptime_output" || echo "无法获取"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">时区信息</span></span><br><span class="line">echo "=== 时区信息 ==="</span><br><span class="line"></span><br><span class="line">if [[ -f /etc/timezone ]]; then</span><br><span class="line">    echo "时区: $(cat /etc/timezone)"</span><br><span class="line">elif command -v timedatectl &amp;&gt;/dev/null; then</span><br><span class="line">    timezone=$(timedatectl show --property=Timezone --value 2&gt;/dev/null)</span><br><span class="line">    [[ -n "$timezone" ]] &amp;&amp; echo "时区: $timezone"</span><br><span class="line">elif [[ -f /etc/localtime ]]; then</span><br><span class="line">    # 尝试从/etc/localtime推断时区</span><br><span class="line">    if [[ "$OS_TYPE" == "Linux" ]]; then</span><br><span class="line">        timezone_link=$(readlink /etc/localtime 2&gt;/dev/null)</span><br><span class="line">        if [[ -n "$timezone_link" ]]; then</span><br><span class="line">            timezone=$(echo "$timezone_link" | sed 's|.*/zoneinfo/||')</span><br><span class="line">            echo "时区: $timezone"</span><br><span class="line">        fi</span><br><span class="line">    fi</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示当前时间</span></span><br><span class="line">echo "当前时间: $(date '+%Y-%m-%d %H:%M:%S')"</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CPU信息</span></span><br><span class="line">echo "=== CPU信息 ==="</span><br><span class="line"></span><br><span class="line">if [[ "$OS_TYPE" == "macOS" ]]; then</span><br><span class="line">    cpu_info=$(sysctl -n machdep.cpu.brand_string 2&gt;/dev/null || echo "未知")</span><br><span class="line">    echo "CPU型号: $cpu_info"</span><br><span class="line">    echo "CPU核心数: $(sysctl -n hw.ncpu 2&gt;/dev/null || echo "未知")"</span><br><span class="line">elif [[ -f /proc/cpuinfo ]]; then</span><br><span class="line">    cpu_model=$(grep -m1 "model name" /proc/cpuinfo 2&gt;/dev/null | cut -d: -f2 | sed 's/^[ \t]*//')</span><br><span class="line">    cpu_cores=$(grep -c "^processor" /proc/cpuinfo 2&gt;/dev/null || echo "未知")</span><br><span class="line">    echo "CPU型号: ${cpu_model:-未知}"</span><br><span class="line">    echo "CPU核心数: $cpu_cores"</span><br><span class="line">    </span><br><span class="line">    # 显示CPU频率（如果可用）</span><br><span class="line">    cpu_mhz=$(grep -m1 "cpu MHz" /proc/cpuinfo 2&gt;/dev/null | cut -d: -f2 | sed 's/^[ \t]*//')</span><br><span class="line">    [[ -n "$cpu_mhz" ]] &amp;&amp; echo "CPU频率: ${cpu_mhz} MHz"</span><br><span class="line">else</span><br><span class="line">    echo "CPU型号: 无法获取"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">内存信息</span></span><br><span class="line">echo "=== 内存信息 ==="</span><br><span class="line"></span><br><span class="line">if [[ "$OS_TYPE" == "macOS" ]]; then</span><br><span class="line">    memory_bytes=$(sysctl -n hw.memsize 2&gt;/dev/null)</span><br><span class="line">    if [[ -n "$memory_bytes" ]]; then</span><br><span class="line">        memory_gb=$(echo "$memory_bytes" | awk '{printf "%.2f", $1/1024/1024/1024}')</span><br><span class="line">        echo "内存大小: ${memory_gb}GB"</span><br><span class="line">    fi</span><br><span class="line">elif [[ -f /proc/meminfo ]]; then</span><br><span class="line">    total_memory=$(grep -m1 "MemTotal" /proc/meminfo 2&gt;/dev/null | awk '{print $2}')</span><br><span class="line">    if [[ -n "$total_memory" ]]; then</span><br><span class="line">        memory_gb=$(echo "$total_memory" | awk '{printf "%.2f", $1/1024/1024}')</span><br><span class="line">        echo "内存大小: ${memory_gb}GB"</span><br><span class="line">        </span><br><span class="line">        free_memory=$(grep "MemAvailable" /proc/meminfo 2&gt;/dev/null | awk '{print $2}')</span><br><span class="line">        if [[ -n "$free_memory" ]]; then</span><br><span class="line">            free_gb=$(echo "$free_memory" | awk '{printf "%.2f", $1/1024/1024}')</span><br><span class="line">            used_gb=$(echo "$total_memory $free_memory" | awk '{printf "%.2f", ($1-$2)/1024/1024}')</span><br><span class="line">            use_percent=$(echo "$total_memory $free_memory" | awk '{printf "%.1f", 100-($2*100/$1)}')</span><br><span class="line">            echo "内存使用: 已用 ${used_gb}GB / 可用 ${free_gb}GB (使用率: ${use_percent}%)"</span><br><span class="line">        fi</span><br><span class="line">    fi</span><br><span class="line">else</span><br><span class="line">    echo "内存大小: 无法获取"</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">磁盘信息</span></span><br><span class="line">echo "=== 磁盘分区信息 ==="</span><br><span class="line"></span><br><span class="line">echo "磁盘使用情况:"</span><br><span class="line">if command -v df &amp;&gt;/dev/null; then</span><br><span class="line">    df -h 2&gt;/dev/null | grep -E "^/dev/" | while read line; do</span><br><span class="line">        echo "  $line" | awk '{</span><br><span class="line">            printf "  %s: 总大小=%s, 已用=%s, 可用=%s, 使用率=%s, 挂载点=", </span><br><span class="line">                   $1, $2, $3, $4, $5;</span><br><span class="line">            for(i=6;i&lt;=NF;i++) printf "%s ", $i;</span><br><span class="line">            print ""</span><br><span class="line">        }'</span><br><span class="line">    done</span><br><span class="line">else</span><br><span class="line">    echo "  df命令不可用"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo -e "\n=== 物理磁盘信息 ==="</span><br><span class="line"></span><br><span class="line">if [[ "$OS_TYPE" == "macOS" ]]; then</span><br><span class="line">    if command -v diskutil &amp;&gt;/dev/null; then</span><br><span class="line">        diskutil list 2&gt;/dev/null | grep -A5 "/dev/disk" | while read line; do</span><br><span class="line">            if [[ "$line" =~ /dev/disk ]]; then</span><br><span class="line">                echo "  $line"</span><br><span class="line">            fi</span><br><span class="line">        done</span><br><span class="line">    else</span><br><span class="line">        echo "  diskutil命令不可用"</span><br><span class="line">    fi</span><br><span class="line">elif command -v lsblk &amp;&gt;/dev/null; then</span><br><span class="line">    lsblk -d -o NAME,SIZE,TYPE,MODEL 2&gt;/dev/null | grep disk | head -5</span><br><span class="line">elif [[ -f /proc/partitions ]]; then</span><br><span class="line">    cat /proc/partitions 2&gt;/dev/null | grep -v "major" | grep -E "^[[:space:]]*[0-9]" | awk '{print $4, $3}' | while read name size; do</span><br><span class="line">        if [[ "$name" =~ ^[hs]d[a-z]$ ]] || [[ "$name" =~ ^nvme ]]; then</span><br><span class="line">            size_gb=$(echo "$size" | awk '{printf "%.2f", $1/1024/1024}')</span><br><span class="line">            echo "  $name: ${size_gb}GB"</span><br><span class="line">        fi</span><br><span class="line">    done</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">用户信息</span></span><br><span class="line">echo -e "\n=== 当前登录用户 ==="</span><br><span class="line">echo "  当前用户: $USER"</span><br><span class="line">if command -v who &amp;&gt;/dev/null; then</span><br><span class="line">    users=$(who 2&gt;/dev/null | awk '{print $1}' | sort | uniq)</span><br><span class="line">    user_count=$(echo "$users" | wc -w 2&gt;/dev/null)</span><br><span class="line">    [[ "$user_count" -gt 1 ]] &amp;&amp; echo "  其他登录用户: $(echo "$users" | tr '\n' ' ')"</span><br><span class="line">    </span><br><span class="line">    # 显示登录终端和登录时间</span><br><span class="line">    echo -e "\n  登录会话详情:"</span><br><span class="line">    who 2&gt;/dev/null | head -5 | while read line; do</span><br><span class="line">        echo "    $line"</span><br><span class="line">    done</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">系统负载信息</span></span><br><span class="line">echo -e "\n=== 系统负载信息 ==="</span><br><span class="line">if [[ -f /proc/loadavg ]]; then</span><br><span class="line">    load=$(cat /proc/loadavg 2&gt;/dev/null)</span><br><span class="line">    [[ -n "$load" ]] &amp;&amp; echo "  系统负载: $load" || echo "  系统负载: 无法获取"</span><br><span class="line">elif command -v sysctl &amp;&gt;/dev/null &amp;&amp; [[ "$OS_TYPE" == "macOS" ]]; then</span><br><span class="line">    load=$(sysctl -n vm.loadavg 2&gt;/dev/null)</span><br><span class="line">    [[ -n "$load" ]] &amp;&amp; echo "  系统负载: $load" || echo "  系统负载: 无法获取"</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">echo -e "\e[0m"</span><br></pre></td></tr></tbody></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>Roy Li
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tech-roy.uk/2025/12/14/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/" title="获取本机系统信息">https://tech-roy.uk/2025/12/14/获取本机系统信息/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" rel="tag"># 树莓派</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/Windows/" rel="tag"># Windows</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/11/%E6%A0%91%E8%8E%93%E6%B4%BE%E9%83%A8%E7%BD%B2%E6%97%81%E8%B7%AF%E7%94%B1%E5%AE%9E%E7%8E%B0%E5%85%A8%E5%B1%80%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="prev" title="树莓派部署旁路由实现全局科学上网">
+                  <i class="fa fa-angle-left"></i> 树莓派部署旁路由实现全局科学上网
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/12/17/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/" rel="next" title="任天堂Switch安装安卓TV系统">
+                  任天堂Switch安装安卓TV系统 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2025 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy Li</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"gdjdkid/gdjdkid.github.io","issue_term":"pathname","theme":"boxy-light","label":"💬评论","theme_dark":"github-dark-orange","crossorigin":"anonymous","placeholder":"畅所欲言，思绪飞扬~"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

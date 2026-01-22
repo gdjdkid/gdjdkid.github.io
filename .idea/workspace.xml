@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2025.12.17_1">
-      <change afterPath="$PROJECT_DIR$/source/_posts/Docker镜像备份到U盘实操.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025_12_10_21_06_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2025_12_10_21_06__Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2025.12.18_0">
+      <change afterPath="$PROJECT_DIR$/source/_posts/任务管理器的使用技巧.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +108,9 @@
       <workItem from="1765807088494" duration="624000" />
       <workItem from="1765899832253" duration="6725000" />
       <workItem from="1765967146831" duration="9505000" />
-      <workItem from="1766024676423" duration="3508000" />
+      <workItem from="1766024676423" duration="3624000" />
+      <workItem from="1766071048251" duration="720000" />
+      <workItem from="1769051372726" duration="8795000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -208,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765979433574</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="push 2025.12.18_0">
+      <option name="closed" value="true" />
+      <created>1766028255045</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1766028255045</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,6 +250,7 @@
     <MESSAGE value="push 2025.12.15_0" />
     <MESSAGE value="push 2025.12.17_0" />
     <MESSAGE value="push 2025.12.17_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="push 2025.12.17_1" />
+    <MESSAGE value="push 2025.12.18_0" />
+    <option name="LAST_COMMIT_MESSAGE" value="push 2025.12.18_0" />
   </component>
 </project>

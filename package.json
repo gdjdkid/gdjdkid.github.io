@@ -37,6 +37,6 @@
     "hexo-theme-next": "^8.26.0",
     "hexo-theme-volantis": "^6.0.2",
     "hexo-wordcount": "^6.0.1",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.23"
   }
 }

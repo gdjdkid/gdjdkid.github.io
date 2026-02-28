@@ -9,7 +9,8 @@ sticky:
 ---
 
 ## Links to recorded chapters
-1. https://tech-roy.uk/2025/06/07/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85Rpi-OS-Legacy-Lite/
+1. Installing Rpi OS Legacy Lite on Raspberry Pi 4B
+   2. https://tech-roy.uk/2025/06/07/InstallingRpiOSLegacyLiteOnRaspberryPi4B/
 2. https://tech-roy.uk/2025/06/08/%E5%88%9B%E5%BB%BA-bashrc%E6%96%87%E4%BB%B6/
 3. https://tech-roy.uk/2025/12/09/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E5%AE%89%E8%A3%85CasaOS/
 4. https://tech-roy.uk/2025/12/10/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/

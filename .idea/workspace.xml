@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.01.22_0">
+    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.01.22_1">
+      <change afterPath="$PROJECT_DIR$/source/_posts/Blogging·TechSharing·OpenSourceAboveAll.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/任务管理器的使用技巧.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/任务管理器的使用技巧.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/创建-bashrc文件.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/创建-bashrc文件.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/获取本机系统信息.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/获取本机系统信息.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/开通博客·技术分享·开源至上.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/记录折腾树莓派的全过程.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/DocumentingTheEntireDIYProcessOfMyRaspberryPi.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +112,8 @@
       <workItem from="1765967146831" duration="9505000" />
       <workItem from="1766024676423" duration="3624000" />
       <workItem from="1766071048251" duration="720000" />
-      <workItem from="1769051372726" duration="10410000" />
+      <workItem from="1769051372726" duration="11774000" />
+      <workItem from="1772267248785" duration="5251000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -226,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769062147453</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="push 2026.01.22_1">
+      <option name="closed" value="true" />
+      <created>1769063721310</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1769063721310</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,6 +271,7 @@
     <MESSAGE value="push 2025.12.17_1" />
     <MESSAGE value="push 2025.12.18_0" />
     <MESSAGE value="push 2026.01.22_0" />
-    <option name="LAST_COMMIT_MESSAGE" value="push 2026.01.22_0" />
+    <MESSAGE value="push 2026.01.22_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="push 2026.01.22_1" />
   </component>
 </project>

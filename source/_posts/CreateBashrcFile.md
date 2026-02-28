@@ -1,22 +1,22 @@
 ---
-title: 创建.bashrc文件  
+title: Create a .bashrc file  
 author: Roy Li  
-tags: [树莓派, Linux]
-categories: [树莓派]
+tags: [RPI, Linux]
+categories: [RPI]
 date: 2025-06-08 11:47:00
 index_img: https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%88%9B%E5%BB%BA.bashrc%E6%96%87%E4%BB%B6/Create_bashrc_4.png
 sticky:
 ---
 
-## 创建.bashrc
+## Create a .bashrc file  
 
 ```shell
 touch /home/roy/.bashrc
 ```
-![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%88%9B%E5%BB%BA.bashrc%E6%96%87%E4%BB%B6/Create_bashrc_0.png)
-`P.S.: “roy”为用户名，请替换为您的用户名。`
+![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%88%9B%E5%BB%BA.bashrc%E6%96%87%E4%BB%B6/Create_bashrc_0.png)  
+`P.S.: “roy” is your username; please replace it with your own username.`
 
-## 进入编辑模式
+## Enter edit mode  
 
 ```shell
 cd /home/roy/
@@ -27,7 +27,7 @@ sudo nano /home/roy/.bashrc
 ## ~./.bashrc
 
 ```shell
-# 添加用户本地 bin 目录到 PATH
+# Add the user's local bin directory to PATH
 # Global Environment Variable
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -70,19 +70,19 @@ mkcd() {
 }
 ```
 
-## 使其生效
+## Make it effective  
 ```shell
 source /home/roy/.bashrc
 ```
 ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%88%9B%E5%BB%BA.bashrc%E6%96%87%E4%BB%B6/Create_bashrc_2.png)
 
-## 查看文件是否创建
+## Check if the file has been created.  
 ```shell
 ls -la /home/roy/.bashrc
 ```
 ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%88%9B%E5%BB%BA.bashrc%E6%96%87%E4%BB%B6/Create_bashrc_3.png)
 
-## 拥有文件所有权限
+## Have all file permissions
 ```shell
 sudo chmod -R 777 /home/roy/.bashrc
 ```

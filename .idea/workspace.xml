@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.02.28_2">
+    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.02.28_3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/DocumentingTheEntireDIYProcessOfMyRaspberryPi.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/DocumentingTheEntireDIYProcessOfMyRaspberryPi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/树莓派4B安装CasaOS.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/InstallCasaOSOnRaspberryPi4B.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/树莓派4B搭建面板1Panel.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Deploying1PanelOnRaspberryPi4B.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +111,8 @@
       <workItem from="1766024676423" duration="3624000" />
       <workItem from="1766071048251" duration="720000" />
       <workItem from="1769051372726" duration="11774000" />
-      <workItem from="1772267248785" duration="17126000" />
+      <workItem from="1772267248785" duration="17312000" />
+      <workItem from="1772546152825" duration="2666000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -258,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772288287086</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="push 2026.02.28_3">
+      <option name="closed" value="true" />
+      <created>1772290081787</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1772290081787</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,6 +306,7 @@
     <MESSAGE value="push 2026.02.28_0" />
     <MESSAGE value="push 2026.02.28_1" />
     <MESSAGE value="push 2026.02.28_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="push 2026.02.28_2" />
+    <MESSAGE value="push 2026.02.28_3" />
+    <option name="LAST_COMMIT_MESSAGE" value="push 2026.02.28_3" />
   </component>
 </project>

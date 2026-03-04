@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.03.04_5">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.03.04_6">
       <change beforePath="$PROJECT_DIR$/source/about/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/about/index.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +111,7 @@
       <workItem from="1766071048251" duration="720000" />
       <workItem from="1769051372726" duration="11774000" />
       <workItem from="1772267248785" duration="17312000" />
-      <workItem from="1772546152825" duration="40457000" />
+      <workItem from="1772546152825" duration="40839000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -322,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772636879767</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="push 2026.03.04_6">
+      <option name="closed" value="true" />
+      <created>1772638861164</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1772638861164</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,7 +351,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.deploy_git" />
     </ignored-roots>
-    <MESSAGE value="push 2025.12.09_1" />
     <MESSAGE value="push 2025.12.10_0" />
     <MESSAGE value="push 2025.12.10_1" />
     <MESSAGE value="push 2025.12.10_2" />
@@ -369,6 +375,7 @@
     <MESSAGE value="push 2026.03.04_3" />
     <MESSAGE value="push 2026.03.04_4" />
     <MESSAGE value="push 2026.03.04_5" />
-    <option name="LAST_COMMIT_MESSAGE" value="push 2026.03.04_5" />
+    <MESSAGE value="push 2026.03.04_6" />
+    <option name="LAST_COMMIT_MESSAGE" value="push 2026.03.04_6" />
   </component>
 </project>

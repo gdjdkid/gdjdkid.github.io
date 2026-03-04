@@ -18,7 +18,7 @@ That means you can run it directly on your Pi and turn the device into a small, 
 - Raspberry Pi 4B (2GB RAM or more recommended)
 - MicroSD card (at least 16GB, Class 10 recommended)
 - Power adapter
-- Ethernet or WiFi connection
+- Ethernet or Wi-Fi connection
 
 ---
 
@@ -115,7 +115,7 @@ After installation finishes, the terminal will display the access URL, for examp
   - `sudo 1pctl update`
   - or update directly inside the panel.
 - Performance
-  - Raspberry Pi 4B runs smoothly, but if you deploy multiple applications, monitor the temperature and consider adding a heatsink.
+  - Raspberry Pi 4B runs smoothly, but if you deploy multiple applications, monitor the temperature and consider adding a heat sink.
 - Firewall
   - If ufw is enabled, allow the panel port:`sudo ufw allow <PORT>`
 - Port Conflict

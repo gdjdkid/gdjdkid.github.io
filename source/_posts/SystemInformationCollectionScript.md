@@ -1,77 +1,109 @@
 ---
-title: 获取本机系统信息
+title: System Information Collection Script
 date: 2025-12-14 19:45:11
 author: Roy Li
-tags: [Windows, Linux, 树莓派, 实用脚本]
-categories: [实用脚本]
+tags: [Windows, Linux, RPI, UtilityScripts]
+categories: [UtilityScripts]
 index_img:
 sticky:
 ---
 
-### 简介
-- For Windows
-  - 这是一个专门为Windows操作系统设计的系统信息收集脚本，使用Bash脚本编写。它能够在Windows的命令行环境（包括Git Bash、Cygwin、WSL等）中运行，通过调用Windows原生命令和工具来获取详细的系统配置信息。
-- For Linux
-  - 这是一个专为Linux和macOS系统设计的系统信息收集脚本，同样使用Bash编写。它充分利用Linux系统的特性（如/proc文件系统、标准命令行工具）来获取详细的系统信息。
-### 目的
-- For Windows
-  - 快速诊断系统配置：帮助用户和IT管理员快速了解Windows主机的硬件和软件配置
-  - 系统信息存档：在系统部署、故障排查或升级前记录系统状态
-  - 远程技术支持：通过运行脚本获取详细信息，便于远程技术支持分析问题
-  - 系统健康检查：监控关键系统指标，如内存使用、磁盘空间、CPU负载等
-  - 网络配置分析：显示内外网IP地址、网络接口配置和地理位置信息
-- For Linux
-  - 全面系统概览：提供从硬件到软件的完整系统快照
-  - 性能监控基线：建立系统性能基准，用于后续的性能监控和调优
-  - 服务器状态检查：适用于服务器管理和监控，特别关注运行时间和负载
-  - 故障排除工具：为系统故障和性能问题提供诊断信息
-  - 兼容性验证：检查系统是否满足特定软件或应用的运行要求
+### Overview
+#### For Windows
+- This script is designed to collect detailed system information from Windows machines. 
+- It is written in Bash and can run in command-line environments such as Git Bash, Cygwin, or WSL.
+- The script retrieves system configuration data by calling native Windows tools and commands.
+#### For Linux
+- This script is designed for Linux and macOS systems, also written in Bash.
+- It leverages typical Linux system features such as the **/proc filesystem** and standard command-line utilities to collect detailed system information.
 
-### 适用场景
-- For Windows
-  - IT管理员进行系统审计和资产管理
-  - 技术支持人员收集客户系统信息进行故障分析
-  - 开发人员确认开发环境的硬件配置
-  - 系统迁移或升级前的兼容性检查
-  - 安全审计和合规性检查
-- For Linux
-  - 服务器管理和监控
-  - 云主机配置验证
-  - 容器化环境的基础镜像检查
-  - 分布式系统部署前的环境检查
-  - 系统性能调优和容量规划
-  - 安全加固和合规性审计
+### Purpose
+#### For Windows
+- Quick system diagnostics
+  - Helps users and IT administrators quickly understand hardware and software configuration.
+- System information archiving
+  - Records system status before deployment, troubleshooting, or upgrades.
+- Remote technical support
+  - Allows engineers to collect system details remotely for issue analysis.
+- System health monitoring
+  - Tracks key system metrics such as memory usage, disk space, and CPU status.
+- Network configuration inspection
+  - Displays public and private IP addresses, network interface information, and approximate location.
+#### For Linux
+- Comprehensive system overview
+  - Provides a complete snapshot of system information from hardware to software.
+- Performance baseline creation
+  - Establishes performance baselines for later monitoring and optimization.
+- Server status inspection
+  - Useful for server administration, especially for uptime and load monitoring.
+- Troubleshooting assistance
+  - Provides useful diagnostic data for debugging system or performance issues.
+- Compatibility validation
+  - Checks whether the system meets the requirements for specific software or applications.
 
-### 两个脚本的共同特点
-- 技术特点
-  - 跨平台兼容性：虽然各自针对不同平台，但都使用标准的Bash语法
-  - 无需安装：依赖系统内置命令，不需要额外安装软件包
-  - 颜色化输出：使用绿色文本提高可读性
-  - 模块化信息：信息按类别分组显示，结构清晰
-  - 错误处理：对命令失败的情况有适当处理
-- 信息收集范围
-  - 基本信息：主机名、用户名、操作系统版本
-  - 硬件信息：CPU型号、内存大小、磁盘配置
-  - 网络信息：IP地址（公网/内网）、网络接口、地理位置
-  - 系统状态：运行时间、启动时间、时区
-  - 存储信息：磁盘分区、挂载点、使用情况
-- 使用价值
-  - 效率提升：自动化收集信息，避免手动检查每个项目
-  - 标准化输出：提供一致的输出格式，便于比较和分析
-  - 历史记录：可保存输出结果作为系统变更的参考
-  - 可扩展性：可根据需要轻松添加新的信息收集功能
-  - 教育和学习：帮助用户了解系统结构和配置
+### Use Cases
+#### For Windows
+- IT administrators performing system audits and asset management
+- Support engineers collecting client system data for troubleshooting
+- Developers verifying hardware configuration of development environments
+- Compatibility checks before system migration or upgrades
+- Security auditing and compliance verification
+#### For Linux
+- Server administration and monitoring
+- Cloud instance configuration validation
+- Base image inspection in container environments
+- Environment checks before distributed system deployment
+- Performance tuning and capacity planning
+- Security hardening and compliance auditing
 
-### 效果图
-- For Windows
-  ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_0.png)
-- For Linux
-  ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_1.png)
-  ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_2.png)
-  ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_3.png)
+### Shared Features of Both Scripts
+#### Technical Characteristics
+- Cross-platform design
+  - Both scripts target different operating systems but use standard Bash syntax.
+- No additional dependencies
+  - The scripts rely only on built-in system tools.
+- Colorized output
+  - Green-colored output improves readability.
+- Modular output structure
+  - Information is grouped by category for clarity.
+- Basic error handling
+  - Handles command failures gracefully.
 
-### 适用于Windows版本脚本
-- 获取Win本机系统信息
+#### Information Collected
+- Basic information
+  - Hostname, username, operating system version
+- Hardware information
+  - CPU model, memory size, disk configuration
+- Network information
+  - Public and private IP addresses, network interfaces, geolocation
+- System status
+  - Uptime, boot time, timezone
+- Storage information
+  - Disk partitions, mount points, usage statistics
+
+#### Benefits
+- Improved efficiency
+  - Automatically collects system data instead of manual inspection.
+- Standardized output format
+  - Consistent output makes comparison and analysis easier.
+- Historical reference
+  - Output can be saved for system change tracking.
+- Extensibility
+  - Additional checks can be added easily if needed.
+- Educational value
+  - Helps users understand system structure and configuration.
+
+### Example Output
+#### For Windows
+  ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_0.png)  
+
+#### For Linux
+  ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_1.png)  
+  ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_2.png)  
+  ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E8%8E%B7%E5%8F%96%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF/sysinfo_3.png)  
+
+### Windows Version Script
+#### Collect Windows System Information
 ```shell
 #!/bin/bash
 
@@ -244,9 +276,8 @@ echo "  当前用户: ${USERNAME:-$USER}"
 echo -e "\e[0m"
 ```
 
-
-### 适用于Linux版本脚本
-- 获取Linux本机系统信息
+### Linux Version Script
+#### Collect Linux System Information
 ```shell
 #!/bin/bash
 

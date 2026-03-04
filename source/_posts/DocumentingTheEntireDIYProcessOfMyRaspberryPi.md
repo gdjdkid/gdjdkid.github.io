@@ -19,5 +19,5 @@ sticky:
    5. https://tech-roy.uk/2025/12/10/Deploying1PanelOnRaspberryPi4B/
 5. Deploying an OpenWrt Bypass Router on Raspberry Pi Using Docker
    6. https://tech-roy.uk/2025/12/11/DeployingAnOpenWrtBypassRouterOnRaspberryPiUsingDocker/
-6. Docker镜像备份到U盘实操
-   7. https://tech-roy.uk/2025/12/18/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/
+6. Backing Up Docker Images to a USB Drive on Raspberry Pi / ARM Linux
+   7. https://tech-roy.uk/2025/12/18/BackingUpDockerImagesToAUsbDrive/

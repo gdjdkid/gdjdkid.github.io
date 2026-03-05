@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="mask-icon" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tech-roy.uk","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"enable":true,"type":"utterances","activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Overviewyddict is a lightweight CLI dictionary tool that queries Youdao Dictionary (有道词典) directly from the terminal. It’s perfect for developers who want quick English ↔ Chinese lookups without openi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploying Yddict On Raspberry Pi 4B">
+<meta property="og:url" content="https://tech-roy.uk/2026/03/05/DeployingYddictOnRaspberryPi4B/index.html">
+<meta property="og:site_name" content="Tech-Roy Blog">
+<meta property="og:description" content="Overviewyddict is a lightweight CLI dictionary tool that queries Youdao Dictionary (有道词典) directly from the terminal. It’s perfect for developers who want quick English ↔ Chinese lookups without openi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/kenshinji/yddict/master/example.gif">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_0.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_1.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_2.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_3.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_4.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_5.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_6.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_7.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_8.png">
+<meta property="article:published_time" content="2026-03-05T02:58:26.000Z">
+<meta property="article:modified_time" content="2026-03-05T06:52:46.931Z">
+<meta property="article:author" content="Roy Li">
+<meta property="article:tag" content="RPI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/kenshinji/yddict/master/example.gif">
+
+
+<link rel="canonical" href="https://tech-roy.uk/2026/03/05/DeployingYddictOnRaspberryPi4B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tech-roy.uk/2026/03/05/DeployingYddictOnRaspberryPi4B/","path":"2026/03/05/DeployingYddictOnRaspberryPi4B/","title":"Deploying Yddict On Raspberry Pi 4B"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deploying Yddict On Raspberry Pi 4B | Tech-Roy Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EZLR5DH6P"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6EZLR5DH6P","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/rss2.xml" title="Tech-Roy Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tech-Roy Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術分享 技術無界 開源至上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Features"><span class="nav-number">2.</span> <span class="nav-text">Features</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Requirements"><span class="nav-number">3.</span> <span class="nav-text">Requirements</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Demo"><span class="nav-number">4.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation-Steps"><span class="nav-number">5.</span> <span class="nav-text">Installation Steps</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Update-your-system"><span class="nav-number">5.1.</span> <span class="nav-text">Update your system</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Install-Node-js-LTS-recommended"><span class="nav-number">5.2.</span> <span class="nav-text">Install Node.js (LTS recommended)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Verify-versions"><span class="nav-number">5.3.</span> <span class="nav-text">Verify versions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Install-yddict-globally"><span class="nav-number">5.4.</span> <span class="nav-text">Install yddict globally</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-check-that-it%E2%80%99s-installed"><span class="nav-number">5.5.</span> <span class="nav-text">Quick check that it’s installed</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optional-Verify-Installation-Paths"><span class="nav-number">6.</span> <span class="nav-text">Optional: Verify Installation Paths</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Usage"><span class="nav-number">7.</span> <span class="nav-text">Basic Usage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convenience-Tip-Shell-Alias"><span class="nav-number">8.</span> <span class="nav-text">Convenience Tip: Shell Alias</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Uninstall-if-needed"><span class="nav-number">9.</span> <span class="nav-text">Uninstall (if needed)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes-Gotchas"><span class="nav-number">10.</span> <span class="nav-text">Notes &amp; Gotchas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">11.</span> <span class="nav-text">References</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy Li"
+      src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+  <p class="site-author-name" itemprop="name">Roy Li</p>
+  <div class="site-description" itemprop="description">Roy Li's Personal Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gdjdkid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gdjdkid" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdjdkid2014@gmail.com" title="E-Mail → mailto:gdjdkid2014@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tech-roy.uk/2026/03/05/DeployingYddictOnRaspberryPi4B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+      <meta itemprop="name" content="Roy Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tech-Roy Blog">
+      <meta itemprop="description" content="Roy Li's Personal Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Deploying Yddict On Raspberry Pi 4B | Tech-Roy Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deploying Yddict On Raspberry Pi 4B
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-05 10:58:26 / 修改时间：14:52:46" itemprop="dateCreated datePublished" datetime="2026-03-05T10:58:26+08:00">2026-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/RPI/" itemprop="url" rel="index"><span itemprop="name">RPI</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>yddict is a lightweight CLI dictionary tool that queries Youdao Dictionary (有道词典) directly from the terminal. It’s perfect for developers who want quick English ↔ Chinese lookups without opening a browser or dealing with heavy GUI apps full of ads.</p>
+<h3 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h3><ul>
+<li>English → Chinese translation</li>
+<li>Chinese → English translation</li>
+<li>Phonetic symbols / pronunciation hints</li>
+<li>Web-sourced definitions and examples</li>
+<li>Custom proxy support</li>
+<li>Custom output color</li>
+<li>Completely ad-free</li>
+</ul>
+<h3 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h3><ul>
+<li>Node.js ≥ 12.0.0</li>
+<li>npm ≥ 6.0.0</li>
+</ul>
+<blockquote>
+<p>yddict is pure JavaScript, so it runs fine on ARM64 like Raspberry Pi 4B — no compilation needed.</p>
+</blockquote>
+<h3 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h3><p><img data-src="https://raw.githubusercontent.com/kenshinji/yddict/master/example.gif" alt="yddict demo" title="Animated demo of yddict in action">  </p>
+<h3 id="Installation-Steps"><a href="#Installation-Steps" class="headerlink" title="Installation Steps"></a>Installation Steps</h3><h4 id="Update-your-system"><a href="#Update-your-system" class="headerlink" title="Update your system"></a>Update your system</h4><p>Always a good first step on fresh Raspberry Pi OS installs.</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade -y</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Install-Node-js-LTS-recommended"><a href="#Install-Node-js-LTS-recommended" class="headerlink" title="Install Node.js (LTS recommended)"></a>Install Node.js (LTS recommended)</h4><p>The Node source repo gives you a clean, up-to-date version. Here we’re using v20.x (stable as of 2025–2026).</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -</span><br><span class="line">sudo apt install -y nodejs</span><br></pre></td></tr></tbody></table></figure>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_0.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_1.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_2.png">  </p>
+<h4 id="Verify-versions"><a href="#Verify-versions" class="headerlink" title="Verify versions"></a>Verify versions</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v    # should show v20.x.x</span><br><span class="line">npm -v     # should show 10.x.x or similar</span><br></pre></td></tr></tbody></table></figure>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_3.png">  </p>
+<h4 id="Install-yddict-globally"><a href="#Install-yddict-globally" class="headerlink" title="Install yddict globally"></a>Install yddict globally</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm install -g yddict</span><br></pre></td></tr></tbody></table></figure>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_4.png">  </p>
+<h4 id="Quick-check-that-it’s-installed"><a href="#Quick-check-that-it’s-installed" class="headerlink" title="Quick check that it’s installed"></a>Quick check that it’s installed</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm list -g --depth=0</span><br></pre></td></tr></tbody></table></figure>
+<p>You should see yddict listed under global packages.<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_5.png">  </p>
+<h3 id="Optional-Verify-Installation-Paths"><a href="#Optional-Verify-Installation-Paths" class="headerlink" title="Optional: Verify Installation Paths"></a>Optional: Verify Installation Paths</h3><ul>
+<li>Check the package metadata<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/lib/node_modules/yddict/package.json</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>Look for the <code>bin</code> field — it maps the <code>yd</code> command to <code>index.js</code>.</p>
+</blockquote>
+</li>
+</ul>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_6.png">  </p>
+<ul>
+<li>Peek at the main script (just for curiosity)<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/lib/node_modules/yddict/index.js</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>You’ll see it uses <code>request</code>, <code>chalk</code>, <code>cli-spinner</code>, etc., to fetch and pretty-print results from Youdao.</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> request = <span class="built_in">require</span>(<span class="string">'request'</span>)</span><br><span class="line"><span class="keyword">const</span> chalk = <span class="built_in">require</span>(<span class="string">'chalk'</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Spinner</span> = <span class="built_in">require</span>(<span class="string">'cli-spinner'</span>).<span class="property">Spinner</span></span><br><span class="line"><span class="keyword">const</span> isChinese = <span class="built_in">require</span>(<span class="string">'is-chinese'</span>)</span><br><span class="line"><span class="keyword">const</span> urlencode = <span class="built_in">require</span>(<span class="string">'urlencode'</span>)</span><br><span class="line"><span class="keyword">const</span> noCase = <span class="built_in">require</span>(<span class="string">'no-case'</span>)</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(<span class="string">'./lib/config'</span>)</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Parser</span> = <span class="built_in">require</span>(<span class="string">'./lib/parser'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> word = process.<span class="property">argv</span>.<span class="title function_">slice</span>(<span class="number">2</span>).<span class="title function_">join</span>(<span class="string">' '</span>)</span><br><span class="line"><span class="keyword">if</span> (!word) {</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">'Usage: yd &lt;WORD_TO_QUERY&gt;'</span>)</span><br><span class="line">process.<span class="title function_">exit</span>()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> spinner = <span class="keyword">new</span> <span class="title class_">Spinner</span>(<span class="string">'努力查询中... %s'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (config.<span class="property">spinner</span>) {</span><br><span class="line">spinner.<span class="title function_">setSpinnerString</span>(<span class="string">'|/-\\'</span>)</span><br><span class="line">spinner.<span class="title function_">start</span>()</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> isCN = <span class="title function_">isChinese</span>(word)</span><br><span class="line"></span><br><span class="line">word = isCN ? word : <span class="title function_">noCase</span>(word)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> options = {</span><br><span class="line"><span class="string">'url'</span>: config.<span class="title function_">getURL</span>(word) + <span class="title function_">urlencode</span>(word),</span><br><span class="line"><span class="string">'proxy'</span>: config.<span class="property">proxy</span> || <span class="literal">null</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">ColorOutput</span> = chalk.<span class="title function_">keyword</span>(config.<span class="property">color</span>)</span><br><span class="line"><span class="title function_">request</span>(options, <span class="function">(<span class="params">error, response, body</span>) =&gt;</span> {</span><br><span class="line"><span class="keyword">if</span> (error) {</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">error</span>(error)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (config.<span class="property">spinner</span>) {</span><br><span class="line">                spinner.<span class="title function_">stop</span>(<span class="literal">true</span>)</span><br><span class="line">        }</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">ColorOutput</span>(<span class="title class_">Parser</span>.<span class="title function_">parse</span>(isCN, body)))</span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h3><p>Run lookups directly in the terminal</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yd hello</span><br><span class="line">yd 世界</span><br></pre></td></tr></tbody></table></figure>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_7.png">  </p>
+<blockquote>
+<p>It handles both directions automatically (detects Chinese characters).</p>
+</blockquote>
+<h3 id="Convenience-Tip-Shell-Alias"><a href="#Convenience-Tip-Shell-Alias" class="headerlink" title="Convenience Tip: Shell Alias"></a>Convenience Tip: Shell Alias</h3><p>If you prefer a shorter command:</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano ~/.bashrc</span><br></pre></td></tr></tbody></table></figure>
+<p>Add this line at the end:</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias y='yd'</span><br></pre></td></tr></tbody></table></figure>
+<p>Save, then reload:</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></tbody></table></figure>
+<p>Now you can just type:</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y hello</span><br></pre></td></tr></tbody></table></figure>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingYddictOnRaspberryPi4B/Yddict_8.png">  </p>
+<h3 id="Uninstall-if-needed"><a href="#Uninstall-if-needed" class="headerlink" title="Uninstall (if needed)"></a>Uninstall (if needed)</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo npm uninstall -g yddict</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Notes-Gotchas"><a href="#Notes-Gotchas" class="headerlink" title="Notes &amp; Gotchas"></a>Notes &amp; Gotchas</h3><ul>
+<li>Proxy setup: If you’re behind a corporate/VPN/proxy, edit <code>~/.config/configstore/yddict.json</code> after first run<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">  <span class="attr">"proxy"</span><span class="punctuation">:</span> <span class="string">"https://your-proxy:port"</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"color"</span><span class="punctuation">:</span> <span class="string">"yellow"</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>No releases published on GitHub, but the repo is still active (Hacktoberfest-tagged, ongoing commits). Install via npm is the official way.</li>
+<li>Works great on headless Pi setups — super lightweight for quick lookups while coding or reading docs.</li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li>GitHub repo: <a target="_blank" rel="noopener" href="https://github.com/kenshinji/yddict">yddict</a></li>
+<li>English README: <a target="_blank" rel="noopener" href="https://github.com/kenshinji/yddict/blob/master/README_en.md">yddict English README</a></li>
+</ul>
+<blockquote>
+<p>That’s it — you now have a fast, terminal-based dictionary on your Pi. Handy when you’re knee-deep in code and need to check a word without breaking flow. Enjoy!</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>Roy Li
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tech-roy.uk/2026/03/05/DeployingYddictOnRaspberryPi4B/" title="Deploying Yddict On Raspberry Pi 4B">https://tech-roy.uk/2026/03/05/DeployingYddictOnRaspberryPi4B/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/RPI/" rel="tag"># RPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/01/22/TaskManagerPowerTipsForWindows/" rel="prev" title="Task Manager Power Tips for Windows">
+                  <i class="fa fa-angle-left"></i> Task Manager Power Tips for Windows
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/05/DeployingJellyfinOnRaspberryPi4B/" rel="next" title="Deploying Jellyfin On Raspberry Pi 4B">
+                  Deploying Jellyfin On Raspberry Pi 4B <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2025 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy Li</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"gdjdkid/gdjdkid.github.io","issue_term":"pathname","theme":"boxy-light","label":"💬评论","theme_dark":"github-dark-orange","crossorigin":"anonymous","placeholder":"畅所欲言，思绪飞扬~"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

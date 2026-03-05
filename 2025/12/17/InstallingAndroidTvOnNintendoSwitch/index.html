@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="mask-icon" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tech-roy.uk","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"enable":true,"type":"utterances","activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Prerequisites A modded Nintendo Switch with working Hekate bootloader (recommend using the latest Hekate via fusee or similar; version 6.0.3 or newer required). LineageOS for nx (Android TV build) – c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Installing Android TV on Nintendo Switch using LineageOS">
+<meta property="og:url" content="https://tech-roy.uk/2025/12/17/InstallingAndroidTvOnNintendoSwitch/index.html">
+<meta property="og:site_name" content="Tech-Roy Blog">
+<meta property="og:description" content="Prerequisites A modded Nintendo Switch with working Hekate bootloader (recommend using the latest Hekate via fusee or similar; version 6.0.3 or newer required). LineageOS for nx (Android TV build) – c">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_0.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_1.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_2.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_3.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_4.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_5.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_6.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_7.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_8.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_9.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_10.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_11.png">
+<meta property="article:published_time" content="2025-12-16T17:05:26.000Z">
+<meta property="article:modified_time" content="2026-03-04T07:02:57.857Z">
+<meta property="article:author" content="Roy Li">
+<meta property="article:tag" content="NS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_0.png">
+
+
+<link rel="canonical" href="https://tech-roy.uk/2025/12/17/InstallingAndroidTvOnNintendoSwitch/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tech-roy.uk/2025/12/17/InstallingAndroidTvOnNintendoSwitch/","path":"2025/12/17/InstallingAndroidTvOnNintendoSwitch/","title":"Installing Android TV on Nintendo Switch using LineageOS"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Installing Android TV on Nintendo Switch using LineageOS | Tech-Roy Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EZLR5DH6P"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6EZLR5DH6P","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/rss2.xml" title="Tech-Roy Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tech-Roy Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術分享 技術無界 開源至上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prerequisites"><span class="nav-number">1.</span> <span class="nav-text">Prerequisites</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#About-MindTheGapps"><span class="nav-number">2.</span> <span class="nav-text">About MindTheGapps</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Download-MindTheGapps-%E2%80%93-a-custom-Google-Apps-package-for-Android"><span class="nav-number">2.1.</span> <span class="nav-text">Download MindTheGapps – a custom Google Apps package for Android</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-Choose-MindTheGapps"><span class="nav-number">2.2.</span> <span class="nav-text">Why Choose MindTheGapps?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#How-to-Install-MindTheGapps"><span class="nav-number">2.3.</span> <span class="nav-text">How to Install MindTheGapps?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installing-GApps"><span class="nav-number">3.</span> <span class="nav-text">Installing GApps</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Recommended-procedure"><span class="nav-number">3.1.</span> <span class="nav-text">Recommended procedure</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Magisk-Root"><span class="nav-number">4.</span> <span class="nav-text">Magisk (Root)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#To-gain-root-access-on-the-Android-installation"><span class="nav-number">4.1.</span> <span class="nav-text">To gain root access on the Android installation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Video-References"><span class="nav-number">5.</span> <span class="nav-text">Video References</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Official-Resources"><span class="nav-number">6.</span> <span class="nav-text">Official Resources</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Notes"><span class="nav-number">7.</span> <span class="nav-text">Notes</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy Li"
+      src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+  <p class="site-author-name" itemprop="name">Roy Li</p>
+  <div class="site-description" itemprop="description">Roy Li's Personal Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gdjdkid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gdjdkid" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdjdkid2014@gmail.com" title="E-Mail → mailto:gdjdkid2014@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tech-roy.uk/2025/12/17/InstallingAndroidTvOnNintendoSwitch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+      <meta itemprop="name" content="Roy Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tech-Roy Blog">
+      <meta itemprop="description" content="Roy Li's Personal Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Installing Android TV on Nintendo Switch using LineageOS | Tech-Roy Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Installing Android TV on Nintendo Switch using LineageOS
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-12-17 01:05:26" itemprop="dateCreated datePublished" datetime="2025-12-17T01:05:26+08:00">2025-12-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-04 15:02:57" itemprop="dateModified" datetime="2026-03-04T15:02:57+08:00">2026-03-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NS/" itemprop="url" rel="index"><span itemprop="name">NS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><ul>
+<li>A modded Nintendo Switch with working Hekate bootloader (recommend using the latest Hekate via fusee or similar; version 6.0.3 or newer required).</li>
+<li>LineageOS for nx (Android TV build) – currently LineageOS 21 (Android 14) or 22.2 (Android 15) depending on the latest available from switchroot / LineageOS.</li>
+<li>SD card formatted as <strong>FAT32</strong> or <strong>exFAT</strong> with enough free space.</li>
+<li>MindTheGapps package for the corresponding Android version and architecture (arm64 ATV variant).<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_0.png"></li>
+</ul>
+<h3 id="About-MindTheGapps"><a href="#About-MindTheGapps" class="headerlink" title="About MindTheGapps"></a>About MindTheGapps</h3><p>MindTheGapps is a lightweight, custom Google Apps package maintained for LineageOS. For Android TV builds, use the ATV-specific variant (full or minimal). It includes core Google services without the heavy bloat found in stock OpenGApps.</p>
+<h4 id="Download-MindTheGapps-–-a-custom-Google-Apps-package-for-Android"><a href="#Download-MindTheGapps-–-a-custom-Google-Apps-package-for-Android" class="headerlink" title="Download MindTheGapps – a custom Google Apps package for Android"></a>Download <strong>MindTheGapps – a custom Google Apps package for Android</strong></h4><ul>
+<li>Website:<ul>
+<li><a target="_blank" rel="noopener" href="https://mindthegapps.com/">https://mindthegapps.com/</a><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_1.png"></li>
+</ul>
+</li>
+</ul>
+<h4 id="Why-Choose-MindTheGapps"><a href="#Why-Choose-MindTheGapps" class="headerlink" title="Why Choose MindTheGapps?"></a>Why Choose MindTheGapps?</h4><ul>
+<li>Smaller footprint compared to full OpenGApps.</li>
+<li>Better compatibility with LineageOS Android TV builds on Switch hardware.</li>
+<li>Officially recommended on the LineageOS GApps page for recent versions.<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_2.png"></li>
+</ul>
+<h4 id="How-to-Install-MindTheGapps"><a href="#How-to-Install-MindTheGapps" class="headerlink" title="How to Install MindTheGapps?"></a>How to Install MindTheGapps?</h4><p>  <img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_3.png">  </p>
+<h3 id="Installing-GApps"><a href="#Installing-GApps" class="headerlink" title="Installing GApps"></a>Installing GApps</h3><p>If you’ve already booted into Android TV once without GApps, installing them directly will usually cause bootloops or crashes due to mismatched system properties and missing framework hooks.</p>
+<h4 id="Recommended-procedure"><a href="#Recommended-procedure" class="headerlink" title="Recommended procedure"></a>Recommended procedure</h4><ol>
+<li>Wipe data if the system has already booted once<ol start="2">
+<li>Boot into Hekate（Hold <strong>Volume Up</strong> while launching <strong>Hekate</strong>） → More Configs → Hold VOL+ to select LineageOS Recovery (or TWRP if using that).</li>
+<li>In recovery: Wipe → Factory Reset / Format data / factory reset.<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_4.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_5.png">  </li>
+<li>This clears the Android data and cache partitions only — it does not touch Horizon OS (HOS) or your emuMMC/sysMMC.</li>
+</ol>
+</li>
+<li>Download the correct GApps package<ol start="3">
+<li>Go to <a target="_blank" rel="noopener" href="https://wiki.lineageos.org/gapps/">https://wiki.lineageos.org/gapps/</a> or directly to MindTheGapps GitHub releases.<ol start="4">
+<li><a target="_blank" rel="noopener" href="https://github.com/MindTheGapps/14.0.0-arm64-ATV/releases/tag/MindTheGapps-14.0.0-arm64-ATV-20240523_192151">https://github.com/MindTheGapps/14.0.0-arm64-ATV/releases/tag/MindTheGapps-14.0.0-arm64-ATV-20240523_192151</a></li>
+</ol>
+</li>
+<li>For Android 14 (LineageOS 21): MindTheGapps-14.0.0-arm64-ATV-full-[date].zip<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_6.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_7.png">  </li>
+<li>For Android 15 (LineageOS 22): MindTheGapps-15.0.0-arm64-ATV-[variant].zip</li>
+<li>Place the zip on the root of your SD card.</li>
+</ol>
+</li>
+<li>Flash GApps in recovery<ol start="4">
+<li>In LineageOS Recovery: Install → Apply Update → Choose from SWITCH SD (or SD card).<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_8.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_9.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_10.png">  </li>
+<li>Select the MindTheGapps zip.</li>
+<li>When you see “Signature verification failed”, choose Yes to proceed (normal for sideloaded packages).</li>
+<li>Let it install completely.</li>
+</ol>
+</li>
+<li>Reboot<ol start="5">
+<li>Return to main recovery menu → Reboot system now.</li>
+<li>The device should now boot into Android TV with Google services available for the first-time setup.</li>
+</ol>
+</li>
+<li>Conclusion<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E4%BB%BB%E5%A4%A9%E5%A0%82Switch%E5%AE%89%E8%A3%85%E5%AE%89%E5%8D%93TV%E7%B3%BB%E7%BB%9F/NS_Install_AndroidTV_11.png"></li>
+</ol>
+<h3 id="Magisk-Root"><a href="#Magisk-Root" class="headerlink" title="Magisk (Root)"></a>Magisk (Root)</h3><h4 id="To-gain-root-access-on-the-Android-installation"><a href="#To-gain-root-access-on-the-Android-installation" class="headerlink" title="To gain root access on the Android installation"></a>To gain root access on the Android installation</h4><ul>
+<li>For most models (especially OLED / Mariko units), use Magisk v25.2 (newer versions may have compatibility issues with older boot images or SELinux policies on Switch hardware).</li>
+<li>Download: Magisk-v25.2.apk from <a target="_blank" rel="noopener" href="https://github.com/topjohnwu/Magisk/releases/tag/v25.2">https://github.com/topjohnwu/Magisk/releases/tag/v25.2</a></li>
+<li>Install the APK like any app once Android is running, then follow the standard Magisk patching procedure (patch boot image via the app or manually via recovery if preferred).</li>
+</ul>
+<h3 id="Video-References"><a href="#Video-References" class="headerlink" title="Video References"></a>Video References</h3><ul>
+<li>Dual-boot Atmosphere + Android setup and root guide (older but concepts still apply)<ul>
+<li>莫老师的附件表<ul>
+<li><a target="_blank" rel="noopener" href="https://zxmls.lol/#/?id=ep150-%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%88%87%E6%8D%A2%EF%BC%81%E7%BB%99switch%E5%88%B7%E5%85%A5%E5%A4%A7%E6%B0%94%E5%B1%82%E5%8F%8Aandroid11%E7%B3%BB%E7%BB%9F%EF%BC%8C%E5%B9%B6root">https://zxmls.lol/#/?id=ep150-双系统切换！给switch刷入大气层及android11系统，并root</a></li>
+</ul>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/6g0uDHGaRxU?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div></li>
+</ul>
+</li>
+<li>Recent 2025 Android 15 flashing tutorial<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/n1zm5zk01hA?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div></li>
+<li>Comprehensive Switch Android install covering OLED compatibility<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/3LNXBqUFgGY?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div></li>
+</ul>
+<h3 id="Official-Resources"><a href="#Official-Resources" class="headerlink" title="Official Resources"></a>Official Resources</h3><ul>
+<li>Switchroot downloads<ul>
+<li><a target="_blank" rel="noopener" href="https://download.switchroot.org/">https://download.switchroot.org/</a></li>
+</ul>
+</li>
+<li>LineageOS device page (nx / nx_tab variants<ul>
+<li><a target="_blank" rel="noopener" href="https://download.lineageos.org/devices/nx/builds">https://download.lineageos.org/devices/nx/builds</a></li>
+</ul>
+</li>
+<li>Switchroot LineageOS Downloader tool<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/sthetix/Switchroot-LineageOS-Downloader">https://github.com/sthetix/Switchroot-LineageOS-Downloader</a></li>
+</ul>
+</li>
+<li>Main documentation<ul>
+<li><a target="_blank" rel="noopener" href="https://wiki.switchroot.org/wiki/">https://wiki.switchroot.org/wiki/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.lineageos.org/">https://wiki.lineageos.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.lineageos.org/devices/nx/variant4/">https://wiki.lineageos.org/devices/nx/variant4/</a></li>
+<li>Android 14/15 builds info: <a target="_blank" rel="noopener" href="https://wiki.switchroot.org/wiki/android/android-14-15">https://wiki.switchroot.org/wiki/android/android-14-15</a></li>
+<li>GApps: <a target="_blank" rel="noopener" href="https://wiki.lineageos.org/gapps/">https://wiki.lineageos.org/gapps/</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ul>
+<li>Always double-check your Switch model (Erista vs Mariko / OLED) and download the matching build variant (nx for TV on some, nx_tab for tablet-style).</li>
+<li>Android TV builds are optimized for docked/controller use; touch works poorly or not at all.</li>
+<li>Backup your SD card contents before repartitioning or major changes.</li>
+<li>If you run into signature mismatches or boot issues after GApps, repeat the data wipe + clean flash sequence.<blockquote>
+<p>This should get you a clean, functional Android TV environment on your Switch. Test thoroughly after first boot.</p>
+</blockquote>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>Roy Li
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tech-roy.uk/2025/12/17/InstallingAndroidTvOnNintendoSwitch/" title="Installing Android TV on Nintendo Switch using LineageOS">https://tech-roy.uk/2025/12/17/InstallingAndroidTvOnNintendoSwitch/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/NS/" rel="tag"># NS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/14/SystemInformationCollectionScript/" rel="prev" title="System Information Collection Script">
+                  <i class="fa fa-angle-left"></i> System Information Collection Script
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/12/17/BootingIntoHekateOnNintendoSwitch/" rel="next" title="Booting into Hekate on Nintendo Switch (Unpatched 2017 Models)">
+                  Booting into Hekate on Nintendo Switch (Unpatched 2017 Models) <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2025 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy Li</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"gdjdkid/gdjdkid.github.io","issue_term":"pathname","theme":"boxy-light","label":"💬评论","theme_dark":"github-dark-orange","crossorigin":"anonymous","placeholder":"畅所欲言，思绪飞扬~"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

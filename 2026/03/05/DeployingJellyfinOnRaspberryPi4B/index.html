@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="mask-icon" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tech-roy.uk","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"enable":true,"type":"utterances","activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewJellyfin is a free, open-source media server that lets you organize, manage, and stream your personal collection of movies, TV shows, music, and photos. It turns your local files into a clean,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploying Jellyfin On Raspberry Pi 4B">
+<meta property="og:url" content="https://tech-roy.uk/2026/03/05/DeployingJellyfinOnRaspberryPi4B/index.html">
+<meta property="og:site_name" content="Tech-Roy Blog">
+<meta property="og:description" content="OverviewJellyfin is a free, open-source media server that lets you organize, manage, and stream your personal collection of movies, TV shows, music, and photos. It turns your local files into a clean,">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_0.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_1.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_2.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_3.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_4.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_5.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_6.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_7.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_8.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_9.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_10.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_11.png">
+<meta property="article:published_time" content="2026-03-05T10:22:12.000Z">
+<meta property="article:modified_time" content="2026-03-05T16:06:39.738Z">
+<meta property="article:author" content="Roy Li">
+<meta property="article:tag" content="RPI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_0.png">
+
+
+<link rel="canonical" href="https://tech-roy.uk/2026/03/05/DeployingJellyfinOnRaspberryPi4B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tech-roy.uk/2026/03/05/DeployingJellyfinOnRaspberryPi4B/","path":"2026/03/05/DeployingJellyfinOnRaspberryPi4B/","title":"Deploying Jellyfin On Raspberry Pi 4B"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deploying Jellyfin On Raspberry Pi 4B | Tech-Roy Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EZLR5DH6P"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6EZLR5DH6P","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/rss2.xml" title="Tech-Roy Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tech-Roy Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術分享 技術無界 開源至上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Features-at-a-Glance"><span class="nav-number">2.</span> <span class="nav-text">Features at a Glance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Installation-via-Docker-Recommended-for-Pi"><span class="nav-number">3.</span> <span class="nav-text">Installation via Docker (Recommended for Pi)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Update-the-system-always-start-here"><span class="nav-number">3.1.</span> <span class="nav-text">Update the system (always start here)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-directories-for-persistent-data"><span class="nav-number">3.2.</span> <span class="nav-text">Create directories for persistent data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-and-edit-docker-compose-yml"><span class="nav-number">3.3.</span> <span class="nav-text">Create and edit docker-compose.yml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Start-the-container"><span class="nav-number">3.4.</span> <span class="nav-text">Start the container</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Access-the-web-UI"><span class="nav-number">4.</span> <span class="nav-text">Access the web UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Useful-Docker-Commands-CLI-cheatsheet"><span class="nav-number">5.</span> <span class="nav-text">Useful Docker Commands (CLI cheatsheet)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Making-Jellyfin-Better-Plugins-Tweaks"><span class="nav-number">6.</span> <span class="nav-text">Making Jellyfin Better (Plugins &amp; Tweaks)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Popular-ones"><span class="nav-number">6.1.</span> <span class="nav-text">Popular ones</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Recommended-reading-Chinese-focused"><span class="nav-number">6.2.</span> <span class="nav-text">Recommended reading (Chinese-focused)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#YouTube-guides-worth-watching"><span class="nav-number">6.3.</span> <span class="nav-text">YouTube guides worth watching</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Live-TV-IPTV-Setup"><span class="nav-number">7.</span> <span class="nav-text">Live TV &#x2F; IPTV Setup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">8.</span> <span class="nav-text">References</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy Li"
+      src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+  <p class="site-author-name" itemprop="name">Roy Li</p>
+  <div class="site-description" itemprop="description">Roy Li's Personal Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gdjdkid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gdjdkid" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdjdkid2014@gmail.com" title="E-Mail → mailto:gdjdkid2014@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tech-roy.uk/2026/03/05/DeployingJellyfinOnRaspberryPi4B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+      <meta itemprop="name" content="Roy Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tech-Roy Blog">
+      <meta itemprop="description" content="Roy Li's Personal Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Deploying Jellyfin On Raspberry Pi 4B | Tech-Roy Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deploying Jellyfin On Raspberry Pi 4B
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-03-05 18:22:12" itemprop="dateCreated datePublished" datetime="2026-03-05T18:22:12+08:00">2026-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-06 00:06:39" itemprop="dateModified" datetime="2026-03-06T00:06:39+08:00">2026-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/RPI/" itemprop="url" rel="index"><span itemprop="name">RPI</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>Jellyfin is a free, open-source media server that lets you organize, manage, and stream your personal collection of movies, TV shows, music, and photos. It turns your local files into a clean, Netflix-like library accessible from phones, TVs, browsers, or any compatible client — all without subscriptions, licenses, or paywalls. You own your data completely.<br>Key strengths on a Pi 4B: lightweight enough to run 24/7, supports basic transcoding (though CPU-limited), multi-user accounts, plugins for metadata scraping (Douban, TMDb, etc.), and a nice web UI + apps for almost every device.  </p>
+<h3 id="Features-at-a-Glance"><a href="#Features-at-a-Glance" class="headerlink" title="Features at a Glance"></a>Features at a Glance</h3><ul>
+<li>Personal media library with automatic organization</li>
+<li>On-the-fly transcoding (CPU fallback on Pi)</li>
+<li>Clients for Android, iOS, Roku, Fire TV, web, etc.</li>
+<li>Extensible via plugins (metadata, skins, intro skipper, etc.)</li>
+<li>Poster walls, collections, watch lists, live TV/DVR support</li>
+</ul>
+<h3 id="Installation-via-Docker-Recommended-for-Pi"><a href="#Installation-via-Docker-Recommended-for-Pi" class="headerlink" title="Installation via Docker (Recommended for Pi)"></a>Installation via Docker (Recommended for Pi)</h3><p>Docker is the cleanest way on Raspberry Pi OS — easy updates, isolated, and portable.  </p>
+<h4 id="Update-the-system-always-start-here"><a href="#Update-the-system-always-start-here" class="headerlink" title="Update the system (always start here)"></a>Update the system (always start here)</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade -y</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Create-directories-for-persistent-data"><a href="#Create-directories-for-persistent-data" class="headerlink" title="Create directories for persistent data"></a>Create directories for persistent data</h4><p>Use a dedicated folder under your home dir (or wherever you prefer).</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/jellyfin/config ~/jellyfin/cache</span><br></pre></td></tr></tbody></table></figure>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_0.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_1.png">  </p>
+<h4 id="Create-and-edit-docker-compose-yml"><a href="#Create-and-edit-docker-compose-yml" class="headerlink" title="Create and edit docker-compose.yml"></a>Create and edit docker-compose.yml</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/jellyfin</span><br><span class="line">sudo nano docker-compose.yml</span><br></pre></td></tr></tbody></table></figure>
+<p>Here’s a solid, modern compose file (adjusted for Pi 4B realities):</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.8"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">jellyfin:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">jellyfin/jellyfin:latest</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">jellyfin</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br><span class="line">    <span class="attr">network_mode:</span> <span class="string">bridge</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8096</span><span class="string">:8096</span>       <span class="comment"># HTTP</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8920</span><span class="string">:8920</span>       <span class="comment"># HTTPS (optional)</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">PUID=1000</span>       <span class="comment"># your user ID (id -u)</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">PGID=1000</span>       <span class="comment"># your group ID (id -g)</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">TZ=Asia/Taipei</span>  <span class="comment"># or Asia/Shanghai if preferred</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./config:/config</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">./cache:/cache</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/mnt/NAS8T/Movies:/media/Movies:ro</span>       <span class="comment"># read-only for safety</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/mnt/NAS8T/TVShows:/media/TVShows:ro</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/home/roy/shared/JellyfinShows:/media/NetWorkVideo:ro</span></span><br><span class="line">    <span class="comment"># devices:                                # commented out — see note below</span></span><br><span class="line">    <span class="comment">#   - /dev/dri:/dev/dri</span></span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>Important note on hardware acceleration<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">On Raspberry Pi 4B, hardware transcoding via /dev/dri (VideoCore VI) is deprecated and unreliable in recent Jellyfin versions (10.9+). Official docs dropped support because it was immature, often fell back to CPU anyway, and Pi 5 has no hardware encoder at all.</span><br><span class="line">Most users on Pi 4B run without it — direct play works fine for compatible clients (e.g., VLC, Infuse). If you force /dev/dri, you might get partial decode but no real gains and possible crashes. Leave it commented unless you're on an older version and have tested it.</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h4 id="Start-the-container"><a href="#Start-the-container" class="headerlink" title="Start the container"></a>Start the container</h4><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/jellyfin</span><br><span class="line">docker compose up -d</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Access-the-web-UI"><a href="#Access-the-web-UI" class="headerlink" title="Access the web UI"></a>Access the web UI</h3><ul>
+<li>Open your browser<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://&lt;your-pi-ip&gt;:8096 (e.g., http://192.168.0.109:8096)</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>First run → wizard sets up library paths, users, metadata languages, etc.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Useful-Docker-Commands-CLI-cheatsheet"><a href="#Useful-Docker-Commands-CLI-cheatsheet" class="headerlink" title="Useful Docker Commands (CLI cheatsheet)"></a>Useful Docker Commands (CLI cheatsheet)</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Follow logs <span class="keyword">in</span> real <span class="keyword">time</span></span></span><br><span class="line">docker logs -f jellyfin</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Stop / start / restart</span></span><br><span class="line">docker compose down</span><br><span class="line">docker compose up -d</span><br><span class="line">docker compose restart</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Or single container</span></span><br><span class="line">docker stop jellyfin</span><br><span class="line">docker start jellyfin</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="Making-Jellyfin-Better-Plugins-Tweaks"><a href="#Making-Jellyfin-Better-Plugins-Tweaks" class="headerlink" title="Making Jellyfin Better (Plugins &amp; Tweaks)"></a>Making Jellyfin Better (Plugins &amp; Tweaks)</h3><p>Install plugins via Dashboard → Plugins → Catalog</p>
+<h4 id="Popular-ones"><a href="#Popular-ones" class="headerlink" title="Popular ones"></a>Popular ones</h4><ul>
+<li>Douban metadata (for Chinese titles, actors, ratings)</li>
+<li>TMDb Box Sets / Collections </li>
+<li>Intro Skipper (auto-skip TV intros)</li>
+<li>MetaShark or similar for better scraping</li>
+</ul>
+<h4 id="Recommended-reading-Chinese-focused"><a href="#Recommended-reading-Chinese-focused" class="headerlink" title="Recommended reading (Chinese-focused)"></a>Recommended reading (Chinese-focused)</h4><p>Please following articles as below to enhance your Jellyfin</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/5NWp8q2dQYF8YYLrG-BWjg?poc_token=HNx-qWmj12SK_P0aonIFqtAswVP_16Vx0DPxgsRs">Jellyfin影视库插件推荐，各国小姐姐家装、豆瓣刮削、动漫刮削、皮肤美化</a></li>
+<li><a target="_blank" rel="noopener" href="https://xzonn.top/posts/Jellyfin-Plugin-Douban.html">Jellyfin 豆瓣元数据插件</a></li>
+</ul>
+<h4 id="YouTube-guides-worth-watching"><a href="#YouTube-guides-worth-watching" class="headerlink" title="YouTube guides worth watching"></a>YouTube guides worth watching</h4><ul>
+<li><p>利用NAS加Jellyfin打造个人影音库</p>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/uLkUlWsQeCo?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div>
+</li>
+<li><p>Jellyfin实用插件两枚 — MetaShark + intro skipper</p>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/mnmKPnx0Sl8?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div>
+</li>
+<li><p>群晖Jellyfin装豆瓣插件</p>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/7SgBrzPnBRU?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div>
+</li>
+<li><p>家庭影院一条龙<jellyfin>开源免费，实现本地视频自动刮削，字幕下载，海报墙展示</jellyfin></p>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/P43shuyu6s0?start=30&amp;rel=0&amp;modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+</div></li>
+</ul>
+<h3 id="Live-TV-IPTV-Setup"><a href="#Live-TV-IPTV-Setup" class="headerlink" title="Live TV / IPTV Setup"></a>Live TV / IPTV Setup</h3><p>Add an M3U playlist for free channels:</p>
+<ul>
+<li>Subscription URL example: <a target="_blank" rel="noopener" href="https://garyshare.sharewithyou.dpdns.org/mylist.m3u">https://garyshare.sharewithyou.dpdns.org/mylist.m3u</a></li>
+<li>In Jellyfin: Dashboard → Live TV → Add Tuner → M3U Tuner → paste URL → follow wizard for guide data (XMLTV if available).</li>
+</ul>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_2.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_3.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_4.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_5.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_6.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_7.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_8.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_9.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_10.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/DeployingJellyfinOnRaspberryPi4B/Jellyfin_11.png">  </p>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li>Official docs: <a target="_blank" rel="noopener" href="https://jellyfin.org/docs/">Jellyfin Docs</a></li>
+<li>Docker-specific: <a target="_blank" rel="noopener" href="https://jellyfin.org/docs/general/installation/container/">Jellyfin Docker</a></li>
+<li>Hardware accel info: <a target="_blank" rel="noopener" href="https://jellyfin.org/docs/general/post-install/transcoding/hardware-acceleration/">Hardware Acceleration</a></li>
+</ul>
+<blockquote>
+<p>This setup gives you a rock-solid personal media server on Pi 4B — low power, always-on, and expandable. Direct play is king here; avoid heavy transcoding unless you upgrade to a mini PC later. Hit me up if you run into permission issues with volumes or plugin setup. Enjoy the poster wall! 🍿</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>Roy Li
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tech-roy.uk/2026/03/05/DeployingJellyfinOnRaspberryPi4B/" title="Deploying Jellyfin On Raspberry Pi 4B">https://tech-roy.uk/2026/03/05/DeployingJellyfinOnRaspberryPi4B/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/RPI/" rel="tag"># RPI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/05/DeployingYddictOnRaspberryPi4B/" rel="prev" title="Deploying Yddict On Raspberry Pi 4B">
+                  <i class="fa fa-angle-left"></i> Deploying Yddict On Raspberry Pi 4B
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2025 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy Li</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"gdjdkid/gdjdkid.github.io","issue_term":"pathname","theme":"boxy-light","label":"💬评论","theme_dark":"github-dark-orange","crossorigin":"anonymous","placeholder":"畅所欲言，思绪飞扬~"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

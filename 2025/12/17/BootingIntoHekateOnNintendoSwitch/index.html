@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="mask-icon" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tech-roy.uk","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"enable":true,"type":"utterances","activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewThis guide explains the boot chain for early 2017 Nintendo Switch units (unpatched, vulnerable to Fusee-Gelee). It covers how the console is forced into a user-controlled bootloader environmen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Booting into Hekate on Nintendo Switch (Unpatched 2017 Models)">
+<meta property="og:url" content="https://tech-roy.uk/2025/12/17/BootingIntoHekateOnNintendoSwitch/index.html">
+<meta property="og:site_name" content="Tech-Roy Blog">
+<meta property="og:description" content="OverviewThis guide explains the boot chain for early 2017 Nintendo Switch units (unpatched, vulnerable to Fusee-Gelee). It covers how the console is forced into a user-controlled bootloader environmen">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_9.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_8.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_10.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_0.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_1.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_2.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_3.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_4.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_5.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_6.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_7.png">
+<meta property="article:published_time" content="2025-12-17T10:39:55.000Z">
+<meta property="article:modified_time" content="2026-03-04T08:17:58.788Z">
+<meta property="article:author" content="Roy Li">
+<meta property="article:tag" content="NS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_9.png">
+
+
+<link rel="canonical" href="https://tech-roy.uk/2025/12/17/BootingIntoHekateOnNintendoSwitch/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tech-roy.uk/2025/12/17/BootingIntoHekateOnNintendoSwitch/","path":"2025/12/17/BootingIntoHekateOnNintendoSwitch/","title":"Booting into Hekate on Nintendo Switch (Unpatched 2017 Models)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Booting into Hekate on Nintendo Switch (Unpatched 2017 Models) | Tech-Roy Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EZLR5DH6P"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6EZLR5DH6P","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/rss2.xml" title="Tech-Roy Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tech-Roy Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術分享 技術無界 開源至上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Terms"><span class="nav-number">2.</span> <span class="nav-text">Key Terms</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Unpatched-Switch-2017-models"><span class="nav-number">2.1.</span> <span class="nav-text">Unpatched Switch (2017 models)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RCM-Recovery-Mode"><span class="nav-number">2.2.</span> <span class="nav-text">RCM (Recovery Mode)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RCM-Jig"><span class="nav-number">2.3.</span> <span class="nav-text">RCM Jig</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Payload-Injector-RCM-Loader"><span class="nav-number">2.4.</span> <span class="nav-text">Payload Injector &#x2F; RCM Loader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hekate"><span class="nav-number">2.5.</span> <span class="nav-text">Hekate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Atmosphere-CFW"><span class="nav-number">2.6.</span> <span class="nav-text">Atmosphère (CFW)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tesla-Overlay"><span class="nav-number">2.7.</span> <span class="nav-text">Tesla Overlay</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Verifying-Compatibility"><span class="nav-number">3.</span> <span class="nav-text">Verifying Compatibility</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-by-Step-Boot-Process-Unpatched-V1-Only"><span class="nav-number">4.</span> <span class="nav-text">Step-by-Step Boot Process (Unpatched V1 Only)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hekate-Nyx-GUI-Breakdown"><span class="nav-number">5.</span> <span class="nav-text">Hekate Nyx GUI Breakdown</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Home-Launch"><span class="nav-number">5.1.</span> <span class="nav-text">Home &#x2F; Launch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tools"><span class="nav-number">5.2.</span> <span class="nav-text">Tools</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#USB-Tools"><span class="nav-number">5.3.</span> <span class="nav-text">USB Tools</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Console-Info"><span class="nav-number">5.4.</span> <span class="nav-text">Console Info</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Options"><span class="nav-number">5.5.</span> <span class="nav-text">Options</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#What-This-Actually-Achieves"><span class="nav-number">6.</span> <span class="nav-text">What This Actually Achieves</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">7.</span> <span class="nav-text">References</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy Li"
+      src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+  <p class="site-author-name" itemprop="name">Roy Li</p>
+  <div class="site-description" itemprop="description">Roy Li's Personal Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gdjdkid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gdjdkid" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdjdkid2014@gmail.com" title="E-Mail → mailto:gdjdkid2014@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tech-roy.uk/2025/12/17/BootingIntoHekateOnNintendoSwitch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+      <meta itemprop="name" content="Roy Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tech-Roy Blog">
+      <meta itemprop="description" content="Roy Li's Personal Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Booting into Hekate on Nintendo Switch (Unpatched 2017 Models) | Tech-Roy Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Booting into Hekate on Nintendo Switch (Unpatched 2017 Models)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-12-17 18:39:55" itemprop="dateCreated datePublished" datetime="2025-12-17T18:39:55+08:00">2025-12-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-04 16:17:58" itemprop="dateModified" datetime="2026-03-04T16:17:58+08:00">2026-03-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NS/" itemprop="url" rel="index"><span itemprop="name">NS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>This guide explains the boot chain for early 2017 Nintendo Switch units (unpatched, vulnerable to Fusee-Gelee). It covers how the console is forced into a user-controlled bootloader environment instead of the stock Horizon OS (HOS).<br>The short version: We’re exploiting a hardware-level vulnerability in the Tegra X1 bootROM to inject Hekate as the primary bootloader. This lets you chainload custom firmware (Atmosphère), manage NAND/emuMMC, run backups, boot Android/Linux, and more — all while keeping the original system intact if you use proper isolation.<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_9.png"></p>
+<h3 id="Key-Terms"><a href="#Key-Terms" class="headerlink" title="Key Terms"></a>Key Terms</h3><h4 id="Unpatched-Switch-2017-models"><a href="#Unpatched-Switch-2017-models" class="headerlink" title="Unpatched Switch (2017 models)"></a>Unpatched Switch (2017 models)</h4><p>Only early units with serials in specific ranges are vulnerable to Fusee-Gelee (a permanent bootROM exploit). Later models (2018+, Mariko chip: V2, Lite, OLED) are hardware-patched and require a modchip. No software update or NAND restore can fix the vulnerability — it’s in silicon.</p>
+<h4 id="RCM-Recovery-Mode"><a href="#RCM-Recovery-Mode" class="headerlink" title="RCM (Recovery Mode)"></a>RCM (Recovery Mode)</h4><p>NVIDIA’s factory recovery mode on the Tegra X1. When triggered, the console halts boot before loading any OS and waits for a signed payload over USB. This is the entry point for all softmods on unpatched units.</p>
+<h4 id="RCM-Jig"><a href="#RCM-Jig" class="headerlink" title="RCM Jig"></a>RCM Jig</h4><p>A simple shorting tool (often a metal clip or 3D-printed piece) that bridges pin 10 on the right Joy-Con rail to ground. This tricks the console into entering RCM on power-on.</p>
+<h4 id="Payload-Injector-RCM-Loader"><a href="#Payload-Injector-RCM-Loader" class="headerlink" title="Payload Injector / RCM Loader"></a>Payload Injector / RCM Loader</h4><p>Hardware dongle (e.g., small USB device with blue LED) that stores and sends the Hekate payload (hekate_ctcaer_x.x.x.bin) over USB when the console is in RCM. Without one, you need a PC/phone running TegraRcmGUI, Rekado, etc., every boot.</p>
+<h4 id="Hekate"><a href="#Hekate" class="headerlink" title="Hekate"></a>Hekate</h4><ul>
+<li>A full-featured, GUI-based bootloader (comparable to GRUB on PC). It handles:<ul>
+<li>Chainloading CFW (Atmosphère via fusee or package3)</li>
+<li>eMMC/emuMMC backup &amp; restore </li>
+<li>emuMMC creation/migration/repair </li>
+<li>SD partitioning for multi-OS setups </li>
+<li>USB mass storage (UMS) mode for SD/eMMC </li>
+<li>Hardware info readout </li>
+<li>Auto-boot configuration</li>
+</ul>
+</li>
+</ul>
+<h4 id="Atmosphere-CFW"><a href="#Atmosphere-CFW" class="headerlink" title="Atmosphère (CFW)"></a>Atmosphère (CFW)</h4><p>The de-facto custom firmware layer. It patches Horizon OS on-the-fly rather than replacing it. Enables homebrew, sysmodules, overlays, emuMMC booting, etc.</p>
+<h4 id="Tesla-Overlay"><a href="#Tesla-Overlay" class="headerlink" title="Tesla Overlay"></a>Tesla Overlay</h4><p>A modular overlay framework (accessed via key combo in-game or menu). Allows real-time system tweaks, monitoring, and plugin loading without replacing the UI.</p>
+<h3 id="Verifying-Compatibility"><a href="#Verifying-Compatibility" class="headerlink" title="Verifying Compatibility"></a>Verifying Compatibility</h3><blockquote>
+<p>Only unpatched (V1) Switches support this method. Check your serial number (System Settings → System, or on the bottom sticker)<br>If your unit is patched, this guide does not apply — look into modchip solutions instead.</p>
+</blockquote>
+<ul>
+<li>Use a checker like <a target="_blank" rel="noopener" href="https://ismyswitchpatched.com/">https://ismyswitchpatched.com/</a></li>
+<li>Safe ranges (unpatched): XAW1xxxxxx–XAW7xxxxxx, etc.</li>
+<li>“Possibly patched” ranges require testing with a jig.</li>
+<li>Anything XKWxxxxxx, XKJxxxxxx, or later is patched (Mariko).<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_8.png"></li>
+</ul>
+<h3 id="Step-by-Step-Boot-Process-Unpatched-V1-Only"><a href="#Step-by-Step-Boot-Process-Unpatched-V1-Only" class="headerlink" title="Step-by-Step Boot Process (Unpatched V1 Only)"></a>Step-by-Step Boot Process (Unpatched V1 Only)</h3><ol>
+<li>Format your microSD card to FAT32 (use a tool like guiformat or Rufus if needed; 128GB+ recommended for emuMMC).</li>
+<li>Copy the full Atmosphère package (e.g., latest stable release + sigpatches) to the SD root. Typical structure includes /atmosphere/, /bootloader/, /switch/, etc. Ensure Hekate files are present in /bootloader/.</li>
+<li>Insert the SD card into the Switch. Remove the right Joy-Con.</li>
+<li>Power on normally (briefly) to ensure it reaches the lock screen or menu, then power off completely.</li>
+<li>Insert the RCM jig into the right Joy-Con rail.</li>
+<li>Connect your payload injector / RCM loader (or USB cable to PC/phone). The LED should turn blue/indicate successful injection when Hekate loads.</li>
+<li>Power off fully (hold POWER button).</li>
+<li>Hold VOL+ and tap POWER once. The console enters RCM → Hekate boots.</li>
+</ol>
+<blockquote>
+<p>You should now see the Hekate splash, then the Nyx GUI menu.</p>
+</blockquote>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_10.png">  </p>
+<h3 id="Hekate-Nyx-GUI-Breakdown"><a href="#Hekate-Nyx-GUI-Breakdown" class="headerlink" title="Hekate Nyx GUI Breakdown"></a>Hekate Nyx GUI Breakdown</h3><h4 id="Home-Launch"><a href="#Home-Launch" class="headerlink" title="Home / Launch"></a>Home / Launch</h4><ul>
+<li>Main screen with boot entries (e.g., CFW (emuMMC), CFW (sysNAND), Stock, Android/Linux if configured). Select to boot.<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_0.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_1.png"></li>
+</ul>
+<h4 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h4><ul>
+<li>Backup/Restore eMMC or emuMMC (BOOT0/BOOT1/GPP partitions — always do full backups first).</li>
+<li>Partition SD Card (for multi-boot setups).</li>
+<li>USB Mass Storage: Mount SD/eMMC/emuMMC as a drive on PC (eject properly via “Close” before unplugging).</li>
+<li>USB Gamepad mode.</li>
+<li>Archive bit fixer, touch calibration, benchmarks, AutoRCM toggle (avoid on patched units).<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_2.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_3.png"></li>
+</ul>
+<h4 id="USB-Tools"><a href="#USB-Tools" class="headerlink" title="USB Tools"></a>USB Tools</h4><ul>
+<li>Dedicated section for UMS modes (SD, eMMC raw partitions) and gamepad emulation.<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_4.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_5.png"></li>
+</ul>
+<h4 id="Console-Info"><a href="#Console-Info" class="headerlink" title="Console Info"></a>Console Info</h4><ul>
+<li>Detailed readout: SoC revision, fuse status, RAM config, display/touch, eMMC/SD health, battery/PSU/charger stats.<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_6.png"></li>
+</ul>
+<h4 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h4><ul>
+<li>Set autoboot entry (e.g., emuMMC CFW) and boot delay (bootwait in seconds). </li>
+<li>Backlight level, themes (via nyx.ini). </li>
+<li>Boot protection, auto-patching flags (NoGC, etc.). </li>
+<li>Recommended: Enable autoboot to emuMMC with 3–5s delay for quick normal boots while still allowing VOL- interrupt to enter menu.<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/NS%E5%90%AF%E5%8A%A8Hekate%E7%95%8C%E9%9D%A2%E5%BC%95%E5%AF%BC%E5%8A%A0%E8%BD%BD%E7%A8%8B%E5%BA%8F/NS_Startup_Hekate_7.png"></li>
+</ul>
+<h3 id="What-This-Actually-Achieves"><a href="#What-This-Actually-Achieves" class="headerlink" title="What This Actually Achieves"></a>What This Actually Achieves</h3><ul>
+<li>Boot control — Hekate intercepts boot before Horizon loads, giving you root-level choice over what runs. </li>
+<li>Isolation via emuMMC — Keep a clean sysNAND for online/stock use; run CFW/plugins only in emulated NAND on SD. Minimizes ban risk if you block Nintendo servers properly (exosphere, DNS-MITM, 90DNS). </li>
+<li>Hardware freedom — Turns the Switch into a general-purpose ARM device capable of running Linux, Android, bare-metal tools, etc.</li>
+</ul>
+<blockquote>
+<p>This isn’t about piracy — it’s about owning the boot process and exploring what the hardware can really do.</p>
+</blockquote>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li>Hekate GitHub<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/CTCaer/hekate">https://github.com/CTCaer/hekate</a></li>
+</ul>
+</li>
+<li>Atmosphère GitHub<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Atmosphere-NX/Atmosphere">https://github.com/Atmosphere-NX/Atmosphere</a></li>
+</ul>
+</li>
+<li>Detailed introduction to Hekate interface<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.qq.com/doc/DVVpQcmd1RFNpUnNL">https://docs.qq.com/doc/DVVpQcmd1RFNpUnNL</a></li>
+</ul>
+</li>
+<li>NH Switch Guide (authoritative)<ul>
+<li><a target="_blank" rel="noopener" href="https://switch.hacks.guide/">https://switch.hacks.guide/</a></li>
+</ul>
+</li>
+<li>Fusee-Gelee explanation (Chinese)<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/Ginurx/fusee_gelee_explained_in_chinese">https://github.com/Ginurx/fusee_gelee_explained_in_chinese</a></li>
+</ul>
+</li>
+<li>Console Hacking Glossary<ul>
+<li><a target="_blank" rel="noopener" href="http://gledos.science/hacking-game-console-word-list.html#%E5%9B%BD%E4%BA%A7%E8%8A%AF%E7%89%87">http://gledos.science/hacking-game-console-word-list.html#%E5%9B%BD%E4%BA%A7%E8%8A%AF%E7%89%87</a></li>
+</ul>
+</li>
+<li>Switch jailbreak history<ul>
+<li><a target="_blank" rel="noopener" href="https://xmper.cc/2023/02/21/Switch-jailbreaking-history/">https://xmper.cc/2023/02/21/Switch-jailbreaking-history/</a></li>
+</ul>
+</li>
+<li>Tesla - The Nintendo Switch Overlay Menu<ul>
+<li><a target="_blank" rel="noopener" href="https://gbatemp.net/threads/tesla-the-nintendo-switch-overlay-menu.557362/">https://gbatemp.net/threads/tesla-the-nintendo-switch-overlay-menu.557362/</a></li>
+</ul>
+</li>
+<li>Tesla-Menu<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/WerWolv/Tesla-Menu">https://github.com/WerWolv/Tesla-Menu</a></li>
+</ul>
+</li>
+<li>Tesla overview<ul>
+<li><a target="_blank" rel="noopener" href="https://switch.hacks.guide/homebrew/tesla-menu.html">https://switch.hacks.guide/homebrew/tesla-menu.html</a></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Always verify downloads from official repos. Keep backups current. Test in emuMMC first.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>Roy Li
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tech-roy.uk/2025/12/17/BootingIntoHekateOnNintendoSwitch/" title="Booting into Hekate on Nintendo Switch (Unpatched 2017 Models)">https://tech-roy.uk/2025/12/17/BootingIntoHekateOnNintendoSwitch/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/NS/" rel="tag"># NS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/17/InstallingAndroidTvOnNintendoSwitch/" rel="prev" title="Installing Android TV on Nintendo Switch using LineageOS">
+                  <i class="fa fa-angle-left"></i> Installing Android TV on Nintendo Switch using LineageOS
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/12/18/BackingUpDockerImagesToAUsbDrive/" rel="next" title="Backing Up Docker Images to a USB Drive on Raspberry Pi &#x2F; ARM Linux">
+                  Backing Up Docker Images to a USB Drive on Raspberry Pi / ARM Linux <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2025 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy Li</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"gdjdkid/gdjdkid.github.io","issue_term":"pathname","theme":"boxy-light","label":"💬评论","theme_dark":"github-dark-orange","crossorigin":"anonymous","placeholder":"畅所欲言，思绪飞扬~"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

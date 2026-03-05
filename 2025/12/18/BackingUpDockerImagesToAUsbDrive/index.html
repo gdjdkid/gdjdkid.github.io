@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png">
+  <link rel="mask-icon" href="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo_mini.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tech-roy.uk","root":"/","images":"/images","scheme":"Muse","darkmode":"auto","version":"8.26.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"enable":true,"type":"utterances","activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="OverviewThis is a battle-tested workflow for exporting Docker images from a Raspberry Pi (or any ARM-based Linux box) to an exFAT-formatted USB drive, then loading them back on a fresh install or diff">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Backing Up Docker Images to a USB Drive on Raspberry Pi &#x2F; ARM Linux">
+<meta property="og:url" content="https://tech-roy.uk/2025/12/18/BackingUpDockerImagesToAUsbDrive/index.html">
+<meta property="og:site_name" content="Tech-Roy Blog">
+<meta property="og:description" content="OverviewThis is a battle-tested workflow for exporting Docker images from a Raspberry Pi (or any ARM-based Linux box) to an exFAT-formatted USB drive, then loading them back on a fresh install or diff">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_0.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_1.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_2.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_3.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_4.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_5.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_6.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_7.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_8.png">
+<meta property="og:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_9.png">
+<meta property="article:published_time" content="2025-12-18T02:33:11.000Z">
+<meta property="article:modified_time" content="2026-03-04T12:25:10.011Z">
+<meta property="article:author" content="Roy Li">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="RPI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_0.png">
+
+
+<link rel="canonical" href="https://tech-roy.uk/2025/12/18/BackingUpDockerImagesToAUsbDrive/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tech-roy.uk/2025/12/18/BackingUpDockerImagesToAUsbDrive/","path":"2025/12/18/BackingUpDockerImagesToAUsbDrive/","title":"Backing Up Docker Images to a USB Drive on Raspberry Pi / ARM Linux"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Backing Up Docker Images to a USB Drive on Raspberry Pi / ARM Linux | Tech-Roy Blog</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6EZLR5DH6P"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-6EZLR5DH6P","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js" defer></script>
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/rss2.xml" title="Tech-Roy Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Tech-Roy Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">技術分享 技術無界 開源至上</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-This-Matters"><span class="nav-number">2.</span> <span class="nav-text">Why This Matters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exporting-Images-to-USB"><span class="nav-number">3.</span> <span class="nav-text">Exporting Images to USB</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Plug-in-the-USB-drive-and-identify-it"><span class="nav-number">3.1.</span> <span class="nav-text">Plug in the USB drive and identify it.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unmount-any-auto-mount-devmon-udisks2-usually-mounts-to-media-Bash"><span class="nav-number">3.2.</span> <span class="nav-text">Unmount any auto-mount (devmon&#x2F;udisks2 usually mounts to &#x2F;media&#x2F;&#x2F;)Bash</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-a-clean-mount-point"><span class="nav-number">3.3.</span> <span class="nav-text">Create a clean mount point</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mount-the-drive-manually-with-proper-ownership-and-permissions"><span class="nav-number">3.4.</span> <span class="nav-text">Mount the drive manually with proper ownership and permissions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Create-backup-directory-on-the-drive"><span class="nav-number">3.5.</span> <span class="nav-text">Create backup directory on the drive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Export-images"><span class="nav-number">3.6.</span> <span class="nav-text">Export images</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Verify-sizes-and-integrity"><span class="nav-number">3.7.</span> <span class="nav-text">Verify sizes and integrity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Safely-unmount"><span class="nav-number">3.8.</span> <span class="nav-text">Safely unmount</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Restoring-Images-on-a-New-Reinstalled-System"><span class="nav-number">4.</span> <span class="nav-text">Restoring Images on a New &#x2F; Reinstalled System</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Plug-in-the-USB-drive"><span class="nav-number">4.1.</span> <span class="nav-text">Plug in the USB drive.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Locate-the-mount-point-and-check-contents"><span class="nav-number">4.2.</span> <span class="nav-text">Locate the mount point and check contents</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Load-the-images"><span class="nav-number">4.3.</span> <span class="nav-text">Load the images</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Verify-everything-came-back-intact"><span class="nav-number">4.4.</span> <span class="nav-text">Verify everything came back intact</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Optional-Unmount-when-done"><span class="nav-number">4.5.</span> <span class="nav-text">(Optional) Unmount when done</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quick-Tips-Gotchas"><span class="nav-number">5.</span> <span class="nav-text">Quick Tips &amp; Gotchas</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-number">6.</span> <span class="nav-text">References</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Roy Li"
+      src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+  <p class="site-author-name" itemprop="name">Roy Li</p>
+  <div class="site-description" itemprop="description">Roy Li's Personal Blog</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gdjdkid" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gdjdkid" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdjdkid2014@gmail.com" title="E-Mail → mailto:gdjdkid2014@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tech-roy.uk/2025/12/18/BackingUpDockerImagesToAUsbDrive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E5%85%B6%E4%BB%96/Sherlock_logo.png">
+      <meta itemprop="name" content="Roy Li">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Tech-Roy Blog">
+      <meta itemprop="description" content="Roy Li's Personal Blog">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Backing Up Docker Images to a USB Drive on Raspberry Pi &#x2F; ARM Linux | Tech-Roy Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Backing Up Docker Images to a USB Drive on Raspberry Pi / ARM Linux
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-12-18 10:33:11" itemprop="dateCreated datePublished" datetime="2025-12-18T10:33:11+08:00">2025-12-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-03-04 20:25:10" itemprop="dateModified" datetime="2026-03-04T20:25:10+08:00">2026-03-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/RPI/" itemprop="url" rel="index"><span itemprop="name">RPI</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>This is a battle-tested workflow for exporting Docker images from a Raspberry Pi (or any ARM-based Linux box) to an exFAT-formatted USB drive, then loading them back on a fresh install or different machine. It avoids network pulls, preserves exact image tags and IDs, and sidesteps common permission headaches when dealing with auto-mounted removable media.<br>Tested on Raspberry Pi 4B running Raspberry Pi OS / Debian-based distro, but the commands are generic to any modern Linux with Docker.</p>
+<h3 id="Why-This-Matters"><a href="#Why-This-Matters" class="headerlink" title="Why This Matters"></a>Why This Matters</h3><p>Docker images on embedded devices eat up space fast. TF cards and small SSDs fill quickly, and rebuilding everything from scratch over slow or unreliable internet is painful. A reliable offline backup lets you:</p>
+<ul>
+<li>Wipe/reinstall the OS without losing your container environment </li>
+<li>Migrate to new hardware quickly </li>
+<li>Keep a cold spare of critical images (e.g. transmission, cloudreve, custom builds)</li>
+</ul>
+<h3 id="Exporting-Images-to-USB"><a href="#Exporting-Images-to-USB" class="headerlink" title="Exporting Images to USB"></a>Exporting Images to USB</h3><h4 id="Plug-in-the-USB-drive-and-identify-it"><a href="#Plug-in-the-USB-drive-and-identify-it" class="headerlink" title="Plug in the USB drive and identify it."></a>Plug in the USB drive and identify it.</h4><ul>
+<li>execute: <code>lsblk</code><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_0.png">  <blockquote>
+<p>Look for something like /dev/sda1 or /dev/sdb1 with exFAT filesystem. Never guess — double-check size and label.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Unmount-any-auto-mount-devmon-udisks2-usually-mounts-to-media-Bash"><a href="#Unmount-any-auto-mount-devmon-udisks2-usually-mounts-to-media-Bash" class="headerlink" title="Unmount any auto-mount (devmon/udisks2 usually mounts to /media//)Bash"></a>Unmount any auto-mount (devmon/udisks2 usually mounts to /media/<user>/<label>)Bash</label></user></h4><ul>
+<li>execute: <code>sudo umount /media/devmon/DockerIMGs</code></li>
+<li>adjust path to match your system<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_1.png"></li>
+</ul>
+<h4 id="Create-a-clean-mount-point"><a href="#Create-a-clean-mount-point" class="headerlink" title="Create a clean mount point"></a>Create a clean mount point</h4><ul>
+<li>execute: <code>sudo mkdir -p /mnt/docker-usb</code><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_2.png"></li>
+</ul>
+<h4 id="Mount-the-drive-manually-with-proper-ownership-and-permissions"><a href="#Mount-the-drive-manually-with-proper-ownership-and-permissions" class="headerlink" title="Mount the drive manually with proper ownership and permissions"></a>Mount the drive manually with proper ownership and permissions</h4><blockquote>
+<p>This is the most important step — auto-mounts almost always give root:root or 1000:1000 with restrictive umask, making it annoying to write from non-root.</p>
+</blockquote>
+<ul>
+<li>execute:<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -t exfat \</span><br><span class="line">-o uid=1000,gid=1000,umask=022 \</span><br><span class="line">/dev/sdb1 /mnt/docker-usb</span><br></pre></td></tr></tbody></table></figure></li>
+<li><code>uid=1000,gid=1000</code> → files appear owned by your regular user</li>
+<li><code>umask=022</code> → creates files as 644, directories as 755 (normal user-writable)<br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_3.png"><br><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_4.png"></li>
+</ul>
+<h4 id="Create-backup-directory-on-the-drive"><a href="#Create-backup-directory-on-the-drive" class="headerlink" title="Create backup directory on the drive"></a>Create backup directory on the drive</h4><ul>
+<li>execute <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /mnt/docker-usb</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> docker_images_backup</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> <span class="variable">$USER</span>:<span class="variable">$USER</span> docker_images_backup   <span class="comment"># optional but cleaner</span></span><br></pre></td></tr></tbody></table></figure>
+ <img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_5.png"></li>
+</ul>
+<h4 id="Export-images"><a href="#Export-images" class="headerlink" title="Export images"></a>Export images</h4><p>Use <code>docker save</code> to create a single <code>.tar</code> per image (or multi-image tar if you prefer).<br>Replace with your actual image:tag pairs.</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo docker save -o /mnt/docker-usb/docker_images_backup/transmission_latest.tar lscr.io/linuxserver/transmission:latest</span><br><span class="line">sudo docker save -o /mnt/docker-usb/docker_images_backup/cloudreve_4.10.1-arm.tar cloudreve:4.10.1-arm</span><br></pre></td></tr></tbody></table></figure>
+<p><img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_6.png">  </p>
+<blockquote>
+<p>Run as your user if the mount is correctly owned; otherwise prefix with <code>sudo</code>.</p>
+</blockquote>
+<h4 id="Verify-sizes-and-integrity"><a href="#Verify-sizes-and-integrity" class="headerlink" title="Verify sizes and integrity"></a>Verify sizes and integrity</h4><ul>
+<li>execute: <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -lh /mnt/docker-usb/docker_images_backup</span><br><span class="line">du -sh /mnt/docker-usb/docker_images_backup/* </span><br></pre></td></tr></tbody></table></figure>
+ <img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_7.png"></li>
+</ul>
+<h4 id="Safely-unmount"><a href="#Safely-unmount" class="headerlink" title="Safely unmount"></a>Safely unmount</h4><ul>
+<li>execute:<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">sudo umount /mnt/docker-usb</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>Wait for the command to return, then physically remove the drive.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Restoring-Images-on-a-New-Reinstalled-System"><a href="#Restoring-Images-on-a-New-Reinstalled-System" class="headerlink" title="Restoring Images on a New / Reinstalled System"></a>Restoring Images on a New / Reinstalled System</h3><h4 id="Plug-in-the-USB-drive"><a href="#Plug-in-the-USB-drive" class="headerlink" title="Plug in the USB drive."></a>Plug in the USB drive.</h4><p>It will probably auto-mount again (often to /media/<user>/<label> or /mnt/docker-usb if you left the directory).</label></user></p>
+<h4 id="Locate-the-mount-point-and-check-contents"><a href="#Locate-the-mount-point-and-check-contents" class="headerlink" title="Locate the mount point and check contents"></a>Locate the mount point and check contents</h4><ul>
+<li>execute: <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lsblk -f</span><br><span class="line">ls -lh /mnt/docker-usb/docker_images_backup   # adjust path</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h4 id="Load-the-images"><a href="#Load-the-images" class="headerlink" title="Load the images"></a>Load the images</h4><ul>
+<li>execute  <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker load -i /media/devmon/ImgBackU/docker_images_backup/openwrt-aarch64.tar</span><br></pre></td></tr></tbody></table></figure></li>
+<li>You’ll see output like <code>Loaded image: buddyfly/openwrt-aarch64:latest</code><br> <img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_8.png"></li>
+</ul>
+<h4 id="Verify-everything-came-back-intact"><a href="#Verify-everything-came-back-intact" class="headerlink" title="Verify everything came back intact"></a>Verify everything came back intact</h4><ul>
+<li>execute: <code>sudo docker images</code></li>
+<li>Check that repository:tag and <strong>IMAGE ID</strong> match exactly what you had before. If IDs match, layers were preserved perfectly.<br> <img data-src="https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/Docker%E9%95%9C%E5%83%8F%E5%A4%87%E4%BB%BD%E5%88%B0U%E7%9B%98%E5%AE%9E%E6%93%8D/Docker_IMG_Backup_9.png"></li>
+</ul>
+<h4 id="Optional-Unmount-when-done"><a href="#Optional-Unmount-when-done" class="headerlink" title="(Optional) Unmount when done"></a>(Optional) Unmount when done</h4><ul>
+<li>execute: <ul>
+<li><code>sudo umount /mnt/usb</code></li>
+</ul>
+</li>
+<li>or wherever it mounted</li>
+</ul>
+<h3 id="Quick-Tips-Gotchas"><a href="#Quick-Tips-Gotchas" class="headerlink" title="Quick Tips &amp; Gotchas"></a>Quick Tips &amp; Gotchas</h3><ul>
+<li>Always use <code>docker save / docker load</code> — never copy <code>/var/lib/docker</code> directly. The latter is dangerous and usually breaks. </li>
+<li>exFAT is ideal for cross-platform (Linux ↔ Windows/Mac) backups. If you only stay on Linux, ext4 works too but isn’t as portable. </li>
+<li>If <code>mount -t exfat</code> fails → install <code>exfatprogs</code> or <code>exfat-utils</code> (<code>sudo apt install exfatprogs</code>). </li>
+<li>Large images (&gt;10–20 GB) take time to save/load — be patient and watch <code>iotop</code> or <code>htop</code> if curious. </li>
+<li>For bulk export of all images: <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images --format '{{.Repository}}:{{.Tag}}' | xargs -n1 docker save -o backup.tar</span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>but single-file tar gets huge; per-image is usually better for manageability.</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/reference/cli/docker/image/save/">Docker官方文档 - docker save</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.docker.com/reference/cli/docker/image/load/">Docker官方文档 - docker load</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.archlinux.org/title/ExFAT">Linux mount exFAT 文件系统</a>（Explain the usage of uid/gid/umask parameters）</li>
+</ul>
+<blockquote>
+<p>This workflow has survived multiple Pi reimages and migrations for me. Keep your USB drive in a safe place — it’s now your offline Docker lifeline.</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>原作者： </strong>Roy Li
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://tech-roy.uk/2025/12/18/BackingUpDockerImagesToAUsbDrive/" title="Backing Up Docker Images to a USB Drive on Raspberry Pi &#x2F; ARM Linux">https://tech-roy.uk/2025/12/18/BackingUpDockerImagesToAUsbDrive/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/RPI/" rel="tag"># RPI</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/12/17/BootingIntoHekateOnNintendoSwitch/" rel="prev" title="Booting into Hekate on Nintendo Switch (Unpatched 2017 Models)">
+                  <i class="fa fa-angle-left"></i> Booting into Hekate on Nintendo Switch (Unpatched 2017 Models)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/01/22/TaskManagerPowerTipsForWindows/" rel="next" title="Task Manager Power Tips for Windows">
+                  Task Manager Power Tips for Windows <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2025 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Roy Li</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"gdjdkid/gdjdkid.github.io","issue_term":"pathname","theme":"boxy-light","label":"💬评论","theme_dark":"github-dark-orange","crossorigin":"anonymous","placeholder":"畅所欲言，思绪飞扬~"}</script>
+<script src="/js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

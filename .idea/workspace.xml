@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.03.04_7">
-      <change afterPath="$PROJECT_DIR$/source/_posts/DeployingYddictOnRaspberryPi4B.md" afterDir="false" />
+    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.03.05_1">
+      <change afterPath="$PROJECT_DIR$/source/_posts/DeployingJellyfinOnRaspberryPi4B.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gif/JellyfinDemo_1.gif" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/DocumentingTheEntireDIYProcessOfMyRaspberryPi.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/DocumentingTheEntireDIYProcessOfMyRaspberryPi.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +114,7 @@
       <workItem from="1766071048251" duration="720000" />
       <workItem from="1769051372726" duration="11774000" />
       <workItem from="1772267248785" duration="17312000" />
-      <workItem from="1772546152825" duration="56746000" />
+      <workItem from="1772546152825" duration="73478000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -339,7 +340,23 @@
       <option name="project" value="LOCAL" />
       <updated>1772639375231</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="push 2026.03.05_0">
+      <option name="closed" value="true" />
+      <created>1772693744464</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1772693744464</updated>
+    </task>
+    <task id="LOCAL-00030" summary="push 2026.03.05_1">
+      <option name="closed" value="true" />
+      <created>1772710420625</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1772710420625</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,8 +378,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.deploy_git" />
     </ignored-roots>
-    <MESSAGE value="push 2025.12.10_1" />
-    <MESSAGE value="push 2025.12.10_2" />
     <MESSAGE value="push 2025.12.10_3" />
     <MESSAGE value="push 2025.12.11_0" />
     <MESSAGE value="push 2025.12.12_0" />
@@ -386,6 +401,8 @@
     <MESSAGE value="push 2026.03.04_5" />
     <MESSAGE value="push 2026.03.04_6" />
     <MESSAGE value="push 2026.03.04_7" />
-    <option name="LAST_COMMIT_MESSAGE" value="push 2026.03.04_7" />
+    <MESSAGE value="push 2026.03.05_0" />
+    <MESSAGE value="push 2026.03.05_1" />
+    <option name="LAST_COMMIT_MESSAGE" value="push 2026.03.05_1" />
   </component>
 </project>

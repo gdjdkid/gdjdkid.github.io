@@ -16,3 +16,4 @@ sticky:
 5. [Deploying an OpenWrt Bypass Router on Raspberry Pi Using Docker](https://tech-roy.uk/2025/12/11/DeployingAnOpenWrtBypassRouterOnRaspberryPiUsingDocker/)
 6. [Backing Up Docker Images to a USB Drive on Raspberry Pi / ARM Linux](https://tech-roy.uk/2025/12/18/BackingUpDockerImagesToAUsbDrive/)
 7. [Deploying yddict On Raspberry Pi 4B](https://tech-roy.uk/2026/03/05/DeployingYddictOnRaspberryPi4B/)
+8. [Deploying Jellyfin On Raspberry Pi 4B](https://tech-roy.uk/2026/03/05/DeployingJellyfinOnRaspberryPi4B/)

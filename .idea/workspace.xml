@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.03.05_1">
-      <change afterPath="$PROJECT_DIR$/source/_posts/DeployingJellyfinOnRaspberryPi4B.md" afterDir="false" />
+    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="push 2026.03.06_0">
+      <change afterPath="$PROJECT_DIR$/source/_posts/Superalink大陆5日套餐购买攻略-附折扣码.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gif/JellyfinDemo_1.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/DocumentingTheEntireDIYProcessOfMyRaspberryPi.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/DocumentingTheEntireDIYProcessOfMyRaspberryPi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +67,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -114,7 +115,12 @@
       <workItem from="1766071048251" duration="720000" />
       <workItem from="1769051372726" duration="11774000" />
       <workItem from="1772267248785" duration="17312000" />
-      <workItem from="1772546152825" duration="73478000" />
+      <workItem from="1772546152825" duration="73660000" />
+      <workItem from="1772891010340" duration="109000" />
+      <workItem from="1773060411170" duration="765000" />
+      <workItem from="1773062611878" duration="2251000" />
+      <workItem from="1773993299311" duration="944000" />
+      <workItem from="1778326299144" duration="8142000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -356,7 +362,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772710420625</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="push 2026.03.06_0">
+      <option name="closed" value="true" />
+      <created>1772727196781</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1772727196781</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,7 +392,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.deploy_git" />
     </ignored-roots>
-    <MESSAGE value="push 2025.12.10_3" />
     <MESSAGE value="push 2025.12.11_0" />
     <MESSAGE value="push 2025.12.12_0" />
     <MESSAGE value="push 2025.12.14_0" />
@@ -403,6 +416,7 @@
     <MESSAGE value="push 2026.03.04_7" />
     <MESSAGE value="push 2026.03.05_0" />
     <MESSAGE value="push 2026.03.05_1" />
-    <option name="LAST_COMMIT_MESSAGE" value="push 2026.03.05_1" />
+    <MESSAGE value="push 2026.03.06_0" />
+    <option name="LAST_COMMIT_MESSAGE" value="push 2026.03.06_0" />
   </component>
 </project>

@@ -43,12 +43,63 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [Zread](https://zread.ai/) | Operating system images and resources (Chrome OS, Linux, Raspberry Pi) |
 | [书签地球](https://www.bookmarkearth.cn/) | Browser bookmark sharing search engine |
 | [爱达杂货铺](https://adzhp.cc/) | Collect useful things |
+| [Oracle Java Tutorial](https://docs.oracle.com/javase/tutorial/index.html) | Java Official Getting Started Tutorial |
+| [東東 GCP 教學](https://dongdonggcp.com/) | GCP Cloud Architect Teaching and Certification Tutoring (Chinese)|
+| [Docker Hub](https://hub.docker.com/) | Docker image repository and container resources |
+| [XXL 开源社区](https://www.xuxueli.com/) | Open source technology solutions (XXL-JOB, etc.)|
+| [CodePath Guides](https://guides.codepath.org/) | Android/iOS/Web Development Technology Guide|
+| [JetBrains IDEA 下载](https://www.jetbrains.com/idea/download/other/) | Download all versions of IntelliJ IDEA (including older releases) |
+| [LinuxCool](https://www.linuxcool.com/) | Linux Command Lookup and Quick Reference Manual |
+| [Linux 命令索引](https://wangchujiang.com/linux-command/index.html) | Linux Command Quick Reference Index and Manual |
+| [Linux公社软件中心](https://www.linuxidc.com/linuxsoft/) | Linux software downloads and related news |
+| [树莓派实验室](https://shumeipai.nxez.com/) | Raspberry Pi Chinese news, tutorials, and DIY projects |
+| [C语言中文网](https://m.biancheng.net/) | Programming Language Tutorial Portal (C/C++/Java/Python/Databases, etc.) |
+| [oeasy 教程](http://oeasy.org/) | A comprehensive directory of free tutorial resources (programming, design, film, audio, etc.) |
+
+#### 🛠️ Online Dev Tools
+| Site | Purpose |
+| :--- | :--- |
+| [drawDB](https://www.drawdb.app/editor) | Online database ER diagram designer and SQL generator |
+| [draw.io](https://app.diagrams.net/) | Free online diagram software (flowchart, UML, network topology, etc.) |
+| [码工具](https://www.matools.com/) | All-in-one dev toolbox — base64, timestamp, JSON, regex, SQL, colors, and more |
+| [SOJSON在线解析](https://www.sojson.com/) | JSON online parser, formatter, validator, encryption, and code compression |
+| [JSON 在线解析](https://www.jyshare.com/front-end/53/) | Online JSON parser and formatter |
+| [正则表达式工具](https://tool.lu/regex/) | Online regex testing tool with real-time matching |
+| [ASCII常用对照表](https://tool.oschina.net/commons?type=4) | ASCII code reference table |
+| [在线代码格式化](https://tool.oschina.net/codeformat/html/) | Online HTML / code formatter |
+| [RGB常用对照表](https://tool.oschina.net/commons?type=3) | RGB color reference table |
+| [Matools Java 8 API](https://www.matools.com/api/java8) | Java 8 Chinese API Manual (Online Documentation) |
+| [Oracle Java 8 API](https://docs.oracle.com/javase/8/docs/api) | Java 8 Official API Documentation |
+| [Oracle Java 10 API](https://docs.oracle.com/javase/10/docs/api) | Java 10 Official API Documentation |
+| [在线文本差异对比](https://study.100xgj.com/textdiff/) | Online text comparison tool — highlight differences between two texts |
+| [BeJSON JSON 视图](https://www.bejson.com/jsonviewernew/) | Online JSON formatter and visual viewer |
+| [在线二维码生成器](https://cn.online-qrcode-generator.com/qrcode-generator) | Free online QR code generator with custom colors and logo support |
+
+#### 📝 Tech Blogs
+| Site | Purpose |
+| :--- | :--- |
+| [阮一峰 - 理解计算机](https://www.ruanyifeng.com/blog/computer/index.html) | Computer science basics and tech blog posts (63 articles) |
+
+#### 📝 Tech Articles
+| Site | Purpose |
+| :--- | :--- |
+| [美团技术博客](https://tech.meituan.com/2016/11/18/dianping-order-db-sharding.html) | Dianping order system database sharding practice (Meituan Tech Blog) |
+| [IDEA教程 - 如何通过教育邮箱申请正版Intellij IDEA注册码？](https://www.javatiku.cn/idea/19.html) | Apply for free JetBrains educational license via student email |
+| [Intellij IDEA Mac版本永久激活破解教程](https://www.javatiku.cn/idea/1320.html) | IntelliJ IDEA Mac version permanent activation guide |
+| [IDEA教程 - 如何使用IDEA阅读Java源码？](https://www.javatiku.cn/idea/47.html) | Tips on reading Java source code with IntelliJ IDEA |
+| [【IDEA教程】IDEA Bookmarks 书签](https://www.javatiku.cn/idea/2887.html) | How to use Bookmarks feature in IntelliJ IDEA |
+| [树莓派中文输入法scim安装的血泪史](https://www.pianshen.com/article/63051510897/) | Raspberry Pi SCIM Chinese Input Method Installation Tutorial |
 
 #### 📦 GitHub Repos
 | Site | Purpose |
 | :--- | :--- |
 | [IPTV直播源 (定期更新)](https://github.com/joevess/IPTV/tree/main) | Curated IPTV live source collection (m3u8) |
 | [HelloGitHub](https://hellogithub.com/) | Monthly curated list of interesting open-source projects |
+
+#### 📐 Algorithms & Data Structures
+| Site | Purpose |
+| :--- | :--- |
+| [VisuAlgo](https://visualgo.net/en) | Visualise data structures and algorithms through animation |
 
 #### 🔒 Security & Threat Assessment
 | Site | Purpose |
@@ -57,6 +108,8 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [URLVoid](https://www.urlvoid.com) | Website reputation and security scanner |
 | [BlacklistChecker](https://blacklistchecker.com/check) | Check if IP or domain is blacklisted |
 | [Privacy](https://privacy.aiuys.com/) | Real-time dark web and ransomware monitoring dashboard |
+| [VirusTotal](https://www.virustotal.com/gui/home/upload) | Online file and URL virus scanning platform |
+| [微步在线云沙箱](https://s.threatbook.com/) | Online file threat analysis platform — detects malware, APT, etc. |
 
 #### 📚 Reference
 | Site | Purpose |
@@ -68,6 +121,9 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [国家标准全文公开](https://openstd.samr.gov.cn/bzgk/std/) | Chinese national standards public access (GB standards) |
 | [中国医药信息查询平台](https://www.dayi.org.cn/) | China's nationally certified medical and pharmaceutical information platform |
 | [台词搜索与字幕语料库](https://33tc.net/) | Search movie/TV subtitles and real-life dialogues for language learning |
+| [书伴](https://bookfere.com/ebook) | Curated Kindle ebook resource aggregator |
+| [Z-Library](https://zh.z-library.sk/) | One of the world's largest free ebook libraries |
+| [VDOC.PUB](https://vdoc.pub/) | Free ebook downloads in EPUB, PDF, MOBI, and more |
 
 #### 🗺️ Fun Exploration
 | Site | Purpose |
@@ -83,6 +139,7 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [Skyline Webcams](https://www.skylinewebcams.com/) | Live webcams from cities and landmarks worldwide |
 | [巡礼地图](https://www.anitabi.cn/map) | Anime pilgrimage map — find real-world locations from your favorite anime |
 | [Geo-FS](https://www.geo-fs.com/) | 3D flight simulator using real global map data |
+| [WorldAtlas](https://www.worldatlas.com/) | Online atlas with world maps, geography facts, and country information |
 
 #### 📜 History & Culture
 | Site | Purpose |
@@ -107,6 +164,8 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [AConvert](https://www.aconvert.com/) | Online file format converter (images, audio, video, documents) |
 | [死亡公司公墓](https://www.itjuzi.com/deathCompany) | Database of defunct internet companies in China |
 | [StartMyCar](https://www.startmycar.com/) | Community-driven car problem troubleshooting and solutions |
+| [尝鲜派](https://betahub.cn/) | Apple system beta version update tracking (iOS/macOS/watchOS, etc.) |
+| [柯基捷径库](https://www.kejicut.com/) | iOS Shortcuts Rules Aggregation and Tutorial |
 
 #### 🛠️ Life Skills
 | Site | Purpose |
@@ -153,6 +212,8 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | :--- | :--- |
 | [4chan](https://4chan.org/) | One of the internet's oldest and most influential anonymous forums |
 | [A9VG](https://bbs.a9vg.com/) | A leading Chinese gaming forum with discussions, news, and community |
+| [Stack Overflow](https://stackoverflow.com/questions) | The world's largest developer Q&A community |
+| [V2EX](https://v2ex.com/) | Chinese Technology and Innovation Community (Node-based Forum) |
 
 #### 📊 Data & Finance
 | Site | Purpose |
@@ -165,6 +226,8 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | :--- | :--- |
 | [我要自学网](https://www.51zxw.net/) | Online vocational education platform |
 | [Lingohut](https://www.lingohut.com/zh) | Free language learning platform with 125 languages |
+| [剑桥词典](https://dictionary.cambridge.org/dictionary/) | Cambridge Dictionary (English-English/English-Chinese, with pronunciation and example sentences) |
+| [韦氏词典](https://www.merriam-webster.com/) | Merriam-Webster (the authoritative dictionary for American English) |
 
 #### 🎮 Gaming
 | Site | Purpose |

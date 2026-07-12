@@ -90,12 +90,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [【IDEA教程】IDEA Bookmarks 书签](https://www.javatiku.cn/idea/2887.html) | How to use Bookmarks feature in IntelliJ IDEA |
 | [树莓派中文输入法scim安装的血泪史](https://www.pianshen.com/article/63051510897/) | Raspberry Pi SCIM Chinese Input Method Installation Tutorial |
 
-#### 📦 GitHub Repos
-| Site | Purpose |
-| :--- | :--- |
-| [IPTV直播源 (定期更新)](https://github.com/joevess/IPTV/tree/main) | Curated IPTV live source collection (m3u8) |
-| [HelloGitHub](https://hellogithub.com/) | Monthly curated list of interesting open-source projects |
-
 #### 📐 Algorithms & Data Structures
 | Site | Purpose |
 | :--- | :--- |
@@ -207,14 +201,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [天下足球网](https://www.txzqw.me/) | Football match streaming and news aggregator |
 | [看球通直播](https://m.kqt22.com/vlive/0) | Online video live streaming aggregator (sports, variety, TV) |
 
-#### 💬 Community & Forums
-| Site | Purpose |
-| :--- | :--- |
-| [4chan](https://4chan.org/) | One of the internet's oldest and most influential anonymous forums |
-| [A9VG](https://bbs.a9vg.com/) | A leading Chinese gaming forum with discussions, news, and community |
-| [Stack Overflow](https://stackoverflow.com/questions) | The world's largest developer Q&A community |
-| [V2EX](https://v2ex.com/) | Chinese Technology and Innovation Community (Node-based Forum) |
-
 #### 📊 Data & Finance
 | Site | Purpose |
 | :--- | :--- |
@@ -258,3 +244,68 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | :--- | :--- |
 | [爱泼斯坦案件](https://jmail.world/) | Searchable Gmail-style interface for the Jeffrey Epstein public email archive |
 | [豆包 Deepseek 大战](https://youware.app/project/8zo2eorjmx) | 豆包 deepseek大战，大佬乔木出轨，2亿美元期权一毛钱都不想给原配，放任两个孩子不管。豆包LLM技术负责人利用职务之便搞婚外情出轨同组 hrbp 程若琳。 |
+
+#### 💬 Community & Forums
+| Site | Purpose |
+| :--- | :--- |
+| [4chan](https://4chan.org/) | One of the internet's oldest and most influential anonymous forums |
+| [A9VG](https://bbs.a9vg.com/) | A leading Chinese gaming forum with discussions, news, and community |
+| [Stack Overflow](https://stackoverflow.com/questions) | The world's largest developer Q&A community |
+| [V2EX](https://v2ex.com/) | Chinese Technology and Innovation Community (Node-based Forum) |
+
+#### 📌 V2EX Favorites
+| Site | Purpose |
+| :--- | :--- |
+| [1072829](https://www.v2ex.com/t/1072829) | V2EX Polish 插件功能更新：更好看、更实用、更方便！✨ |
+| [1221908](https://v2ex.com/t/1221908) | 如何改掉请年假不好意思不写事由的习惯？ |
+| [1221525](https://v2ex.com/t/1221525) | 目前海外 esim 手机号在国内，哪个最好？ |
+| [1220989](https://v2ex.com/t/1220989) | 2026 年了，还有人使用精简 windows 镜像吗？ |
+| [1219929](https://v2ex.com/t/1219929) | 仅需一美元获得一个实体美国手机号 |
+| [1218346](https://v2ex.com/t/1218346) | 分享教程：绕过 esim 手机限制获取 esim 配置二维码 |
+| [1217937](https://v2ex.com/t/1217937) | 用 Three.js 撸了一个 3D 地球 + 全球实时电台，性能有点炸，求优化建议 |
+| [1215779](https://v2ex.com/t/1215779) | 做了一个“全网视频下载”的 Windows 桌面应用：仅 2.2MB，粘贴链接就能下，欢迎试用 |
+| [1215687](https://v2ex.com/t/1215687) | 做了一个支持嗅探下载、YT-DLP 和在线音乐播放的桌面工具： XiaDown / 下蛋 |
+| [1215436](https://v2ex.com/t/1215436) | 收录 15000+ 独立博客的 3D 星图，重磅更新！ |
+| [1214095](https://v2ex.com/t/1214095) | 用嘴搓了一个帮助小朋友学习自然拼读的网站 1.0 上线 |
+| [1213872](https://v2ex.com/t/1213872) | v2ex-cli：给终端党和 AI Agent 用的 V2EX 命令行工具 |
+| [1214027](https://v2ex.com/t/1214027) | 把论文变成漫画来看，高效理解 |
+| [942764](https://v2ex.com/t/942764) | 分享一点爱尔兰科技行业信息，给最近职场不顺的朋友 |
+| [1213646](https://v2ex.com/t/1213646) | 做了个让 Claude Code、Codex、Cursor 共享记忆的小工具 |
+| [1213097](https://v2ex.com/t/1213097) | OpenAgent：单文件版龙虾——仅有一个文件，双击就能跑的高性能 Agent |
+| [1213276](https://v2ex.com/t/1213276) | 公司内网不让装录屏软件，于是我用 ffmpeg 自己封装了一个 CLI 工具 |
+| [1212487](https://v2ex.com/t/1212487) | 程序员公认的早买早享受的有什么？ |
+| [1190907](https://v2ex.com/t/1190907) | 内地用户开香港银行卡最佳实践 |
+| [1189661](https://v2ex.com/t/1189661) | 聊聊德国的免费医疗，比加拿大澳大利亚快得多，以及强过一线的地方 |
+| [552516](https://v2ex.com/t/552516) | 我在 wayfair.com 的德国分公司工作，我的头儿问我咋把中国的程序员吸引些来德国柏林 |
+| [658275](https://v2ex.com/t/658275) | 来，分享下您的「个人品牌博客」 |
+| [1081484](https://v2ex.com/t/1081484) | NootCode - 主动练习面试八股和架构设计的刷题平台 |
+| [1108078](https://v2ex.com/t/1108078) | 200 小时的 LeetCode 刷题经验分享 |
+| [908878](https://v2ex.com/t/908878) | 工作多年刷算法题，脑子空空，很有挫败感 |
+| [1210544](https://v2ex.com/t/1210544) | 两次赴港开卡，带表姐轻松拿下中银香港， V 友港卡人均三件套，开卡薅回本北京往返机票费用！ |
+| [1210161](https://v2ex.com/t/1210161) | 做了一个把新闻翻译成股票信号的工具 |
+| [1205693](https://v2ex.com/t/1205693) | [送码]截图工具 PixPin3.0 正式发布（文字识别，长截图，录屏，标注），时隔两年半再来 v 站宣传 |
+| [1206812](https://v2ex.com/t/1206812) | 亲测已撸｜成功拿下德国 O2 eSIM 卡申请记录分享 |
+| [645097](https://v2ex.com/t/645097) | 想向有德国计算机科学领域留学或工作经验的 V 友请教一些问题 |
+| [887135](https://v2ex.com/t/887135) | 2022 年从国内拿到悉尼 220K AUD offer 经验分享（一） |
+| [379097](https://v2ex.com/t/379097) | 高龄程序员不完全肉身敏感词指南和经验分享 |
+| [964161](https://v2ex.com/t/964161) | 华润万家，哪家最好？ |
+| [814555](https://v2ex.com/t/814555) | [求助]欧洲怎么找工作 |
+| [373158](https://v2ex.com/t/373158) | 国外的程序员都是什么样的状态？ |
+| [970142](https://v2ex.com/t/970142) | 外企英语大概要什么水平才有机会入职 |
+| [646491](https://v2ex.com/t/646491) | 在德国工作生活的真实情况到底是怎样？ |
+| [286862](https://v2ex.com/t/286862) | 三年码农一枚，即将赴德国码砖，求熟悉那里的前辈给建议 |
+| [537744](https://v2ex.com/t/537744) | 你们电脑上装了哪些有用的命令行工具？ |
+| [680390](https://v2ex.com/t/680390) | 原来程序员都有鱼塘，甚至变成了水族馆 | 5 个有趣的命令行工具推荐 |
+| [871716](https://v2ex.com/t/871716) | 大家有没有什么很 COOL 的终端工具，分享一下。 |
+| [1204940](https://v2ex.com/t/1204940) | 一个 Z-Library 的命令行工具，支持搜索、下载、发送到 Kindle |
+| [779542](https://v2ex.com/t/779542) | [工具分享] 整理了一些总计超 51 万 star 的终端命令行工具，欢迎大家补充 |
+| [1200102](https://v2ex.com/t/1200102) | 推荐一下大家常用的 iPhone 快捷指令 |
+| [1202649](https://v2ex.com/t/1202649) | Claude Code 源码泄露后，我连夜 Vibe Coding 写了一份学习笔记 |
+| [1171730](https://v2ex.com/t/1171730) | iPhone Air 国行 eSIM 策略结论（2025 年 11 月 10 日， iOS 26.0.1 可以支持 n+2+n） |
+| [1201808](https://v2ex.com/t/1201808) | 国行 iPhone Air eSIM 相关事项 |
+
+#### 📦 GitHub Repos
+| Site | Purpose |
+| :--- | :--- |
+| [IPTV直播源 (定期更新)](https://github.com/joevess/IPTV/tree/main) | Curated IPTV live source collection (m3u8) |
+| [HelloGitHub](https://hellogithub.com/) | Monthly curated list of interesting open-source projects |

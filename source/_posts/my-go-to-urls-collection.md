@@ -287,6 +287,61 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [geylang777-9](https://www.geylang777-9.site/) | SG+JB Escorts, Double the Fun! |
 | [SGWolf 狼群网](https://sgwolforg.wordpress.com/) | SGWolf is an escort and massage platform in Singapore. But Geylang666 is way better than Impmm, n2tt, 4ni52, ttvip, sbf, sglonelyguy, sgbeautycastle etc… |
 
+#### 🌐 Dark Web
+| Site | Purpose |
+| :--- | :--- |
+| [Tor官网（表网）](https://www.torproject.org/) | 官方Tor浏览器下载及匿名网络使用指南 |
+| [Tor官网（暗网）](http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/index.html) | 官方Tor浏览器下载及匿名网络使用指南 |
+| [Breach Forums（黑客论坛）](https://breachedmw4otc2lhx7nqe4wyxfhpvy32ooz26opvqkmmrbg73c7ooad.onion) | 知名暗网论坛/数据泄露社区（需 Tor 访问） |
+| [StartPage纯搜索网页](http://startpagel6srwcjlue4zgq3zevrujfaow726kjytqbbjyrswwmjzcqd.onion/) | 隐私搜索引擎 StartPage 的洋葱镜像 |
+| [Facebook（暗网）](https://www.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/) | Facebook 官方洋葱镜像站点 |
+| [The Hidden Wiki](http://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki/index.php/Main_Page) | 暗网知名导航站——隐藏维基 |
+| [CIA 官网](http://ciadotgov4sjwlzihbbgxnqg3xiyrg7so2r2o3lt5wz5ypk4sxyjstad.onion/) | 美国中央情报局官方洋葱站点 |
+| [Dread Forum](http://dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/) | 暗网匿名论坛（Reddit风格的暗网论坛，最大的英文暗网论坛） |
+| [BBC 新闻](https://www.bbcnewsd73hkzno2ini43t4gblxvycyac5aw4gnv7t2rccijh7745uqd.onion/) | BBC 新闻暗网镜像站点 |
+| [The Guardian](http://xp44cagis447k3lpb4wwhcqukix6cgqokbuys24vmxmbzmaq2gjvc2yd.onion/) | 此网站用于保护新闻记者和消息来源的线人。可上传下载相对安全的页面的网站，有中文界面。 |
+| [ProPublica](http://p53lf57qovyuvwsc6xnrppyply3vtqm7l6pcobkmyqsiofyeznfu5uqd.onion/) | Investigative Journalism and News in the Public Interest【出版物】 |
+| [SpecTor](http://tcecdnp2fhyxlcrjoyc2eimdjosr65hweut6y7r2u6b5y75yuvbkvfyd.onion/) | Dutch Police |
+| [NCIDE](http://ncidetfs7banpz2d7vpndev5somwoki5vwdpfty2k7javniujekit6ad.onion/) | Northern California Illicit Digital Economy Task Force |
+| [Debian](http://5ekxbftvqg26oir5wle3p27ax3wksbxcecnm6oemju7bjra2pn26s3qd.onion/) | The Universal Operating System Debian是一个操作系统和自由软件的分发。|
+| [Qubes OS](http://qubesosfasa4zl44o4tws22di6kepyzfeqv3tg4e3ztknltfxqrymdad.onion/) | A reasonably secure operating system QUBES是一种安全的，免费和开源的操作系统，适用于个人计算机，允许您安全地将数字生命划分为您的数字生活。 |
+| [Haystak](http://haystak5njsmn2hqkewecpaxetahtwhsbsa64jom2k22z5afxhnpxfid.onion/) | 暗网搜索引擎 the darknet search engine |
+| [Ahmia](http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/) | Search Tor Hidden Services 暗网搜索引擎，搜索出来的内容全是暗网网址，并且部分网站会带有介绍。 |
+| [Torch](http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/) | The Original Dark Web Search Engine. Torch是那些持续了足够长的时间（自1996年以来）的暗网搜索引擎之一。与其他搜索引擎一样，Torch会抓取这些地址并为其内容编制索引，使其可供用户搜索。 |
+| [DuckDuckGo](https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/) | Privacy, simplified. 您知道DuckDuckGo在暗网上可用，而且他们也有自己的.Onion域名吗？是的，但即使在Tor浏览器上使用，它也只显示来自表网的结果。 |
+| [Deep Search](http://search7tdrcvri22rieiwgi5g46qnwsesvnubqav2xakhezv4hjzkkad.onion/) | Deep Search是一个针对暗网的搜索引擎。它被设计用来索引和搜索洋葱空间，即Tor网络的隐藏服务部分。DeepSearch是开源的，任何人都可以使用。 |
+| [Shoot](http://shootnnngg4akh7fkjmx5b5omsppt2zaefohzwnwryhy2c6mm3kbx6qd.onion/) | 暗网搜索引擎 |
+| [VormWeb](http://volkancfgpi4c7ghph6id2t7vcntenuly66qjt6oedwtjmyj4tkk5oqd.onion/) | Suchmaschine 暗网搜索引擎 |
+| [Black Market](http://weapon5dj7fwz2zaqa22fqeaqrauclim5kfvecegphrvxeywxoa3wuid.onion/) | Guns Arms Ammo Drugs for Bitcoin – Supplier since 2001 出售各种类型的武器（枪支、手榴弹等）和高科技产品 |
+| [Cheap cards with low balance](http://6dozk6elfzmgjndri22zwcxgys46s5v7vlt5dnmeoekuumb46l6jdfyd.onion/) | 出售少量余额的信用卡 |
+| [Guns & Ganja Club](http://gunsganos2raowan5y2nkblujnmza32v2cwkdgy6okciskzabchx4iqd.onion/) | 贩卖枪支和大麻 |
+| [Shiny](http://amazing3zvkbs6wulbrqd7gzvat45qvk2h6jyw7pkwgaj7r6zu5k67yd.onion/) | Flakes Drogen Shop 出售高纯度可卡因、致幻剂等毒品。从德国发货，全球到付。 |
+| [UK Guns and Ammo Store](http://gunsdtkf6kuugvpyssa2wdwzatrapqs4hlelf2aqcskio7q4xlvughqd.onion/) | 出售手枪以及手枪需要的各种口径的子弹 |
+| [Onion Directory](http://666666666tjjjeweu5iikuj7hkpke5phvdylcless7g4dn6vma2xxcad.onion/) | 暗网最受欢迎网址导航 （Onion域名） |
+| [Onion Directory（表网地址）](https://onion666.com/) | Onion666是最大的暗网导航，Onion666列出的暗网网站的链接不是很多，但是对很多网站都有标识，并特地单列出了勒索网站类、诈骗网站类。 |
+| [长安不夜城](http://cabyceogpsji73sske5nvo45mdrkbz4m3qd3iommf3zaaa6izg3j2cqd.onion/#/login) | 长安不夜城是个华人暗网论坛 |
+| [Comic Book Library](http://nv3x2jozywh63fkohn5mwp2d73vasusjixn3im3ueof52fmbjsigw6ad.onion/) | 漫画书库 |
+| [Raped Bitch](http://oqcsvl3uuh6b7styuwmv3itixkruhjgox4lueav4b4jymb2xu4pwikid.onion/) | 真正的强迫，强X，醉，鼻烟，勒索性X情 |
+| [Guardian](https://www.guardian2zotagl6tmjucg3lrhxdk4dw3lhbqnkvvkywawy3oqfoprid.onion/europe) | 英国卫报 |
+| [Twitter](https://twitter3e4tixl4xyajtrzo62zg5vztmjuricljdp2c5kshju4avyoid.onion) | 暗网v3地址 |
+| [中文暗网交易市场](http://xxxxxxxx3a3kuuhhw5w7stk25fzhttrlpiomij5bogkg7yyqsng5tqyd.onion/) | 中文暗网交易市场 |
+| [Red Room](http://7o6ujzyeupv42a6tbsm7xezlxq6exjzpffoo6uccwwm4lg4ksvrjeayd.onion/) | 著名的红房子 |
+| [tor.taxi（表网地址）](https://tor.taxi/) | tor.taxi不仅监测暗网onion域名存活，还记录了暗网的历史，追踪了暗网站点的正常运行时间和停机时间，并提供了暗网相关钓鱼网站的数据，值得向大家推荐。 |
+| [tor.taxi（暗网）](http://tortaxi2dev6xjwbaydqzla77rrnth7yn2oqzjfmiuwn5h6vsk2a4syd.onion/) | tor.taxi - your ride to the darknet |
+| [Dark.fail](http://darkfailenbsdla5mal2mxn2uz66od5vtzd5qozslagrfzachha3f3id.onion/) | Dark.fail是一个暗网域名的导航站，也是一个监测暗网onion域名存活的站点。 |
+| [Endchan](http://enxx3byspwsdo446jujc52ucy2pf5urdbhqw3kbsfhlfjwmbpj5smdad.onion/) | 类似4chan类型的暗网论坛 |
+| [The Tor Times](http://tortimeswqlzti2aqbjoieisne4ubyuoeiiugel2layyudcfrwln76qd.onion/) | Breaking Darknet Market News and Links |
+| [Z-Library](http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/) | Electronic library. Download books free. Finding books世界上最大的电子书库。电子库。免费下载书籍。寻找书籍 Z-Library。免费下载书籍。查找书籍 |
+| [ni-chan](http://plnemlsyla6h5t3nuoz2algzmy635ceuendnjwsmhwn2os5fxahshiad.onion/) | 匿名X情论坛 |
+| [Dark Net Live（表网）](https://darknetlive.com/) | 表层暗网信息 |
+| [Tor Offical Blog](http://pzhdfe7jraknpj2qgu5cz2u3i4deuyfwmonvzu5i3nyw4t4bmg7o5pad.onion/) | Tor官方博客 |
+| [OnionShare](http://lldan5gahapx5k7iafb3s4ikijc4ni7gx5iywdflkba5y2ezyg6sjgyd.onion/) | 文件传输 |
+| [Hidden Answers](http://7eoz4h2gjoncdmqzkkyshy5egtm6onpapjzxzs7nhmnakylmtexyisqd.onion/) | Q&A 论坛 |
+| [Tplace - TorBay](http://torbayc23k45euubuxk5qgyq63k2ulitdaodtgqufvtohrl6r5xwueyd.onion/) | Escrow Marke 购物网 |
+| [nauzome blog](http://nauzome2l6y3m3qaaigxambvti32hd7tjaeupdvs2a66nr7koqikc4yd.onion/) | 17-18岁小女孩 |
+| [BMG](http://bmguns7xglvmnlnz5nd543dczp3fnsfd6jecwpjomvhov4dn4ikxmqyd.onion/shop/) | black market guns |
+| [Drugs](http://wms5y25kttgihs4rt2sifsbwsjqjrx3vtc42tsu2obksqkj7y666fgid.onion/) | 卖药网站 |
+
 #### 📌 V2EX Favorites
 | Site | Purpose |
 | :--- | :--- |

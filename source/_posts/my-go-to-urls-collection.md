@@ -130,13 +130,13 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [Privacy](https://privacy.aiuys.com/) | Real-time dark web and ransomware monitoring dashboard |
 | [VirusTotal](https://www.virustotal.com/gui/home/upload) | Online file and URL virus scanning platform |
 | [微步在线云沙箱](https://s.threatbook.com/) | Online file threat analysis platform — detects malware, APT, etc. |
+| [AIA登录](https://wap.aia.com/adfs/ls/?client-request-id=faf448a1-5079-3000-bf88-e5e85dc06df0&username=&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=estsredirect%3d2%26estsrequest%3drQQIARAAlVE9aBNhGL4vl16bmGrI5GiPIFi45Pvu7rv7voDD_SRErKSxqKCUcL_k2iSX5q4_tnRx6lg36SCoW6bipF2sa6cKDpJJEaE4SBGH0qk5XBzrOzw8PO_Dy8PzzrKohCpF-HckIUEB-j4SHC9h_8ygkM2_qv85fzrPwA87P04WD7une2DSCqySE3aHALXjuB9VyuWxMhZKUdsaeP0w6MXJvtzyw0E3Krueb6124pIV9TfeAXAMwAkAw9SKYlBYlbCoa8jEumnKUDdJ1aCUIJ2qtaqGRA0TbCqqgrBmIAFLmqSbhkgMmZpUxTWDigok1NQkQxFrCpIlrBuKZBCi1MSqNLYoqq5UsUppYh6lrjW01bgtJhAOgk3vdyqTZGz1wyjeY9MNE64P2UtV85Ytqr7oIDrWqe_KgmwTKlDkSoJKLUWmlCo-tI5YLux7vcA9ToOf6RxkK1NT2TxznbnBnKXB64lxwe_Jw5vs5-f6i_TMm5mXt5ijifJCs76kNue8tUGoL6srm4_wHbjQfIwb99Z7m_WluU7bu3sfPsCUVm9LFbTLgV2OO-AyU2ye4VljHp1yYGeSOcj8_4OOr4BRDmUzTmgPrJ4buIUiQrZLIJEEonpQkJGNBdtWiQBtR5YcYhGPWKOcnOWcjhV0o8LsFh-4rThc9np8ZYvf6EYtx0nYmtVZ9SK-8oQfR-QXt7e3n01f6vrhNHN29dP5l4_fvu__qu_nma955gI1&pullStatus=0) | AIA Group Limited |
 
 #### 📚 Reference
 | Site | Purpose |
 | :--- | :--- |
 | [DevDocs](https://devdocs.io) | Multi-language API documentation aggregator |
 | [Explain Shell](https://explainshell.com) | Shell command breakdown and explanation |
-| [archive.org](https://archive.org) | Internet Archive: Wayback Machine, books, media |
 | [时光邮局](https://www.hi2future.com/) | Technology news and future trends |
 | [国家标准全文公开](https://openstd.samr.gov.cn/bzgk/std/) | Chinese national standards public access (GB standards) |
 | [中国医药信息查询平台](https://www.dayi.org.cn/) | China's nationally certified medical and pharmaceutical information platform |
@@ -144,6 +144,8 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [书伴](https://bookfere.com/ebook) | Curated Kindle ebook resource aggregator |
 | [Z-Library](https://zh.z-library.sk/) | One of the world's largest free ebook libraries |
 | [VDOC.PUB](https://vdoc.pub/) | Free ebook downloads in EPUB, PDF, MOBI, and more |
+| [Forgotten Books](https://www.forgottenbooks.com/en) | The World’s Forgotten Books Ready For You to Read. |
+| [禁书收录](https://chinadigitaltimes.net/space/%E7%A6%81%E4%B9%A6%E6%94%B6%E5%BD%95) | 禁书收录 |
 
 #### 🗺️ Fun Exploration
 | Site | Purpose |
@@ -279,6 +281,7 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [A9VG](https://bbs.a9vg.com/) | A leading Chinese gaming forum with discussions, news, and community |
 | [Stack Overflow](https://stackoverflow.com/questions) | The world's largest developer Q&A community |
 | [V2EX](https://v2ex.com/) | Chinese Technology and Innovation Community (Node-based Forum) |
+| [新·品葱](https://pincong.rocks/) | 华人论坛 |
 
 #### 🔇 SG & MY
 | Site | Purpose |
@@ -290,6 +293,7 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 #### 🌐 Dark Web
 | Site | Purpose |
 | :--- | :--- |
+| [Check using Tor](https://check.torproject.org/) | If you are attempting to use a Tor client, please refer to the Tor website and specifically the frequently asked questions. |
 | [Tor官网（表网）](https://www.torproject.org/) | 官方Tor浏览器下载及匿名网络使用指南 |
 | [Tor官网（暗网）](http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/index.html) | 官方Tor浏览器下载及匿名网络使用指南 |
 | [Breach Forums（黑客论坛）](https://breachedmw4otc2lhx7nqe4wyxfhpvy32ooz26opvqkmmrbg73c7ooad.onion) | 知名暗网论坛/数据泄露社区（需 Tor 访问） |
@@ -341,6 +345,18 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [nauzome blog](http://nauzome2l6y3m3qaaigxambvti32hd7tjaeupdvs2a66nr7koqikc4yd.onion/) | 17-18岁小女孩 |
 | [BMG](http://bmguns7xglvmnlnz5nd543dczp3fnsfd6jecwpjomvhov4dn4ikxmqyd.onion/shop/) | black market guns |
 | [Drugs](http://wms5y25kttgihs4rt2sifsbwsjqjrx3vtc42tsu2obksqkj7y666fgid.onion/) | 卖药网站 |
+
+#### 📁 Archives & Leak
+| Site | Purpose |
+| :--- | :--- |
+| [维基解密](https://wikileaks.org/) | 维基解密 |
+| [CHINA DIGITAL TIMES](https://chinadigitaltimes.net/) | 中国数字空间 |
+| [archive.org](https://archive.org) | Internet Archive: Wayback Machine, books, media |
+| [GreatFire](https://zh.greatfire.org/) | 使用AI监控审查并扩大言论自由 |
+| [泡泡](https://pao-pao.net/) | 未经审查的互联网信息 |
+| [牛马ICU](https://www.work2icu.org/zh-CN) | 凝聚共识，共同推动这些核心价值的实现，让每一位劳动者都能活得有尊严。 |
+| [611Study ICU](https://611study.icu/) | 寒假不是换个地方卷 |
+| [公民及政治权利国际盟约](https://treaty.mfa.gov.cn/tykfiles/20190104/1546602018517.pdf) | 公民及政治权利国际盟约【中文版】 |
 
 #### 📌 V2EX Favorites
 | Site | Purpose |
@@ -399,3 +415,4 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [IPTV直播源 (定期更新)](https://github.com/joevess/IPTV/tree/main) | Curated IPTV live source collection (m3u8) |
 | [HelloGitHub](https://hellogithub.com/) | Monthly curated list of interesting open-source projects |
 | [中国区GitHub用户排行榜](https://china-ranking.aolifu.org/) | Sort by the number of Followers, showcasing outstanding individual developers in China. |
+| [Political-Science](https://github.com/HarborLibrary/Political-Science) | 政科书籍 |

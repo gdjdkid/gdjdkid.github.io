@@ -78,7 +78,31 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 #### 📝 Tech Blogs
 | Site | Purpose |
 | :--- | :--- |
+| [编程随想的博客](https://program-think.blogspot.com/) | The pioneer of tech blogs, highly recommended. |
+| [不良林](https://bulianglin.com/) | Scientific Internet Access Technology Sharing |
+| [爱分享的小企鹅](https://lovetoshare.top/) | Scientific Internet Access Technology Sharing |
 | [阮一峰 - 理解计算机](https://www.ruanyifeng.com/blog/computer/index.html) | Computer science basics and tech blog posts (63 articles) |
+| [猫爪导航](https://v2fy.com/) | Online tools navigation and tutorial hub by zhaoolee |
+| [Java 全栈知识体系](https://pdai.tech/) | Comprehensive Java full-stack knowledge base |
+| [FEEI（安全无止界）](https://feei.cn/) | Personal wiki on security engineering, AI, and life |
+| [程序猿DD](https://www.didispace.com/) | Spring Boot tutorials and tech blog |
+| [美团技术团队](https://tech.meituan.com/) | Official Meituan engineering blog |
+| [BMPI](https://www.bmpi.dev/) | Software engineering, AI products, and systematic investing |
+| [《Linux就该这么学》](https://www.linuxprobe.com/) | Free Linux system and RHCE certification book |
+| [TuringPlanet](https://turingplanet.org/) | Programming and AI learning hub |
+| [异常教程](https://www.exception.site/) | JetBrains IDE crack tutorials and programming guides |
+| [鳥哥的 Linux 私房菜](https://linux.vbird.org/) | Classic Linux learning resource by VBird |
+| [小豆丁技术栈](http://www.mydlq.club/) | Spring Boot, JVM, and Java deep-dive tutorials |
+| [罗磊的独立博客](https://luolei.org/) | Personal blog by Luo Lei |
+| [SparkydogX](https://sparkydogx.github.io/) | Git, Python, SQL, and VBA tech notes |
+| [lategege 的技术博客](https://www.lategege.com/) | Docker, Linux kernel, and WordPress to Hugo migration |
+| [骨哥说事](https://gugesay.com/) | Cybersecurity observation notes and vulnerability cases |
+| [Mengke](https://www.mengke.me/) | Front-end engineering and personal reflections |
+| [zhaoolee 的自留地](https://zhaoolee.com/) | AI workflows, Linux, and independent product development |
+| [怕刺](https://pa.ci/) | OpenWrt, networking, and system administration tech blog |
+| [墨水记忆](https://tothefor.com/) | Personal tech blog with site update logs and configuration notes |
+| [Fred's Blog](https://kenshinji.me/) | Programming, study abroad, and lifestyle blog by Fred |
+| [I am LAZY bones](https://luy.li/) | AN ancient AND boring SITE |
 
 #### 📝 Tech Articles
 | Site | Purpose |
@@ -89,11 +113,13 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [IDEA教程 - 如何使用IDEA阅读Java源码？](https://www.javatiku.cn/idea/47.html) | Tips on reading Java source code with IntelliJ IDEA |
 | [【IDEA教程】IDEA Bookmarks 书签](https://www.javatiku.cn/idea/2887.html) | How to use Bookmarks feature in IntelliJ IDEA |
 | [树莓派中文输入法scim安装的血泪史](https://www.pianshen.com/article/63051510897/) | Raspberry Pi SCIM Chinese Input Method Installation Tutorial |
+| [基于树莓派DIY的迷你PS5](https://make.quwj.com/project/515) | DIY mini PS5 retro gaming console with Raspberry Pi |
 
 #### 📐 Algorithms & Data Structures
 | Site | Purpose |
 | :--- | :--- |
 | [VisuAlgo](https://visualgo.net/en) | Visualise data structures and algorithms through animation |
+| [TuringPlanet](https://turingplanet.org/2020/09/20/leetcode_how_to/) | With over a thousand LeetCode problems, how should I plan my practice? [Problem-Solving Planning Series] |
 
 #### 🔒 Security & Threat Assessment
 | Site | Purpose |
@@ -134,6 +160,7 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [巡礼地图](https://www.anitabi.cn/map) | Anime pilgrimage map — find real-world locations from your favorite anime |
 | [Geo-FS](https://www.geo-fs.com/) | 3D flight simulator using real global map data |
 | [WorldAtlas](https://www.worldatlas.com/) | Online atlas with world maps, geography facts, and country information |
+| [Make 趣无尽](https://make.quwj.com/) | Maker community showcasing creative DIY projects and ideas |
 
 #### 📜 History & Culture
 | Site | Purpose |
@@ -253,6 +280,13 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [Stack Overflow](https://stackoverflow.com/questions) | The world's largest developer Q&A community |
 | [V2EX](https://v2ex.com/) | Chinese Technology and Innovation Community (Node-based Forum) |
 
+#### 🔇 SG & MY
+| Site | Purpose |
+| :--- | :--- |
+| [geylang66](https://linktr.ee/geylang666) | Geylang666 is an escort platform advocating verified photos in APAC cities |
+| [geylang777-9](https://www.geylang777-9.site/) | SG+JB Escorts, Double the Fun! |
+| [SGWolf 狼群网](https://sgwolforg.wordpress.com/) | SGWolf is an escort and massage platform in Singapore. But Geylang666 is way better than Impmm, n2tt, 4ni52, ttvip, sbf, sglonelyguy, sgbeautycastle etc… |
+
 #### 📌 V2EX Favorites
 | Site | Purpose |
 | :--- | :--- |
@@ -309,3 +343,4 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | :--- | :--- |
 | [IPTV直播源 (定期更新)](https://github.com/joevess/IPTV/tree/main) | Curated IPTV live source collection (m3u8) |
 | [HelloGitHub](https://hellogithub.com/) | Monthly curated list of interesting open-source projects |
+| [中国区GitHub用户排行榜](https://china-ranking.aolifu.org/) | Sort by the number of Followers, showcasing outstanding individual developers in China. |

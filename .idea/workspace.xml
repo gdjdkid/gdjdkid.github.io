@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="[Docs]Updated the article of Bookmarks I Actually Use (Stripped Down) and Dark Web">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="[Docs]Updated the article of Bookmarks I Actually Use.">
+      <change afterPath="$PROJECT_DIR$/source/_posts/Finally-I-Got-My-German-Opportunity-Card-Visa-from-the-Consulate-in-Guangzhou.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_config.next.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.next.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/my-go-to-urls-collection.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/my-go-to-urls-collection.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/about/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/about/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/SuperalinkMainland5DaysPackagePurchaseGuideWithDiscountCode.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/SuperalinkMainland5DaysPackagePurchaseGuideWithDiscountCode.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,26 +75,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/DevProjects/gdjdkid.github.io&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHELLCHECK.PATH": "I do mind",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/DevProjects/gdjdkid.github.io",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "terminal",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -152,7 +153,7 @@
       <workItem from="1792328420329" duration="458000" />
       <workItem from="1792328900311" duration="3345000" />
       <workItem from="1792332545303" duration="2828000" />
-      <workItem from="1792339393829" duration="3263000" />
+      <workItem from="1792339393829" duration="8168000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -466,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783844712125</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="[Docs]Updated the article of Bookmarks I Actually Use.">
+      <option name="closed" value="true" />
+      <created>1792343044995</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1792343044995</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +497,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.deploy_git" />
     </ignored-roots>
-    <MESSAGE value="push 2025.12.18_0" />
     <MESSAGE value="push 2026.01.22_0" />
     <MESSAGE value="push 2026.01.22_1" />
     <MESSAGE value="push 2026.02.28_0" />
@@ -513,7 +521,8 @@
     <MESSAGE value="[docs]updated the article of Bookmarks I Actually Use (Stripped Down)" />
     <MESSAGE value="[Docs]Updated the article of Bookmarks I Actually Use (Stripped Down)" />
     <MESSAGE value="[Docs]Updated the article of Bookmarks I Actually Use (Stripped Down) and Dark Web" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Docs]Updated the article of Bookmarks I Actually Use (Stripped Down) and Dark Web" />
+    <MESSAGE value="[Docs]Updated the article of Bookmarks I Actually Use." />
+    <option name="LAST_COMMIT_MESSAGE" value="[Docs]Updated the article of Bookmarks I Actually Use." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

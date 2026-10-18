@@ -917,3 +917,8 @@ vendors:
 css: css
 js: js
 images: images
+
+hide_posts:
+  filter: hidden
+  public_generators: []
+  noindex: true

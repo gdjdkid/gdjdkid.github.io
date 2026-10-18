@@ -4,6 +4,7 @@ date: 2026-05-09 19:37:13
 author: Roy Li
 tags: [eSIM, Phone]
 categories: [eSIM]
+hidden: true
 index_img:
 sticky:
 ---

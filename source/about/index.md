@@ -6,12 +6,12 @@ comment: 'utterances'
 
 ### About Me
 Gender: Male  
-Language: Java && English && Mandarin  
-Skills: SB3/SQL/Docker/Linux/  
+Language: English && Mandarin  
+Skills: Java/SB3/SQL/Docker/Linux/  
 Hobbies: RPI/Football/Nintendo Switch/PlayStation/Proxy  
-GitHub: [かいとキッド](https://github.com/gdjdkid)  
-Gmail: [gdjdkid2014@gmail.com](mailto:gdjdkid2014@gmail.com)  
+GitHub: [Roy P. Li](https://github.com/gdjdkid)  
+Gmail: [work.roy.p.li@gmail.com](mailto:work.roy.p.li@gmail.com)  
 V2EX: gdjdkid2014  
-1Point3Acres: gdjdkid
+1Point3Acres: gdjdkid  
 
 > ***Glad to Meet You Here***

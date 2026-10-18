@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97c405a3-7f1e-4884-abc6-4c2da05c4087" name="Default Changelist" comment="[Docs]Updated the article of Bookmarks I Actually Use (Stripped Down) and Dark Web">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.next.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.next.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/my-go-to-urls-collection.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/my-go-to-urls-collection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/about/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/about/index.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="PATH_TO_GIT" value="D:\Dev_Tools\Git\bin\git.exe" />
+    <option name="PATH_TO_GIT" value="D:\DevTools\Git\bin\git.exe" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
@@ -25,19 +28,38 @@
     &quot;assignee&quot;: &quot;gdjdkid&quot;
   }
 }</component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="5fbc7a07-5a7f-4fcf-9170-9964f1868dcb" />
-  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:gdjdkid/gdjdkid.github.io.git&quot;,
-    &quot;accountId&quot;: &quot;5fbc7a07-5a7f-4fcf-9170-9964f1868dcb&quot;
+    &quot;url&quot;: &quot;https://github.com/gdjdkid/gdjdkid.github.io.git&quot;,
+    &quot;accountId&quot;: &quot;7a49dd0f-c9be-4c9a-9072-3b894c53feb1&quot;
   }
 }</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="customMavenHome" value="D:\DevTools\apache-maven-3.3.9" />
+        <option name="localRepository" value="C:\Users\gdjdk\.m2\repository" />
+        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
+        <option name="userSettingsFile" value="C:\Users\gdjdk\.m2\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="#JAVA_HOME" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="delegateBuildToMaven" value="true" />
+    <option name="jreName" value="#JAVA_HOME" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -56,16 +78,20 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Dev_Project/my-blog&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DevProjects/gdjdkid.github.io&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -120,6 +146,13 @@
       <workItem from="1773993299311" duration="944000" />
       <workItem from="1778326299144" duration="12382000" />
       <workItem from="1783706528800" duration="46137000" />
+      <workItem from="1792259874876" duration="56000" />
+      <workItem from="1792259940960" duration="64000" />
+      <workItem from="1792280871677" duration="3170000" />
+      <workItem from="1792328420329" duration="458000" />
+      <workItem from="1792328900311" duration="3345000" />
+      <workItem from="1792332545303" duration="2828000" />
+      <workItem from="1792339393829" duration="3263000" />
     </task>
     <task id="LOCAL-00001" summary="push 2025.12.09_0">
       <option name="closed" value="true" />
@@ -481,5 +514,9 @@
     <MESSAGE value="[Docs]Updated the article of Bookmarks I Actually Use (Stripped Down)" />
     <MESSAGE value="[Docs]Updated the article of Bookmarks I Actually Use (Stripped Down) and Dark Web" />
     <option name="LAST_COMMIT_MESSAGE" value="[Docs]Updated the article of Bookmarks I Actually Use (Stripped Down) and Dark Web" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

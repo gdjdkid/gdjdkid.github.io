@@ -130,7 +130,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [Privacy](https://privacy.aiuys.com/) | Real-time dark web and ransomware monitoring dashboard |
 | [VirusTotal](https://www.virustotal.com/gui/home/upload) | Online file and URL virus scanning platform |
 | [微步在线云沙箱](https://s.threatbook.com/) | Online file threat analysis platform — detects malware, APT, etc. |
-| [AIA登录](https://wap.aia.com/adfs/ls/?client-request-id=faf448a1-5079-3000-bf88-e5e85dc06df0&username=&wa=wsignin1.0&wtrealm=urn%3afederation%3aMicrosoftOnline&wctx=estsredirect%3d2%26estsrequest%3drQQIARAAlVE9aBNhGL4vl16bmGrI5GiPIFi45Pvu7rv7voDD_SRErKSxqKCUcL_k2iSX5q4_tnRx6lg36SCoW6bipF2sa6cKDpJJEaE4SBGH0qk5XBzrOzw8PO_Dy8PzzrKohCpF-HckIUEB-j4SHC9h_8ygkM2_qv85fzrPwA87P04WD7une2DSCqySE3aHALXjuB9VyuWxMhZKUdsaeP0w6MXJvtzyw0E3Krueb6124pIV9TfeAXAMwAkAw9SKYlBYlbCoa8jEumnKUDdJ1aCUIJ2qtaqGRA0TbCqqgrBmIAFLmqSbhkgMmZpUxTWDigok1NQkQxFrCpIlrBuKZBCi1MSqNLYoqq5UsUppYh6lrjW01bgtJhAOgk3vdyqTZGz1wyjeY9MNE64P2UtV85Ytqr7oIDrWqe_KgmwTKlDkSoJKLUWmlCo-tI5YLux7vcA9ToOf6RxkK1NT2TxznbnBnKXB64lxwe_Jw5vs5-f6i_TMm5mXt5ijifJCs76kNue8tUGoL6srm4_wHbjQfIwb99Z7m_WluU7bu3sfPsCUVm9LFbTLgV2OO-AyU2ye4VljHp1yYGeSOcj8_4OOr4BRDmUzTmgPrJ4buIUiQrZLIJEEonpQkJGNBdtWiQBtR5YcYhGPWKOcnOWcjhV0o8LsFh-4rThc9np8ZYvf6EYtx0nYmtVZ9SK-8oQfR-QXt7e3n01f6vrhNHN29dP5l4_fvu__qu_nma955gI1&pullStatus=0) | AIA Group Limited |
 
 #### 📚 Reference
 | Site | Purpose |
@@ -201,35 +200,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [Instructables](https://www.instructables.com/) | Community-driven DIY projects and tutorials |
 | [Fold'NFly](https://www.foldnfly.com/) | Paper airplane folding instructions with video tutorials |
 
-#### 🎬 Media
-| Site | Purpose |
-| :--- | :--- |
-| [SeedHub](https://www.seedhub.cc/) | Torrent and magnet link search engine |
-| [Anich](https://anich.emmmm.eu.org/) | Online anime streaming platform |
-| [Anime Scene Search Engine](https://trace.moe/) | Reverse search anime screenshots to identify the source |
-| [Speedrun.com](https://www.speedrun.com/zh-CN) | Global speedrunning community with records and leaderboards |
-| [酷搜影视](https://www.kpkuang.org/) | Movie and TV show resource aggregator |
-| [电影天堂](https://www.dygod.vip/) | Movie download resource site |
-| [BT世界网](https://www.btsj6.com/) | BT and magnet link search engine |
-| [电影天堂(备份网址)](https://www.dytt8899.com/) | Classic movie download site |
-| [555影视](https://www.555k26.com/) | Online movie and TV show streaming |
-| [555电影](https://www.55dy12.com/) | Online movie and TV show streaming |
-| [美剧天堂](https://www.mjtt5.tv/) | Online movie and TV show streaming |
-| [B站](https://www.bilibili.com/) | China's leading danmaku video community (anime, tech, gaming) |
-| [搜片.com](https://soupian.one/) | Movie and TV show resource aggregator |
-| [飘花电影网](https://www.piaohua.com/) | Movie download resource site |
-| [盒子助手v1.1.5](https://tvhelper.cpolar.top/) | Live TV streaming tool and source aggregator |
-| [Libvio](https://www.libvio.app/) | Movie and TV show resource aggregator |
-| [Libvio(备份网址)](https://libvio.host/) | Movie and TV show resource aggregator |
-| [JRKAN直播](https://www.jrskk.com/) | Live sports streaming aggregator with multiple backup links |
-| [CCTV-5](https://tv.cctv.com/live/cctv5/) | Official CCTV-5 sports channel live stream |
-| [CCTV-5+](https://tv.cctv.com/live/cctv5plus/) | Official CCTV-5+ sports event channel live stream |
-| [电视眼](https://www.tvyan.com/) | Online TV streaming aggregator with 5,000+ channels |
-| [123IPTV](https://www.123iptv.tv/) | Global TV live streaming aggregator |
-| [直播吧](https://zhibo8.com/) | Sports live streaming portal with scores, fixtures and text commentary |
-| [天下足球网](https://www.txzqw.me/) | Football match streaming and news aggregator |
-| [看球通直播](https://m.kqt22.com/vlive/0) | Online video live streaming aggregator (sports, variety, TV) |
-
 #### 📊 Data & Finance
 | Site | Purpose |
 | :--- | :--- |
@@ -253,12 +223,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [Poki (宝玩)](https://poki.com/zh) | Free online mini-games platform |
 | [老游戏在线玩](https://zaixianwan.app/) | Web-based retro game emulator (FC, PS, GBA, etc.) |
 | [Play-CS](https://play-cs.com/zh/servers) | Counter-Strike server browser and status checker |
-| [Switch问题自查](https://docs.qq.com/doc/DVVFMWXRLQ096RXVG) | A comprehensive FAQ and troubleshooting document for Switch |
-| [TX转大气层方图文教程](https://www.2023game.com/nsaita/pojie/79480.html) | Guide and tools for migrating from TX to Atmosphere on Switch |
-| [【工具】switch《19.0.1系统大气层1.8.0版本》纯净包、极简整合包下载2](https://www.2023game.com/nsaita/pojie/163211.html) | Atmosphere CFW package and tools for Switch firmware 19.0.1 |
-| [Switch 大气层 Atmosphere 如何离线升降级系统](https://shipengliang.com/games/switch-%E5%A4%A7%E6%B0%94%E5%B1%82-atmosphere-%E5%A6%82%E4%BD%95%E7%A6%BB%E7%BA%BF%E5%8D%87%E7%BA%A7%E7%B3%BB%E7%BB%9F.html) | Tutorials on upgrading/downgrading Switch firmware with Atmosphere |
-| [Switch520](https://www.gamer520.com/) | A popular site for downloading Switch games and resources |
-| [switch游戏联盟(常用教程列表)](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI3MjE2ODMzOA==&action=getalbum&album_id=1492482265908559872&scene=173&from_msgid=2247510746&from_itemidx=3&count=3&nolastread=1#wechat_redirect) | Nintendo Switch List of frequently used tutorials |
 | [希望OL美服 希望恋曲 冰城套装任务详解(上下鞋)](https://blog.sina.com.cn/52seal) | A blog with guides and tips for the MMO game *Seal Online* |
 | [Seal Online KR Official](https://www.sealonline.co.kr/Event/Event_20240214) | Official event page for the Korean server of *Seal Online* |
 | [希望OL美服官网](https://sealonline.playrohan.com/main.html) | Seal Online community portal and player resources |
@@ -267,12 +231,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [Seal B.O.D Official Wiki](https://sealonline.fandom.com/wiki/Main_Page) | Community-driven Seal Online encyclopedia on Fandom |
 | [《跑跑卡丁车》官网](https://popkart.tiancity.com/homepage/v3/) | Official website of the popular racing game Popkart (Crazy Racing) |
 | [IGG-Games](https://igg-games.com/) | PC game downloads including cracked and torrent resources |
-
-#### 🍉 Internet Trivia
-| Site | Purpose |
-| :--- | :--- |
-| [爱泼斯坦案件](https://jmail.world/) | Searchable Gmail-style interface for the Jeffrey Epstein public email archive |
-| [豆包 Deepseek 大战](https://youware.app/project/8zo2eorjmx) | 豆包 deepseek大战，大佬乔木出轨，2亿美元期权一毛钱都不想给原配，放任两个孩子不管。豆包LLM技术负责人利用职务之便搞婚外情出轨同组 hrbp 程若琳。 |
 
 #### 💬 Community & Forums
 | Site | Purpose |
@@ -283,80 +241,11 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [V2EX](https://v2ex.com/) | Chinese Technology and Innovation Community (Node-based Forum) |
 | [新·品葱](https://pincong.rocks/) | 华人论坛 |
 
-#### 🔇 SG & MY
-| Site | Purpose |
-| :--- | :--- |
-| [geylang66](https://linktr.ee/geylang666) | Geylang666 is an escort platform advocating verified photos in APAC cities |
-| [geylang777-9](https://www.geylang777-9.site/) | SG+JB Escorts, Double the Fun! |
-| [SGWolf 狼群网](https://sgwolforg.wordpress.com/) | SGWolf is an escort and massage platform in Singapore. But Geylang666 is way better than Impmm, n2tt, 4ni52, ttvip, sbf, sglonelyguy, sgbeautycastle etc… |
-
-#### 🌐 Dark Web
-| Site | Purpose |
-| :--- | :--- |
-| [Check using Tor](https://check.torproject.org/) | If you are attempting to use a Tor client, please refer to the Tor website and specifically the frequently asked questions. |
-| [Tor官网（表网）](https://www.torproject.org/) | 官方Tor浏览器下载及匿名网络使用指南 |
-| [Tor官网（暗网）](http://2gzyxa5ihm7nsggfxnu52rck2vv4rvmdlkiu3zzui5du4xyclen53wid.onion/index.html) | 官方Tor浏览器下载及匿名网络使用指南 |
-| [Breach Forums（黑客论坛）](https://breachedmw4otc2lhx7nqe4wyxfhpvy32ooz26opvqkmmrbg73c7ooad.onion) | 知名暗网论坛/数据泄露社区（需 Tor 访问） |
-| [StartPage纯搜索网页](http://startpagel6srwcjlue4zgq3zevrujfaow726kjytqbbjyrswwmjzcqd.onion/) | 隐私搜索引擎 StartPage 的洋葱镜像 |
-| [Facebook（暗网）](https://www.facebookwkhpilnemxj7asaniu7vnjjbiltxjqhye3mhbshg7kx5tfyd.onion/) | Facebook 官方洋葱镜像站点 |
-| [The Hidden Wiki](http://zqktlwiuavvvqqt4ybvgvi7tyo4hjl5xgfuvpdf6otjiycgwqbym2qad.onion/wiki/index.php/Main_Page) | 暗网知名导航站——隐藏维基 |
-| [CIA 官网](http://ciadotgov4sjwlzihbbgxnqg3xiyrg7so2r2o3lt5wz5ypk4sxyjstad.onion/) | 美国中央情报局官方洋葱站点 |
-| [Dread Forum](http://dreadytofatroptsdj6io7l3xptbet6onoyno2yv7jicoxknyazubrad.onion/) | 暗网匿名论坛（Reddit风格的暗网论坛，最大的英文暗网论坛） |
-| [BBC 新闻](https://www.bbcnewsd73hkzno2ini43t4gblxvycyac5aw4gnv7t2rccijh7745uqd.onion/) | BBC 新闻暗网镜像站点 |
-| [The Guardian](http://xp44cagis447k3lpb4wwhcqukix6cgqokbuys24vmxmbzmaq2gjvc2yd.onion/) | 此网站用于保护新闻记者和消息来源的线人。可上传下载相对安全的页面的网站，有中文界面。 |
-| [ProPublica](http://p53lf57qovyuvwsc6xnrppyply3vtqm7l6pcobkmyqsiofyeznfu5uqd.onion/) | Investigative Journalism and News in the Public Interest【出版物】 |
-| [SpecTor](http://tcecdnp2fhyxlcrjoyc2eimdjosr65hweut6y7r2u6b5y75yuvbkvfyd.onion/) | Dutch Police |
-| [NCIDE](http://ncidetfs7banpz2d7vpndev5somwoki5vwdpfty2k7javniujekit6ad.onion/) | Northern California Illicit Digital Economy Task Force |
-| [Debian](http://5ekxbftvqg26oir5wle3p27ax3wksbxcecnm6oemju7bjra2pn26s3qd.onion/) | The Universal Operating System Debian是一个操作系统和自由软件的分发。|
-| [Qubes OS](http://qubesosfasa4zl44o4tws22di6kepyzfeqv3tg4e3ztknltfxqrymdad.onion/) | A reasonably secure operating system QUBES是一种安全的，免费和开源的操作系统，适用于个人计算机，允许您安全地将数字生命划分为您的数字生活。 |
-| [Haystak](http://haystak5njsmn2hqkewecpaxetahtwhsbsa64jom2k22z5afxhnpxfid.onion/) | 暗网搜索引擎 the darknet search engine |
-| [Ahmia](http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/) | Search Tor Hidden Services 暗网搜索引擎，搜索出来的内容全是暗网网址，并且部分网站会带有介绍。 |
-| [Torch](http://torchdeedp3i2jigzjdmfpn5ttjhthh5wbmda2rr3jvqjg5p77c54dqd.onion/) | The Original Dark Web Search Engine. Torch是那些持续了足够长的时间（自1996年以来）的暗网搜索引擎之一。与其他搜索引擎一样，Torch会抓取这些地址并为其内容编制索引，使其可供用户搜索。 |
-| [DuckDuckGo](https://duckduckgogg42xjoc72x3sjasowoarfbgcmvfimaftt6twagswzczad.onion/) | Privacy, simplified. 您知道DuckDuckGo在暗网上可用，而且他们也有自己的.Onion域名吗？是的，但即使在Tor浏览器上使用，它也只显示来自表网的结果。 |
-| [Deep Search](http://search7tdrcvri22rieiwgi5g46qnwsesvnubqav2xakhezv4hjzkkad.onion/) | Deep Search是一个针对暗网的搜索引擎。它被设计用来索引和搜索洋葱空间，即Tor网络的隐藏服务部分。DeepSearch是开源的，任何人都可以使用。 |
-| [Shoot](http://shootnnngg4akh7fkjmx5b5omsppt2zaefohzwnwryhy2c6mm3kbx6qd.onion/) | 暗网搜索引擎 |
-| [VormWeb](http://volkancfgpi4c7ghph6id2t7vcntenuly66qjt6oedwtjmyj4tkk5oqd.onion/) | Suchmaschine 暗网搜索引擎 |
-| [Black Market](http://weapon5dj7fwz2zaqa22fqeaqrauclim5kfvecegphrvxeywxoa3wuid.onion/) | Guns Arms Ammo Drugs for Bitcoin – Supplier since 2001 出售各种类型的武器（枪支、手榴弹等）和高科技产品 |
-| [Cheap cards with low balance](http://6dozk6elfzmgjndri22zwcxgys46s5v7vlt5dnmeoekuumb46l6jdfyd.onion/) | 出售少量余额的信用卡 |
-| [Guns & Ganja Club](http://gunsganos2raowan5y2nkblujnmza32v2cwkdgy6okciskzabchx4iqd.onion/) | 贩卖枪支和大麻 |
-| [Shiny](http://amazing3zvkbs6wulbrqd7gzvat45qvk2h6jyw7pkwgaj7r6zu5k67yd.onion/) | Flakes Drogen Shop 出售高纯度可卡因、致幻剂等毒品。从德国发货，全球到付。 |
-| [UK Guns and Ammo Store](http://gunsdtkf6kuugvpyssa2wdwzatrapqs4hlelf2aqcskio7q4xlvughqd.onion/) | 出售手枪以及手枪需要的各种口径的子弹 |
-| [Onion Directory](http://666666666tjjjeweu5iikuj7hkpke5phvdylcless7g4dn6vma2xxcad.onion/) | 暗网最受欢迎网址导航 （Onion域名） |
-| [Onion Directory（表网地址）](https://onion666.com/) | Onion666是最大的暗网导航，Onion666列出的暗网网站的链接不是很多，但是对很多网站都有标识，并特地单列出了勒索网站类、诈骗网站类。 |
-| [长安不夜城](http://cabyceogpsji73sske5nvo45mdrkbz4m3qd3iommf3zaaa6izg3j2cqd.onion/#/login) | 长安不夜城是个华人暗网论坛 |
-| [Comic Book Library](http://nv3x2jozywh63fkohn5mwp2d73vasusjixn3im3ueof52fmbjsigw6ad.onion/) | 漫画书库 |
-| [Raped Bitch](http://oqcsvl3uuh6b7styuwmv3itixkruhjgox4lueav4b4jymb2xu4pwikid.onion/) | 真正的强迫，强X，醉，鼻烟，勒索性X情 |
-| [Guardian](https://www.guardian2zotagl6tmjucg3lrhxdk4dw3lhbqnkvvkywawy3oqfoprid.onion/europe) | 英国卫报 |
-| [Twitter](https://twitter3e4tixl4xyajtrzo62zg5vztmjuricljdp2c5kshju4avyoid.onion) | 暗网v3地址 |
-| [中文暗网交易市场](http://xxxxxxxx3a3kuuhhw5w7stk25fzhttrlpiomij5bogkg7yyqsng5tqyd.onion/) | 中文暗网交易市场 |
-| [Red Room](http://7o6ujzyeupv42a6tbsm7xezlxq6exjzpffoo6uccwwm4lg4ksvrjeayd.onion/) | 著名的红房子 |
-| [tor.taxi（表网地址）](https://tor.taxi/) | tor.taxi不仅监测暗网onion域名存活，还记录了暗网的历史，追踪了暗网站点的正常运行时间和停机时间，并提供了暗网相关钓鱼网站的数据，值得向大家推荐。 |
-| [tor.taxi（暗网）](http://tortaxi2dev6xjwbaydqzla77rrnth7yn2oqzjfmiuwn5h6vsk2a4syd.onion/) | tor.taxi - your ride to the darknet |
-| [Dark.fail](http://darkfailenbsdla5mal2mxn2uz66od5vtzd5qozslagrfzachha3f3id.onion/) | Dark.fail是一个暗网域名的导航站，也是一个监测暗网onion域名存活的站点。 |
-| [Endchan](http://enxx3byspwsdo446jujc52ucy2pf5urdbhqw3kbsfhlfjwmbpj5smdad.onion/) | 类似4chan类型的暗网论坛 |
-| [The Tor Times](http://tortimeswqlzti2aqbjoieisne4ubyuoeiiugel2layyudcfrwln76qd.onion/) | Breaking Darknet Market News and Links |
-| [Z-Library](http://bookszlibb74ugqojhzhg2a63w5i2atv5bqarulgczawnbmsb6s6qead.onion/) | Electronic library. Download books free. Finding books世界上最大的电子书库。电子库。免费下载书籍。寻找书籍 Z-Library。免费下载书籍。查找书籍 |
-| [ni-chan](http://plnemlsyla6h5t3nuoz2algzmy635ceuendnjwsmhwn2os5fxahshiad.onion/) | 匿名X情论坛 |
-| [Dark Net Live（表网）](https://darknetlive.com/) | 表层暗网信息 |
-| [Tor Offical Blog](http://pzhdfe7jraknpj2qgu5cz2u3i4deuyfwmonvzu5i3nyw4t4bmg7o5pad.onion/) | Tor官方博客 |
-| [OnionShare](http://lldan5gahapx5k7iafb3s4ikijc4ni7gx5iywdflkba5y2ezyg6sjgyd.onion/) | 文件传输 |
-| [Hidden Answers](http://7eoz4h2gjoncdmqzkkyshy5egtm6onpapjzxzs7nhmnakylmtexyisqd.onion/) | Q&A 论坛 |
-| [Tplace - TorBay](http://torbayc23k45euubuxk5qgyq63k2ulitdaodtgqufvtohrl6r5xwueyd.onion/) | Escrow Marke 购物网 |
-| [nauzome blog](http://nauzome2l6y3m3qaaigxambvti32hd7tjaeupdvs2a66nr7koqikc4yd.onion/) | 17-18岁小女孩 |
-| [BMG](http://bmguns7xglvmnlnz5nd543dczp3fnsfd6jecwpjomvhov4dn4ikxmqyd.onion/shop/) | black market guns |
-| [Drugs](http://wms5y25kttgihs4rt2sifsbwsjqjrx3vtc42tsu2obksqkj7y666fgid.onion/) | 卖药网站 |
-
 #### 📁 Archives & Leak
 | Site | Purpose |
 | :--- | :--- |
 | [维基解密](https://wikileaks.org/) | 维基解密 |
-| [CHINA DIGITAL TIMES](https://chinadigitaltimes.net/) | 中国数字空间 |
 | [archive.org](https://archive.org) | Internet Archive: Wayback Machine, books, media |
-| [GreatFire](https://zh.greatfire.org/) | 使用AI监控审查并扩大言论自由 |
-| [泡泡](https://pao-pao.net/) | 未经审查的互联网信息 |
-| [牛马ICU](https://www.work2icu.org/zh-CN) | 凝聚共识，共同推动这些核心价值的实现，让每一位劳动者都能活得有尊严。 |
-| [611Study ICU](https://611study.icu/) | 寒假不是换个地方卷 |
-| [公民及政治权利国际盟约](https://treaty.mfa.gov.cn/tykfiles/20190104/1546602018517.pdf) | 公民及政治权利国际盟约【中文版】 |
 
 #### 📌 V2EX Favorites
 | Site | Purpose |

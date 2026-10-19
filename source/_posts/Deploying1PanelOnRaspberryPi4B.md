@@ -79,9 +79,8 @@ After installation finishes, the terminal will display the access URL, for examp
 ---
 
 #### Open the Web Panel
-- In your browser, enter:`http://<RaspberryPi-IP>:PORT/RANDOM_PATH`（Example http://192.168.0.109:36230/roy）
+- In your browser, enter:`http://<RaspberryPi-IP>:PORT/RANDOM_PATH`  
 - The random path is a security entry point configured during installation.  
-![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_7.png)  
 ![](https://pub-ed71167c1a14475cbc305b5afb0e5173.r2.dev/PicGo/%E6%A0%91%E8%8E%93%E6%B4%BE4B%E6%90%AD%E5%BB%BA%E9%9D%A2%E6%9D%BF1Panel/Install_1Panel_8.png)  
 
 ---

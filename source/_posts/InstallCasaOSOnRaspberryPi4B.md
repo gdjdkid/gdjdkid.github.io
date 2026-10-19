@@ -46,6 +46,7 @@ curl -fsSL https://get.casaos.io | sudo bash
     - Username: `casaos`
     - Password: `casaos`
     - You can change them during setup.
+    - Please set your username and a strong password.
 - After installation finishes, CasaOS will start automatically.
 
 Alternative command (if curl is unavailable)
@@ -60,7 +61,7 @@ wget -qO- https://get.casaos.io | sudo bash
    - Run the following command in the terminal：`hostname -I`
    - You should see an IP address like 192.168.x.x.
 2. Open the web interface  
-   - On a device in the same network, open a browser and visit：`http://<RaspberryPi-IP>:80`（ Example：http://192.168.0.109 ）  
+   - On a device in the same network, open a browser and visit：`http://<RaspberryPi-IP>:80`（ Example：http://192.168.XXX.YYY ）  
    - Log in using the username and password you configured earlier.  
    - On first login, CasaOS will guide you through the initial setup. After that, you can open the app store and install applications such as Nextcloud, Plex, or Home Assistant with a single click.  
 

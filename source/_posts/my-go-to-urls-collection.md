@@ -40,7 +40,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [SimilarSites](https://www.similarsites.com/) | Discover websites similar to any given URL |
 | [AlternativeTo](https://alternativeto.net/) | Find alternatives to your favorite software |
 | [shots.so](https://shots.so/) | Create mockups, animations and videos for social media and websites |
-| [Zread](https://zread.ai/) | Operating system images and resources (Chrome OS, Linux, Raspberry Pi) |
 | [书签地球](https://www.bookmarkearth.cn/) | Browser bookmark sharing search engine |
 | [爱达杂货铺](https://adzhp.cc/) | Collect useful things |
 | [Oracle Java Tutorial](https://docs.oracle.com/javase/tutorial/index.html) | Java Official Getting Started Tutorial |
@@ -79,8 +78,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | Site | Purpose |
 | :--- | :--- |
 | [编程随想的博客](https://program-think.blogspot.com/) | The pioneer of tech blogs, highly recommended. |
-| [不良林](https://bulianglin.com/) | Scientific Internet Access Technology Sharing |
-| [爱分享的小企鹅](https://lovetoshare.top/) | Scientific Internet Access Technology Sharing |
 | [阮一峰 - 理解计算机](https://www.ruanyifeng.com/blog/computer/index.html) | Computer science basics and tech blog posts (63 articles) |
 | [猫爪导航](https://v2fy.com/) | Online tools navigation and tutorial hub by zhaoolee |
 | [Java 全栈知识体系](https://pdai.tech/) | Comprehensive Java full-stack knowledge base |
@@ -90,7 +87,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [BMPI](https://www.bmpi.dev/) | Software engineering, AI products, and systematic investing |
 | [《Linux就该这么学》](https://www.linuxprobe.com/) | Free Linux system and RHCE certification book |
 | [TuringPlanet](https://turingplanet.org/) | Programming and AI learning hub |
-| [异常教程](https://www.exception.site/) | JetBrains IDE crack tutorials and programming guides |
 | [鳥哥的 Linux 私房菜](https://linux.vbird.org/) | Classic Linux learning resource by VBird |
 | [小豆丁技术栈](http://www.mydlq.club/) | Spring Boot, JVM, and Java deep-dive tutorials |
 | [罗磊的独立博客](https://luolei.org/) | Personal blog by Luo Lei |
@@ -109,7 +105,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | :--- | :--- |
 | [美团技术博客](https://tech.meituan.com/2016/11/18/dianping-order-db-sharding.html) | Dianping order system database sharding practice (Meituan Tech Blog) |
 | [IDEA教程 - 如何通过教育邮箱申请正版Intellij IDEA注册码？](https://www.javatiku.cn/idea/19.html) | Apply for free JetBrains educational license via student email |
-| [Intellij IDEA Mac版本永久激活破解教程](https://www.javatiku.cn/idea/1320.html) | IntelliJ IDEA Mac version permanent activation guide |
 | [IDEA教程 - 如何使用IDEA阅读Java源码？](https://www.javatiku.cn/idea/47.html) | Tips on reading Java source code with IntelliJ IDEA |
 | [【IDEA教程】IDEA Bookmarks 书签](https://www.javatiku.cn/idea/2887.html) | How to use Bookmarks feature in IntelliJ IDEA |
 | [树莓派中文输入法scim安装的血泪史](https://www.pianshen.com/article/63051510897/) | Raspberry Pi SCIM Chinese Input Method Installation Tutorial |
@@ -141,10 +136,7 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [中国医药信息查询平台](https://www.dayi.org.cn/) | China's nationally certified medical and pharmaceutical information platform |
 | [台词搜索与字幕语料库](https://33tc.net/) | Search movie/TV subtitles and real-life dialogues for language learning |
 | [书伴](https://bookfere.com/ebook) | Curated Kindle ebook resource aggregator |
-| [Z-Library](https://zh.z-library.sk/) | One of the world's largest free ebook libraries |
-| [VDOC.PUB](https://vdoc.pub/) | Free ebook downloads in EPUB, PDF, MOBI, and more |
 | [Forgotten Books](https://www.forgottenbooks.com/en) | The World’s Forgotten Books Ready For You to Read. |
-| [禁书收录](https://chinadigitaltimes.net/space/%E7%A6%81%E4%B9%A6%E6%94%B6%E5%BD%95) | 禁书收录 |
 
 #### 🗺️ Fun Exploration
 | Site | Purpose |
@@ -181,8 +173,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | :--- | :--- |
 | [VisaIndex](https://visaindex.com/zh-hans/) | Check passport power and visa-free destinations worldwide |
 | [PassportIndex](https://www.passportindex.org/cn/) | Comprehensive passport ranking and comparison tool |
-| [UK Address Generator](https://www.meiguodizhi.com/uk-address) | Generate random UK addresses for testing purposes |
-| [Photo GPS Tag Tool](https://photo-gps.551111.xyz) | Add or edit GPS coordinates in images |
 | [AConvert](https://www.aconvert.com/) | Online file format converter (images, audio, video, documents) |
 | [死亡公司公墓](https://www.itjuzi.com/deathCompany) | Database of defunct internet companies in China |
 | [StartMyCar](https://www.startmycar.com/) | Community-driven car problem troubleshooting and solutions |
@@ -204,7 +194,6 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | Site | Purpose |
 | :--- | :--- |
 | [Finviz Map](https://finviz.com/map) | US stock market heatmap and sector performance visualization |
-| [大盘云图](https://dapanyuntu.com/) | Cloud storage resource search engine |
 
 #### 🎓 Education
 | Site | Purpose |
@@ -218,10 +207,7 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | Site | Purpose |
 | :--- | :--- |
 | [Dino Game](https://dinogame.onl/) | Play the classic Chrome dino game online in your browser |
-| [Emu666](https://www.emu666.com/) | Web-based retro game emulator collection |
-| [小霸王在线游戏](https://www.yikm.net/) | Play classic NES and arcade games online in your browser |
 | [Poki (宝玩)](https://poki.com/zh) | Free online mini-games platform |
-| [老游戏在线玩](https://zaixianwan.app/) | Web-based retro game emulator (FC, PS, GBA, etc.) |
 | [Play-CS](https://play-cs.com/zh/servers) | Counter-Strike server browser and status checker |
 | [希望OL美服 希望恋曲 冰城套装任务详解(上下鞋)](https://blog.sina.com.cn/52seal) | A blog with guides and tips for the MMO game *Seal Online* |
 | [Seal Online KR Official](https://www.sealonline.co.kr/Event/Event_20240214) | Official event page for the Korean server of *Seal Online* |
@@ -230,21 +216,17 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [希望OL国服锐我官网](https://sealonline.ruiwoo.cn/Index/index.html) | Seal Online official website and game client download |
 | [Seal B.O.D Official Wiki](https://sealonline.fandom.com/wiki/Main_Page) | Community-driven Seal Online encyclopedia on Fandom |
 | [《跑跑卡丁车》官网](https://popkart.tiancity.com/homepage/v3/) | Official website of the popular racing game Popkart (Crazy Racing) |
-| [IGG-Games](https://igg-games.com/) | PC game downloads including cracked and torrent resources |
 
 #### 💬 Community & Forums
 | Site | Purpose |
 | :--- | :--- |
-| [4chan](https://4chan.org/) | One of the internet's oldest and most influential anonymous forums |
 | [A9VG](https://bbs.a9vg.com/) | A leading Chinese gaming forum with discussions, news, and community |
 | [Stack Overflow](https://stackoverflow.com/questions) | The world's largest developer Q&A community |
 | [V2EX](https://v2ex.com/) | Chinese Technology and Innovation Community (Node-based Forum) |
-| [新·品葱](https://pincong.rocks/) | 华人论坛 |
 
-#### 📁 Archives & Leak
+#### 📁 Archives
 | Site | Purpose |
 | :--- | :--- |
-| [维基解密](https://wikileaks.org/) | 维基解密 |
 | [archive.org](https://archive.org) | Internet Archive: Wayback Machine, books, media |
 
 #### 📌 V2EX Favorites
@@ -255,10 +237,7 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [1221525](https://v2ex.com/t/1221525) | 目前海外 esim 手机号在国内，哪个最好？ |
 | [1220989](https://v2ex.com/t/1220989) | 2026 年了，还有人使用精简 windows 镜像吗？ |
 | [1219929](https://v2ex.com/t/1219929) | 仅需一美元获得一个实体美国手机号 |
-| [1218346](https://v2ex.com/t/1218346) | 分享教程：绕过 esim 手机限制获取 esim 配置二维码 |
 | [1217937](https://v2ex.com/t/1217937) | 用 Three.js 撸了一个 3D 地球 + 全球实时电台，性能有点炸，求优化建议 |
-| [1215779](https://v2ex.com/t/1215779) | 做了一个“全网视频下载”的 Windows 桌面应用：仅 2.2MB，粘贴链接就能下，欢迎试用 |
-| [1215687](https://v2ex.com/t/1215687) | 做了一个支持嗅探下载、YT-DLP 和在线音乐播放的桌面工具： XiaDown / 下蛋 |
 | [1215436](https://v2ex.com/t/1215436) | 收录 15000+ 独立博客的 3D 星图，重磅更新！ |
 | [1214095](https://v2ex.com/t/1214095) | 用嘴搓了一个帮助小朋友学习自然拼读的网站 1.0 上线 |
 | [1213872](https://v2ex.com/t/1213872) | v2ex-cli：给终端党和 AI Agent 用的 V2EX 命令行工具 |
@@ -268,20 +247,17 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [1213097](https://v2ex.com/t/1213097) | OpenAgent：单文件版龙虾——仅有一个文件，双击就能跑的高性能 Agent |
 | [1213276](https://v2ex.com/t/1213276) | 公司内网不让装录屏软件，于是我用 ffmpeg 自己封装了一个 CLI 工具 |
 | [1212487](https://v2ex.com/t/1212487) | 程序员公认的早买早享受的有什么？ |
-| [1190907](https://v2ex.com/t/1190907) | 内地用户开香港银行卡最佳实践 |
 | [1189661](https://v2ex.com/t/1189661) | 聊聊德国的免费医疗，比加拿大澳大利亚快得多，以及强过一线的地方 |
 | [552516](https://v2ex.com/t/552516) | 我在 wayfair.com 的德国分公司工作，我的头儿问我咋把中国的程序员吸引些来德国柏林 |
 | [658275](https://v2ex.com/t/658275) | 来，分享下您的「个人品牌博客」 |
 | [1081484](https://v2ex.com/t/1081484) | NootCode - 主动练习面试八股和架构设计的刷题平台 |
 | [1108078](https://v2ex.com/t/1108078) | 200 小时的 LeetCode 刷题经验分享 |
 | [908878](https://v2ex.com/t/908878) | 工作多年刷算法题，脑子空空，很有挫败感 |
-| [1210544](https://v2ex.com/t/1210544) | 两次赴港开卡，带表姐轻松拿下中银香港， V 友港卡人均三件套，开卡薅回本北京往返机票费用！ |
 | [1210161](https://v2ex.com/t/1210161) | 做了一个把新闻翻译成股票信号的工具 |
 | [1205693](https://v2ex.com/t/1205693) | [送码]截图工具 PixPin3.0 正式发布（文字识别，长截图，录屏，标注），时隔两年半再来 v 站宣传 |
-| [1206812](https://v2ex.com/t/1206812) | 亲测已撸｜成功拿下德国 O2 eSIM 卡申请记录分享 |
+| [1206812](https://v2ex.com/t/1206812) | 亲测已撸｜成功拿下德国O2 eSIM卡申请记录分享 |
 | [645097](https://v2ex.com/t/645097) | 想向有德国计算机科学领域留学或工作经验的 V 友请教一些问题 |
 | [887135](https://v2ex.com/t/887135) | 2022 年从国内拿到悉尼 220K AUD offer 经验分享（一） |
-| [379097](https://v2ex.com/t/379097) | 高龄程序员不完全肉身敏感词指南和经验分享 |
 | [964161](https://v2ex.com/t/964161) | 华润万家，哪家最好？ |
 | [814555](https://v2ex.com/t/814555) | [求助]欧洲怎么找工作 |
 | [373158](https://v2ex.com/t/373158) | 国外的程序员都是什么样的状态？ |
@@ -289,19 +265,15 @@ Over the years, I've accumulated hundreds of bookmarks. These are the ones I act
 | [646491](https://v2ex.com/t/646491) | 在德国工作生活的真实情况到底是怎样？ |
 | [286862](https://v2ex.com/t/286862) | 三年码农一枚，即将赴德国码砖，求熟悉那里的前辈给建议 |
 | [537744](https://v2ex.com/t/537744) | 你们电脑上装了哪些有用的命令行工具？ |
-| [680390](https://v2ex.com/t/680390) | 原来程序员都有鱼塘，甚至变成了水族馆 | 5 个有趣的命令行工具推荐 |
-| [871716](https://v2ex.com/t/871716) | 大家有没有什么很 COOL 的终端工具，分享一下。 |
-| [1204940](https://v2ex.com/t/1204940) | 一个 Z-Library 的命令行工具，支持搜索、下载、发送到 Kindle |
-| [779542](https://v2ex.com/t/779542) | [工具分享] 整理了一些总计超 51 万 star 的终端命令行工具，欢迎大家补充 |
-| [1200102](https://v2ex.com/t/1200102) | 推荐一下大家常用的 iPhone 快捷指令 |
-| [1202649](https://v2ex.com/t/1202649) | Claude Code 源码泄露后，我连夜 Vibe Coding 写了一份学习笔记 |
-| [1171730](https://v2ex.com/t/1171730) | iPhone Air 国行 eSIM 策略结论（2025 年 11 月 10 日， iOS 26.0.1 可以支持 n+2+n） |
-| [1201808](https://v2ex.com/t/1201808) | 国行 iPhone Air eSIM 相关事项 |
+| [680390](https://v2ex.com/t/680390) | 原来程序员都有鱼塘，甚至变成了水族馆 |
+| [871716](https://v2ex.com/t/871716) | 大家有没有什么很COOL的终端工具，分享一下。 |
+| [779542](https://v2ex.com/t/779542) | [工具分享] 整理了一些总计超51万star的终端命令行工具，欢迎大家补充 |
+| [1200102](https://v2ex.com/t/1200102) | 推荐一下大家常用的iPhone快捷指令|
+| [1171730](https://v2ex.com/t/1171730) | iPhone Air国行eSIM策略结论（2025年11月10日，iOS26.0.1可以支持n+2+n）|
+| [1201808](https://v2ex.com/t/1201808) | 国行iPhone Air eSIM相关事项 |
 
 #### 📦 GitHub Repos
 | Site | Purpose |
 | :--- | :--- |
-| [IPTV直播源 (定期更新)](https://github.com/joevess/IPTV/tree/main) | Curated IPTV live source collection (m3u8) |
 | [HelloGitHub](https://hellogithub.com/) | Monthly curated list of interesting open-source projects |
 | [中国区GitHub用户排行榜](https://china-ranking.aolifu.org/) | Sort by the number of Followers, showcasing outstanding individual developers in China. |
-| [Political-Science](https://github.com/HarborLibrary/Political-Science) | 政科书籍 |

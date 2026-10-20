@@ -14,6 +14,6 @@ Gmail: [work.roy.p.li@gmail.com](mailto:work.roy.p.li@gmail.com)
 V2EX: gdjdkid2014  
 1Point3Acres: gdjdkid  
 Java engineer based in Frankfurt am Main, Germany  
-LinkedIn: https://www.linkedin.com/in/royli1989
+LinkedIn: https://www.linkedin.com/in/royli2026
 
 > ***Glad to Meet You Here***
